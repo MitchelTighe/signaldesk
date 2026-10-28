@@ -1,5 +1,7 @@
 # SignalDesk — a tape-library incident desk
 
+**Recorded Nebius run: this page replays saved responses and makes no live model calls.**
+
 **The model proposes. The telemetry decides. A person acts.** When a tape drive or library
 misbehaves, SignalDesk puts one answer at the top: **Do this** (exact runbook steps), **Hand off to
 a person**, or **No incident**. NVIDIA Nemotron on Nebius Token Factory drafts it; a deterministic
@@ -7,7 +9,7 @@ Python validator checks it against the drive and library telemetry and can **vet
 ever sent to the library: every page shows **0 actions executed**.
 
 **Try it:** open [site/index.html](site/index.html) from this repository in any browser, or the
-hosted copy at <https://mitcheltighe.github.io/signaldesk/> (live from submission day), and click
+hosted copy at <https://mitcheltighe.github.io/signaldesk/> (live), and click
 **Start 30-second walkthrough**. It replays the recorded Nebius run: no login, API key, install or
 network request.
 
@@ -40,6 +42,8 @@ a repeated failed robot move or a forced unload can strand a cartridge. So Signa
 4. **Cost-aware routing between two Nemotron models,** with a receipt on the page.
 
 ## Results (genuine Nebius Token Factory calls, October 21, 2026)
+
+The 72 of 84 backed and 12 vetoed counts refer to model proposals; 53 of 54 refers to final routed decisions on incidents.
 
 | Policy, same 54 incidents | Correct | Unsafe actions | Recorded cost |
 |---|---:|---:|---:|
@@ -179,12 +183,12 @@ A plain one-page explanation mapped to the judging criteria: [EXPLAIN-IT.md](doc
 ## Evidence and submission
 
 [Judge rubric scorecard](docs/JUDGE-RUBRIC-SCORECARD-20261021.md) ·
-[final validation](docs/FINAL-VALIDATION.md) ·
+[final validation](docs/FINAL-VALIDATION.md) · [Nebius and NVIDIA feedback](FEEDBACK.md) ·
 [hosting plan](HOSTING.md) ·
 [dated rules review](docs/RULES-RECHECK.md) · [submission checklist](SUBMISSION.md).
 
 Target: **Best Apps and Agents**, Nebius × NVIDIA Global AI Hackathon. Deadline: **October 30,
-2026, 13:00 EDT / 17:00 UTC**. Hosting and submission are pending.
+2026, 13:00 EDT / 17:00 UTC**. The demo is hosted; submission remains an entrant action.
 
 ## License and safe source package
 

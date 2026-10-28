@@ -15,6 +15,8 @@ public deployment or submission readiness.
 | Responsive controls | Browser checks at 1280/768/390/320 pixels; no page/panel overflow, minimum 44-pixel form targets at 390/320. [Current screenshots and hashes](GALLERY.md). |
 | Package hygiene | October 22 source and freshly extracted standalone export pass the artifact checker, including local links, Python/shell syntax, PNG integrity and static manifest/bundle budget. Limited source/private-path/credential-shape scans are not a history-wide secret-scan certification. |
 
+The October 22 acceptance source contained six tests absent from the public checkout: five `SubmissionGateTests` methods in `tests/test_finish.py` and `test_video_shots_resolve_and_fit_the_rubric` in `tests/test_showcase.py`. Comparing the acceptance test log with the public suite accounts for 186 versus 180; the browser scripts are separate and do not explain the gap.
+
 These browser results came from the actual October 22 acceptance, not a fresh model evaluation.
 [CAPTURES.json](screenshots/current/CAPTURES.json) records the exact HTML and image hashes. The
 underlying production Python validator, runbook data, earlier genuine reports and recorded replay JSON

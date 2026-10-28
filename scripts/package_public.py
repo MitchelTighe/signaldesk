@@ -10,7 +10,7 @@ import re
 import tarfile
 
 ENTRY = Path(__file__).resolve().parents[1]
-ROOT_FILES = {'README.md', 'HOSTING.md', 'LICENSE', 'SUBMISSION.md', '.gitignore', 'run.sh', 'pull.sh', 'demo.sh', 'runtime-image.txt', 'Containerfile.browser', 'Containerfile.judge', 'requirements-browser.txt', '.containerignore',
+ROOT_FILES = {'README.md', 'FEEDBACK.md', 'HOSTING.md', 'LICENSE', 'SUBMISSION.md', '.gitignore', 'run.sh', 'pull.sh', 'demo.sh', 'runtime-image.txt', 'Containerfile.browser', 'Containerfile.judge', 'requirements-browser.txt', '.containerignore',
               '.github/workflows/pages.yml'}
 SUFFIXES = {'signaldesk': {'.py', '.json'}, 'scripts': {'.py', '.sh'}, 'tests': {'.py'},
             'docs': {'.md', '.json', '.png'}, 'web': {'.html'}, 'site': {'.html', '.json'},
