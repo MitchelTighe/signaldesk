@@ -1,0 +1,11 @@
+# ts: 2026-10-21T13:00:52-04:00
+# cmd: sg_turs -v /dev/sg9
+# ---
+    test unit ready cdb: [00 00 00 00 00 00]
+test unit ready:
+Fixed format, current; Sense key: Not Ready
+Additional sense: Medium not present
+  Info fld=0x0 [0] 
+device not ready
+Completed 1 Test Unit Ready commands with 1 errors
+# --- exit: 2

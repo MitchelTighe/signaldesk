@@ -1,0 +1,901 @@
+{
+  "provenance": "64 individually hand-authored synthetic tape-library tickets across eight families, 2026-10-21. Text only trains the baseline; telemetry and labels support corpus review. No held-out file is read by the corpus authoring script. Same AI author as heldout; no external validation claimed.",
+  "cases": [
+    {
+      "id": "T-MOUNT-01",
+      "title": "Restore job stuck at mount",
+      "service": "synthetic-mount-1",
+      "text": "A restore job asked the library to mount a cartridge and waited for minutes. The robot picked the tape but the drive load did not finish before the backup software gave up.",
+      "evidence": [
+        {
+          "id": "T-MOUNT-01-E1",
+          "metric": "load_wait_seconds",
+          "value": 410
+        }
+      ],
+      "expected": "RB-MOUNT"
+    },
+    {
+      "id": "T-MOUNT-02",
+      "title": "Load request exceeds timeout",
+      "service": "synthetic-mount-2",
+      "text": "The mtx load command for drive 2 hung well past the usual time. The changer reported the move as complete, yet the drive stayed not ready while the mount timer ran out.",
+      "evidence": [
+        {
+          "id": "T-MOUNT-02-E1",
+          "metric": "load_wait_seconds",
+          "value": 260
+        }
+      ],
+      "expected": "RB-MOUNT"
+    },
+    {
+      "id": "T-MOUNT-03",
+      "title": "Mount queue waits on one drive",
+      "service": "synthetic-mount-3",
+      "text": "Several mount requests are queued behind one drive that takes too long to become ready after each cartridge load. Load wait seconds keep climbing on that drive only.",
+      "evidence": [
+        {
+          "id": "T-MOUNT-03-E1",
+          "metric": "load_wait_seconds",
+          "value": 190
+        }
+      ],
+      "expected": "RB-MOUNT"
+    },
+    {
+      "id": "T-MOUNT-04",
+      "title": "Slow cartridge load after move",
+      "service": "synthetic-mount-4",
+      "text": "After the robot moved the cartridge from its slot, the drive reported becoming ready for a long time. The mount request timed out and the job was rescheduled.",
+      "evidence": [
+        {
+          "id": "T-MOUNT-04-E1",
+          "metric": "load_wait_seconds",
+          "value": 300
+        }
+      ],
+      "expected": "RB-MOUNT"
+    },
+    {
+      "id": "T-MOUNT-05",
+      "title": "Backup window missed on mount",
+      "service": "synthetic-mount-5",
+      "text": "Nightly backup missed its window because each tape mount took several minutes. The library accepted every move command, but drive load and thread time stayed very slow.",
+      "evidence": [
+        {
+          "id": "T-MOUNT-05-E1",
+          "metric": "load_wait_seconds",
+          "value": 150
+        }
+      ],
+      "expected": "RB-MOUNT"
+    },
+    {
+      "id": "T-MOUNT-06",
+      "title": "Load timeout on archive drive",
+      "service": "synthetic-mount-6",
+      "text": "An archive copy waited on a tape load that never completed. sg_turs kept returning not ready, becoming ready, while the mount request sat at the timeout limit.",
+      "evidence": [
+        {
+          "id": "T-MOUNT-06-E1",
+          "metric": "load_wait_seconds",
+          "value": 600
+        }
+      ],
+      "expected": "RB-MOUNT"
+    },
+    {
+      "id": "T-MOUNT-07",
+      "title": "Drive slow to thread tape",
+      "service": "synthetic-mount-7",
+      "text": "The drive takes a long time to thread a newly loaded cartridge. Mount latency exceeds the timeout and the application logs a load timeout for the requested volume.",
+      "evidence": [
+        {
+          "id": "T-MOUNT-07-E1",
+          "metric": "load_wait_seconds",
+          "value": 240
+        }
+      ],
+      "expected": "RB-MOUNT"
+    },
+    {
+      "id": "T-MOUNT-08",
+      "title": "Robot move done, mount pending",
+      "service": "synthetic-mount-8",
+      "text": "The changer finished moving the cartridge into the drive but the mount request is still pending. Load wait time crossed two minutes and the job reported a mount timeout.",
+      "evidence": [
+        {
+          "id": "T-MOUNT-08-E1",
+          "metric": "load_wait_seconds",
+          "value": 175
+        }
+      ],
+      "expected": "RB-MOUNT"
+    },
+    {
+      "id": "T-CLEAN-01",
+      "title": "Drive asks for cleaning",
+      "service": "synthetic-clean-1",
+      "text": "sg_logs page 0x2e shows TapeAlert flag 20 Clean now on drive 1. The drive keeps running jobs but asks for a cleaning cartridge before more writes.",
+      "evidence": [
+        {
+          "id": "T-CLEAN-01-E1",
+          "metric": "tapealert_cleaning_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-CLEAN"
+    },
+    {
+      "id": "T-CLEAN-02",
+      "title": "Periodic cleaning flag set",
+      "service": "synthetic-clean-2",
+      "text": "TapeAlert flag 21 Clean periodic is set on drive 3. The cleaning schedule has lapsed and the drive requests routine head cleaning.",
+      "evidence": [
+        {
+          "id": "T-CLEAN-02-E1",
+          "metric": "tapealert_cleaning_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-CLEAN"
+    },
+    {
+      "id": "T-CLEAN-03",
+      "title": "Clean now after long write",
+      "service": "synthetic-clean-3",
+      "text": "After a long write session the drive raised the clean now TapeAlert flag. Read retries rose slightly and the drive requests a cleaning cartridge.",
+      "evidence": [
+        {
+          "id": "T-CLEAN-03-E1",
+          "metric": "tapealert_cleaning_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-CLEAN"
+    },
+    {
+      "id": "T-CLEAN-04",
+      "title": "Both cleaning flags present",
+      "service": "synthetic-clean-4",
+      "text": "TapeAlert page shows both clean now and clean periodic flags on the same drive. No cleaning cartridge has been loaded into this drive for weeks.",
+      "evidence": [
+        {
+          "id": "T-CLEAN-04-E1",
+          "metric": "tapealert_cleaning_flags",
+          "value": 2
+        }
+      ],
+      "expected": "RB-CLEAN"
+    },
+    {
+      "id": "T-CLEAN-05",
+      "title": "Cleaning request in sense data",
+      "service": "synthetic-clean-5",
+      "text": "Request sense returns cleaning requested on drive 4 and the TapeAlert log page lists flag 20. The heads may need cleaning before the next backup.",
+      "evidence": [
+        {
+          "id": "T-CLEAN-05-E1",
+          "metric": "tapealert_cleaning_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-CLEAN"
+    },
+    {
+      "id": "T-CLEAN-06",
+      "title": "Library reports drive needs cleaning",
+      "service": "synthetic-clean-6",
+      "text": "The library front panel says drive 2 needs cleaning, and sg_logs on the drive confirms the TapeAlert clean now flag. Auto clean is disabled in this lab.",
+      "evidence": [
+        {
+          "id": "T-CLEAN-06-E1",
+          "metric": "tapealert_cleaning_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-CLEAN"
+    },
+    {
+      "id": "T-CLEAN-07",
+      "title": "Cleaning cartridge expected",
+      "service": "synthetic-clean-7",
+      "text": "Operators see a cleaning request from drive 5 every morning. The TapeAlert clean flag is set again and the cleaning cartridge slot is still occupied.",
+      "evidence": [
+        {
+          "id": "T-CLEAN-07-E1",
+          "metric": "tapealert_cleaning_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-CLEAN"
+    },
+    {
+      "id": "T-CLEAN-08",
+      "title": "Head cleaning overdue",
+      "service": "synthetic-clean-8",
+      "text": "Drive 6 reports head cleaning overdue through TapeAlert clean periodic. Write performance is normal, but the cleaning flag must be handled before heavy jobs.",
+      "evidence": [
+        {
+          "id": "T-CLEAN-08-E1",
+          "metric": "tapealert_cleaning_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-CLEAN"
+    },
+    {
+      "id": "T-LTFS-01",
+      "title": "LTFS volume will not mount",
+      "service": "synthetic-ltfs-1",
+      "text": "ltfs refuses to mount the volume and reports an index inconsistency between the index partition and the data partition. The volume was unloaded during a power cut.",
+      "evidence": [
+        {
+          "id": "T-LTFS-01-E1",
+          "metric": "ltfs_mount_errors",
+          "value": 1
+        }
+      ],
+      "expected": "RB-LTFS"
+    },
+    {
+      "id": "T-LTFS-02",
+      "title": "Index generation mismatch",
+      "service": "synthetic-ltfs-2",
+      "text": "The LTFS index on partition a is older than the index on partition b. Mount fails with an inconsistent index error and suggests running ltfsck.",
+      "evidence": [
+        {
+          "id": "T-LTFS-02-E1",
+          "metric": "ltfs_mount_errors",
+          "value": 1
+        }
+      ],
+      "expected": "RB-LTFS"
+    },
+    {
+      "id": "T-LTFS-03",
+      "title": "ltfsck reports index problem",
+      "service": "synthetic-ltfs-3",
+      "text": "ltfsck reports that the latest index on the data partition cannot be read cleanly. Rollback points are listed but nobody has chosen one yet.",
+      "evidence": [
+        {
+          "id": "T-LTFS-03-E1",
+          "metric": "ltfs_mount_errors",
+          "value": 2
+        }
+      ],
+      "expected": "RB-LTFS"
+    },
+    {
+      "id": "T-LTFS-04",
+      "title": "LTFS mount after crash",
+      "service": "synthetic-ltfs-4",
+      "text": "After a host crash the LTFS volume shows index errors on mount. The file system was writing when the crash happened, so the last index was not committed.",
+      "evidence": [
+        {
+          "id": "T-LTFS-04-E1",
+          "metric": "ltfs_mount_errors",
+          "value": 1
+        }
+      ],
+      "expected": "RB-LTFS"
+    },
+    {
+      "id": "T-LTFS-05",
+      "title": "Damaged LTFS index",
+      "service": "synthetic-ltfs-5",
+      "text": "The LTFS volume reports a damaged index and mounts read only at best. Index errors appear for the most recent generation on the data partition.",
+      "evidence": [
+        {
+          "id": "T-LTFS-05-E1",
+          "metric": "ltfs_mount_errors",
+          "value": 3
+        }
+      ],
+      "expected": "RB-LTFS"
+    },
+    {
+      "id": "T-LTFS-06",
+      "title": "Unexpected end of LTFS index",
+      "service": "synthetic-ltfs-6",
+      "text": "LTFS logs an unexpected end of index while mounting the cartridge. The index partition holds an older generation than the data partition.",
+      "evidence": [
+        {
+          "id": "T-LTFS-06-E1",
+          "metric": "ltfs_mount_errors",
+          "value": 1
+        }
+      ],
+      "expected": "RB-LTFS"
+    },
+    {
+      "id": "T-LTFS-07",
+      "title": "LTFS consistency check needed",
+      "service": "synthetic-ltfs-7",
+      "text": "The LTFS mount helper asks for a consistency check. Two index generations disagree and the volume cannot be mounted for writing.",
+      "evidence": [
+        {
+          "id": "T-LTFS-07-E1",
+          "metric": "ltfs_mount_errors",
+          "value": 2
+        }
+      ],
+      "expected": "RB-LTFS"
+    },
+    {
+      "id": "T-LTFS-08",
+      "title": "LTFS rollback question",
+      "service": "synthetic-ltfs-8",
+      "text": "An LTFS cartridge fails to mount after an interrupted write. ltfsck lists several rollback points, and an index error count is recorded for the newest one.",
+      "evidence": [
+        {
+          "id": "T-LTFS-08-E1",
+          "metric": "ltfs_mount_errors",
+          "value": 1
+        }
+      ],
+      "expected": "RB-LTFS"
+    },
+    {
+      "id": "T-PATH-01",
+      "title": "Repeated bus resets on tape path",
+      "service": "synthetic-path-1",
+      "text": "The kernel log shows repeated unit attention, power on or reset occurred, for the tape drive. Jobs fail mid-write after each SCSI bus reset.",
+      "evidence": [
+        {
+          "id": "T-PATH-01-E1",
+          "metric": "scsi_unit_attention_count",
+          "value": 9
+        }
+      ],
+      "expected": "RB-PATH"
+    },
+    {
+      "id": "T-PATH-02",
+      "title": "Unit attentions after cable work",
+      "service": "synthetic-path-2",
+      "text": "Since cable work on the tape path, the drive returns unit attention sense 06/29/00 several times an hour. lsscsi shows the device dropping and returning.",
+      "evidence": [
+        {
+          "id": "T-PATH-02-E1",
+          "metric": "scsi_unit_attention_count",
+          "value": 6
+        }
+      ],
+      "expected": "RB-PATH"
+    },
+    {
+      "id": "T-PATH-03",
+      "title": "Device renumbered after reset",
+      "service": "synthetic-path-3",
+      "text": "The drive keeps resetting and reappears with a new /dev/sg number. Unit attention reports power on reset each time the SCSI path recovers.",
+      "evidence": [
+        {
+          "id": "T-PATH-03-E1",
+          "metric": "scsi_unit_attention_count",
+          "value": 12
+        }
+      ],
+      "expected": "RB-PATH"
+    },
+    {
+      "id": "T-PATH-04",
+      "title": "HBA link flaps",
+      "service": "synthetic-path-4",
+      "text": "The HBA reports link resets toward the tape drive. Each reset produces a unit attention and the running backup aborts.",
+      "evidence": [
+        {
+          "id": "T-PATH-04-E1",
+          "metric": "scsi_unit_attention_count",
+          "value": 15
+        }
+      ],
+      "expected": "RB-PATH"
+    },
+    {
+      "id": "T-PATH-05",
+      "title": "Medium may have changed alerts",
+      "service": "synthetic-path-5",
+      "text": "The drive returns unit attention 06/28/00 medium may have changed and 06/29/00 reset without anyone touching the library. The path seems unstable.",
+      "evidence": [
+        {
+          "id": "T-PATH-05-E1",
+          "metric": "scsi_unit_attention_count",
+          "value": 5
+        }
+      ],
+      "expected": "RB-PATH"
+    },
+    {
+      "id": "T-PATH-06",
+      "title": "Tape path resets during backup",
+      "service": "synthetic-path-6",
+      "text": "During backups the SCSI transport resets the tape target repeatedly. Every reset generates a unit attention that the application treats as a failure.",
+      "evidence": [
+        {
+          "id": "T-PATH-06-E1",
+          "metric": "scsi_unit_attention_count",
+          "value": 8
+        }
+      ],
+      "expected": "RB-PATH"
+    },
+    {
+      "id": "T-PATH-07",
+      "title": "Zoning change and resets",
+      "service": "synthetic-path-7",
+      "text": "After a zoning change, the tape drive logs repeated unit attentions and target resets. sg_inq still returns the right serial between resets.",
+      "evidence": [
+        {
+          "id": "T-PATH-07-E1",
+          "metric": "scsi_unit_attention_count",
+          "value": 4
+        }
+      ],
+      "expected": "RB-PATH"
+    },
+    {
+      "id": "T-PATH-08",
+      "title": "Unstable SCSI path to drive",
+      "service": "synthetic-path-8",
+      "text": "The SCSI path to drive 3 is unstable. Unit attention counts climb through the day and lsscsi shows the device briefly missing.",
+      "evidence": [
+        {
+          "id": "T-PATH-08-E1",
+          "metric": "scsi_unit_attention_count",
+          "value": 21
+        }
+      ],
+      "expected": "RB-PATH"
+    },
+    {
+      "id": "T-HWFAULT-01",
+      "title": "Drive reports hardware error",
+      "service": "synthetic-hwfault-1",
+      "text": "sg_logs page 0x2e shows TapeAlert flag 30 Hardware A on drive 2. Request sense returns a hardware error sense key and the drive stops accepting jobs.",
+      "evidence": [
+        {
+          "id": "T-HWFAULT-01-E1",
+          "metric": "tapealert_hardware_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-HWFAULT"
+    },
+    {
+      "id": "T-HWFAULT-02",
+      "title": "Hardware B flag on drive",
+      "service": "synthetic-hwfault-2",
+      "text": "TapeAlert flag 31 Hardware B is set and the drive failed its power-on self test. The library marks the drive as failed.",
+      "evidence": [
+        {
+          "id": "T-HWFAULT-02-E1",
+          "metric": "tapealert_hardware_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-HWFAULT"
+    },
+    {
+      "id": "T-HWFAULT-03",
+      "title": "Internal target failure",
+      "service": "synthetic-hwfault-3",
+      "text": "The drive returns sense key 4 hardware error with ASC 44 internal target failure. TapeAlert hardware flags are set on the log page.",
+      "evidence": [
+        {
+          "id": "T-HWFAULT-03-E1",
+          "metric": "tapealert_hardware_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-HWFAULT"
+    },
+    {
+      "id": "T-HWFAULT-04",
+      "title": "Drive fault light on",
+      "service": "synthetic-hwfault-4",
+      "text": "The drive fault indicator is on and TapeAlert reports a hardware fault flag. The firmware log records an internal drive error.",
+      "evidence": [
+        {
+          "id": "T-HWFAULT-04-E1",
+          "metric": "tapealert_hardware_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-HWFAULT"
+    },
+    {
+      "id": "T-HWFAULT-05",
+      "title": "Drive hardware failure mid job",
+      "service": "synthetic-hwfault-5",
+      "text": "A write job aborted with a hardware error. The TapeAlert page lists flags 30 and 31 together and the drive needs a vendor diagnostic.",
+      "evidence": [
+        {
+          "id": "T-HWFAULT-05-E1",
+          "metric": "tapealert_hardware_flags",
+          "value": 2
+        }
+      ],
+      "expected": "RB-HWFAULT"
+    },
+    {
+      "id": "T-HWFAULT-06",
+      "title": "Hardware error after firmware load",
+      "service": "synthetic-hwfault-6",
+      "text": "After a firmware load the drive reports hardware error sense data and TapeAlert hardware A. Test unit ready fails with a hardware sense key.",
+      "evidence": [
+        {
+          "id": "T-HWFAULT-06-E1",
+          "metric": "tapealert_hardware_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-HWFAULT"
+    },
+    {
+      "id": "T-HWFAULT-07",
+      "title": "Drive mechanism fault",
+      "service": "synthetic-hwfault-7",
+      "text": "The drive mechanism reports a fault while loading and TapeAlert sets the hardware flag. The cartridge is ejected and the drive goes offline.",
+      "evidence": [
+        {
+          "id": "T-HWFAULT-07-E1",
+          "metric": "tapealert_hardware_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-HWFAULT"
+    },
+    {
+      "id": "T-HWFAULT-08",
+      "title": "Drive self test failure",
+      "service": "synthetic-hwfault-8",
+      "text": "The drive self test fails with a hardware error and TapeAlert hardware B is set. Jobs routed to this drive fail immediately.",
+      "evidence": [
+        {
+          "id": "T-HWFAULT-08-E1",
+          "metric": "tapealert_hardware_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-HWFAULT"
+    },
+    {
+      "id": "T-INVENTORY-01",
+      "title": "Barcode missing from inventory",
+      "service": "synthetic-inventory-1",
+      "text": "mtx status no longer lists a barcode that the backup catalog expects in slot 14. The library inventory disagrees with the expected list.",
+      "evidence": [
+        {
+          "id": "T-INVENTORY-01-E1",
+          "metric": "inventory_mismatch_count",
+          "value": 1
+        }
+      ],
+      "expected": "RB-INVENTORY"
+    },
+    {
+      "id": "T-INVENTORY-02",
+      "title": "Slot shows wrong barcode",
+      "service": "synthetic-inventory-2",
+      "text": "The library reports a different barcode in slot 7 than the catalog. Inventory mismatch appears after someone opened the library door.",
+      "evidence": [
+        {
+          "id": "T-INVENTORY-02-E1",
+          "metric": "inventory_mismatch_count",
+          "value": 1
+        }
+      ],
+      "expected": "RB-INVENTORY"
+    },
+    {
+      "id": "T-INVENTORY-03",
+      "title": "Element status disagrees",
+      "service": "synthetic-inventory-3",
+      "text": "mtx status shows a full data transfer element while the catalog says the cartridge is home in its storage slot. Several elements disagree.",
+      "evidence": [
+        {
+          "id": "T-INVENTORY-03-E1",
+          "metric": "inventory_mismatch_count",
+          "value": 3
+        }
+      ],
+      "expected": "RB-INVENTORY"
+    },
+    {
+      "id": "T-INVENTORY-04",
+      "title": "Inventory changed after door open",
+      "service": "synthetic-inventory-4",
+      "text": "After the library door was opened, the element status changed for several slots. Barcodes no longer match the expected inventory list.",
+      "evidence": [
+        {
+          "id": "T-INVENTORY-04-E1",
+          "metric": "inventory_mismatch_count",
+          "value": 4
+        }
+      ],
+      "expected": "RB-INVENTORY"
+    },
+    {
+      "id": "T-INVENTORY-05",
+      "title": "Import export slot confusion",
+      "service": "synthetic-inventory-5",
+      "text": "A cartridge placed in the import export slot never appeared in a storage slot. The inventory shows an unknown barcode and one missing volume.",
+      "evidence": [
+        {
+          "id": "T-INVENTORY-05-E1",
+          "metric": "inventory_mismatch_count",
+          "value": 2
+        }
+      ],
+      "expected": "RB-INVENTORY"
+    },
+    {
+      "id": "T-INVENTORY-06",
+      "title": "Duplicate barcode in library",
+      "service": "synthetic-inventory-6",
+      "text": "The library inventory lists the same barcode in two slots. The catalog expects one cartridge, so the inventory disagrees.",
+      "evidence": [
+        {
+          "id": "T-INVENTORY-06-E1",
+          "metric": "inventory_mismatch_count",
+          "value": 1
+        }
+      ],
+      "expected": "RB-INVENTORY"
+    },
+    {
+      "id": "T-INVENTORY-07",
+      "title": "Library lost track of tape",
+      "service": "synthetic-inventory-7",
+      "text": "The library cannot find a cartridge the catalog expects. mtx status shows the slot empty and the inventory mismatch count rises.",
+      "evidence": [
+        {
+          "id": "T-INVENTORY-07-E1",
+          "metric": "inventory_mismatch_count",
+          "value": 1
+        }
+      ],
+      "expected": "RB-INVENTORY"
+    },
+    {
+      "id": "T-INVENTORY-08",
+      "title": "Stale inventory after power loss",
+      "service": "synthetic-inventory-8",
+      "text": "After a power loss the library reports a stale inventory. Barcodes in several slots differ from the expected list until a rescan is approved.",
+      "evidence": [
+        {
+          "id": "T-INVENTORY-08-E1",
+          "metric": "inventory_mismatch_count",
+          "value": 5
+        }
+      ],
+      "expected": "RB-INVENTORY"
+    },
+    {
+      "id": "T-MEDIA-01",
+      "title": "Cartridge flagged by drive",
+      "service": "synthetic-media-1",
+      "text": "TapeAlert flag 4 Media is set after reading cartridge LTO tape A00123. The drive suggests the cartridge may be damaged.",
+      "evidence": [
+        {
+          "id": "T-MEDIA-01-E1",
+          "metric": "tapealert_media_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-MEDIA"
+    },
+    {
+      "id": "T-MEDIA-02",
+      "title": "Media life warning",
+      "service": "synthetic-media-2",
+      "text": "TapeAlert flag 7 Media life is set on a cartridge with a very high load count. sg_read_attr shows the cartridge has been loaded thousands of times.",
+      "evidence": [
+        {
+          "id": "T-MEDIA-02-E1",
+          "metric": "tapealert_media_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-MEDIA"
+    },
+    {
+      "id": "T-MEDIA-03",
+      "title": "Unrecovered read on one cartridge",
+      "service": "synthetic-media-3",
+      "text": "Reads fail with medium error 03/11/00 unrecovered read error on one cartridge only. TapeAlert media flags are set and other cartridges read fine.",
+      "evidence": [
+        {
+          "id": "T-MEDIA-03-E1",
+          "metric": "tapealert_media_flags",
+          "value": 2
+        }
+      ],
+      "expected": "RB-MEDIA"
+    },
+    {
+      "id": "T-MEDIA-04",
+      "title": "Suspect tape after drop",
+      "service": "synthetic-media-4",
+      "text": "A cartridge was dropped during handling. The drive now raises the media TapeAlert flag and read retries spike on that tape.",
+      "evidence": [
+        {
+          "id": "T-MEDIA-04-E1",
+          "metric": "tapealert_media_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-MEDIA"
+    },
+    {
+      "id": "T-MEDIA-05",
+      "title": "Media error on restore",
+      "service": "synthetic-media-5",
+      "text": "A restore fails with a medium error and TapeAlert flag 4. The cartridge memory shows the tape is near the end of its rated life.",
+      "evidence": [
+        {
+          "id": "T-MEDIA-05-E1",
+          "metric": "tapealert_media_flags",
+          "value": 2
+        }
+      ],
+      "expected": "RB-MEDIA"
+    },
+    {
+      "id": "T-MEDIA-06",
+      "title": "Worn cartridge",
+      "service": "synthetic-media-6",
+      "text": "The cartridge is old and worn. The drive reports the media life TapeAlert flag and the MAM attributes show heavy use.",
+      "evidence": [
+        {
+          "id": "T-MEDIA-06-E1",
+          "metric": "tapealert_media_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-MEDIA"
+    },
+    {
+      "id": "T-MEDIA-07",
+      "title": "Media flag follows cartridge",
+      "service": "synthetic-media-7",
+      "text": "The media TapeAlert flag appears whenever this cartridge is loaded, in any drive. The cartridge barcode is the common factor.",
+      "evidence": [
+        {
+          "id": "T-MEDIA-07-E1",
+          "metric": "tapealert_media_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-MEDIA"
+    },
+    {
+      "id": "T-MEDIA-08",
+      "title": "Damaged cartridge leader",
+      "service": "synthetic-media-8",
+      "text": "The drive reports a medium error and the media TapeAlert flag after loading a cartridge with a suspected leader problem.",
+      "evidence": [
+        {
+          "id": "T-MEDIA-08-E1",
+          "metric": "tapealert_media_flags",
+          "value": 1
+        }
+      ],
+      "expected": "RB-MEDIA"
+    },
+    {
+      "id": "T-WRITEPROT-01",
+      "title": "Writes rejected write protected",
+      "service": "synthetic-writeprot-1",
+      "text": "Every write to the cartridge fails with DATA PROTECT sense 07/27/00 write protected. The backup job aborts at the first block.",
+      "evidence": [
+        {
+          "id": "T-WRITEPROT-01-E1",
+          "metric": "write_protect_rejections",
+          "value": 3
+        }
+      ],
+      "expected": "RB-WRITEPROT"
+    },
+    {
+      "id": "T-WRITEPROT-02",
+      "title": "WORM cartridge rejects append",
+      "service": "synthetic-writeprot-2",
+      "text": "A WORM cartridge rejects an overwrite and the drive returns data protect sense. The application tried to reuse a write once volume.",
+      "evidence": [
+        {
+          "id": "T-WRITEPROT-02-E1",
+          "metric": "write_protect_rejections",
+          "value": 1
+        }
+      ],
+      "expected": "RB-WRITEPROT"
+    },
+    {
+      "id": "T-WRITEPROT-03",
+      "title": "Write protect tab set",
+      "service": "synthetic-writeprot-3",
+      "text": "mt status shows WR_PROT for the loaded cartridge. The write protect tab on the cartridge is set and writes are rejected.",
+      "evidence": [
+        {
+          "id": "T-WRITEPROT-03-E1",
+          "metric": "write_protect_rejections",
+          "value": 5
+        }
+      ],
+      "expected": "RB-WRITEPROT"
+    },
+    {
+      "id": "T-WRITEPROT-04",
+      "title": "Archive tape is read only",
+      "service": "synthetic-writeprot-4",
+      "text": "An archive cartridge was loaded for a scratch write. The drive reports write protected and refuses the write.",
+      "evidence": [
+        {
+          "id": "T-WRITEPROT-04-E1",
+          "metric": "write_protect_rejections",
+          "value": 1
+        }
+      ],
+      "expected": "RB-WRITEPROT"
+    },
+    {
+      "id": "T-WRITEPROT-05",
+      "title": "Data protect on label write",
+      "service": "synthetic-writeprot-5",
+      "text": "Labeling a new cartridge fails with data protect, write protected. The operator is unsure whether the tab is set.",
+      "evidence": [
+        {
+          "id": "T-WRITEPROT-05-E1",
+          "metric": "write_protect_rejections",
+          "value": 2
+        }
+      ],
+      "expected": "RB-WRITEPROT"
+    },
+    {
+      "id": "T-WRITEPROT-06",
+      "title": "Scratch pool contains protected tape",
+      "service": "synthetic-writeprot-6",
+      "text": "A scratch pool cartridge rejects writes with write protected sense. The tape was moved into scratch by mistake.",
+      "evidence": [
+        {
+          "id": "T-WRITEPROT-06-E1",
+          "metric": "write_protect_rejections",
+          "value": 4
+        }
+      ],
+      "expected": "RB-WRITEPROT"
+    },
+    {
+      "id": "T-WRITEPROT-07",
+      "title": "Write protect rejections climb",
+      "service": "synthetic-writeprot-7",
+      "text": "Write protect rejections climb as jobs try the same cartridge again and again. mt status reports WR_PROT on each load.",
+      "evidence": [
+        {
+          "id": "T-WRITEPROT-07-E1",
+          "metric": "write_protect_rejections",
+          "value": 30
+        }
+      ],
+      "expected": "RB-WRITEPROT"
+    },
+    {
+      "id": "T-WRITEPROT-08",
+      "title": "Cannot overwrite volume",
+      "service": "synthetic-writeprot-8",
+      "text": "The backup software cannot overwrite an expired volume. The drive reports the cartridge as write protected with sense key 7.",
+      "evidence": [
+        {
+          "id": "T-WRITEPROT-08-E1",
+          "metric": "write_protect_rejections",
+          "value": 2
+        }
+      ],
+      "expected": "RB-WRITEPROT"
+    }
+  ]
+}

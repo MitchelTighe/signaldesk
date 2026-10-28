@@ -1,0 +1,13 @@
+# ts: 2026-10-21T13:01:47-04:00
+# cmd: sg_logs -v -p 0x02 /dev/sg10
+# ---
+    inquiry cdb: [12 00 00 00 24 00]
+    log sense cdb: [4d 00 42 00 00 00 00 00 04 00]
+log sense:
+Fixed format, current; Sense key: Illegal Request
+Additional sense: Invalid field in cdb
+  Info fld=0x0 [0] 
+  Sense Key Specific: Error in Command: byte 2
+log_sense: field in cdb illegal
+    STK       L700              0108
+# --- exit: 5

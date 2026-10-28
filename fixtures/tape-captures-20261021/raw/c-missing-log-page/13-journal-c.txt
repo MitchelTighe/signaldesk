@@ -1,0 +1,847 @@
+# re-pulled after run: journalctl -t /usr/bin/vtltape -t /usr/bin/vtllibrary --since '2026-10-21 13:01:45' --until '2026-10-21 13:01:49' -o short-iso
+# ---
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (451) (delay 50005): 12 00 00 00 38 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_inquiry(): INQUIRY ** (451)
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (452) (delay 405): 1a 08 1d 00 88 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_mode_sense(): MODE SENSE 6 (452) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (453) (delay 405): b8 12 03 e8 00 28 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (453) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (454) (delay 405): b8 13 00 0a 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (454) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (455) (delay 405): b8 14 01 f4 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (455) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (456) (delay 405): b8 11 00 01 00 01 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (456) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: CDB (457) (delay 49605): 00 00 00 00 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: return_sense(): [Key/ASC/ASCQ] [02 3a 00]
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: sam_not_ready():
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: ssc_tur(): TEST UNIT READY (457) ** : No, No tape loaded
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: CDB (458) (delay 2805): 00 00 00 00 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: return_sense(): [Key/ASC/ASCQ] [02 3a 00]
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: sam_not_ready():
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: ssc_tur(): TEST UNIT READY (458) ** : No, No tape loaded
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: processMessageQ(): 12: Received message "delay load 0 " from snd_id 32768
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (459) (delay 7205): 12 00 00 00 38 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_inquiry(): INQUIRY ** (459)
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (460) (delay 805): 1a 08 1d 00 88 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_mode_sense(): MODE SENSE 6 (460) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (461) (delay 805): b8 12 03 e8 00 28 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (461) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (462) (delay 805): b8 13 00 0a 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (462) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (463) (delay 805): b8 14 01 f4 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (463) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (464) (delay 805): b8 11 00 01 00 01 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (464) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (465) (delay 805): a5 00 00 01 01 f5 03 ec 00 00 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_move_medium(): MOVE MEDIUM (465) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_move_medium(): Moving from slot 501 to slot 1004 using transport 1, Invert media: no
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: is_drive_empty(): 10: Sending "mount_state" to snd_id 12
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: processMessageQ(): 12: Received message "mount_state" from snd_id 10
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: processMessageQ(): 12: Replying to snd_id 10 with "Not occupied"
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: is_drive_empty(): 10: Received "Not occupied" from snd_id 12
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: processMessageQ(): 12: Received message "unload A00005L8        " from snd_id 10
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: processMessageQ(): 12: Replying to snd_id 10 with "Unloaded OK"
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: check_tape_unload(): 10: Received "Unloaded OK" from snd_id 12
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: move_cart(): Setting src slot access true
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: processMessageQ(): 12: Received message "set_empty" from snd_id 10
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1469]: processMessageQ(): 12: Replying to snd_id 10 with "Unloaded OK"
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: check_tape_unload(): 10: Received "Unloaded OK" from snd_id 12
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (466) (delay 2805): 12 00 00 00 38 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_inquiry(): INQUIRY ** (466)
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (467) (delay 805): 1a 08 1d 00 88 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_mode_sense(): MODE SENSE 6 (467) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (468) (delay 405): b8 12 03 e8 00 28 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (468) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (469) (delay 405): b8 13 00 0a 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (469) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (470) (delay 405): b8 14 01 f4 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (470) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (471) (delay 405): b8 11 00 01 00 01 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (471) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (472) (delay 4005): 12 00 00 00 38 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_inquiry(): INQUIRY ** (472)
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (473) (delay 805): 1a 08 1d 00 88 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_mode_sense(): MODE SENSE 6 (473) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (474) (delay 405): b8 12 03 e8 00 28 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (474) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (475) (delay 405): b8 13 00 0a 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (475) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (476) (delay 405): b8 14 01 f4 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (476) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (477) (delay 405): b8 11 00 01 00 01 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (477) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (478) (delay 2805): 12 00 00 00 38 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_inquiry(): INQUIRY ** (478)
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (479) (delay 805): 1a 08 1d 00 88 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_mode_sense(): MODE SENSE 6 (479) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (480) (delay 805): b8 12 03 e8 00 28 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (480) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (481) (delay 405): b8 13 00 0a 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (481) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (482) (delay 405): b8 14 01 f4 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (482) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (483) (delay 405): b8 11 00 01 00 01 00 00 10 3c 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (483) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (484) (delay 405): a5 00 00 01 03 ea 01 f6 00 00 00 00
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_move_medium(): MOVE MEDIUM (484) **
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_move_medium(): Moving from slot 1002 to slot 502 using transport 1, Invert media: no
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: is_drive_empty(): 10: Sending "mount_state" to snd_id 13
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1470]: processMessageQ(): 13: Received message "mount_state" from snd_id 10
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtltape[1470]: processMessageQ(): 13: Replying to snd_id 10 with "Not occupied"
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: is_drive_empty(): 10: Received "Not occupied" from snd_id 13
+2026-10-21T13:01:46-0400 tapehost01 /usr/bin/vtllibrary[1467]: move_slot2drive(): About to send cmd: 'lload A00003L8' to drive 3
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: processMessageQ(): 13: Received message "lload A00003L8" from snd_id 10
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: load_tape(): Opening media: A00003L8
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: loadTape(): Media type 'LTO8' loaded with S/No. : A00003L8_1792253281
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: rewind_tape(): Media is writable
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [06 28 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_unit_attention():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: loadTape(): Media is writable
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: loadTape(): Setting MediumDensityCode to LTO8 (0x5e) Media type: 0x88
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: processMessageQ(): 13: Replying to snd_id 10 with "Loaded OK: A00003L8"
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: check_tape_load(): 10: Received "Loaded OK: A00003L8" from snd_id 13
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: move_cart(): Setting src slot access true
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (485) (delay 210405): 12 00 00 00 24 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_inquiry(): INQUIRY ** (485)
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (486) (delay 805): 4d 00 40 00 00 00 00 00 04 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (486) ** Supported Log pages
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (487) (delay 405): 4d 00 40 00 00 00 00 00 12 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (487) ** Supported Log pages
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (488) (delay 13605): 12 00 00 00 24 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_inquiry(): INQUIRY ** (488)
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (489) (delay 405): 4d 00 40 00 00 00 00 00 04 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_log_sense(): LOG SENSE (489) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_log_sense(): LOG SENSE: Sending supported pages
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (490) (delay 405): 4d 00 40 00 00 00 00 00 08 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_log_sense(): LOG SENSE (490) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_log_sense(): LOG SENSE: Sending supported pages
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (491) (delay 4805): 12 00 00 00 24 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_inquiry(): INQUIRY ** (491)
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (492) (delay 805): 4d 00 54 00 00 00 00 00 04 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (492) ** Unsupported Log page
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [05 24 00] 0xc0 0002
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_illegal_request():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (493) (delay 5605): 12 00 00 00 24 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_inquiry(): INQUIRY ** (493)
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (494) (delay 805): 4d 00 58 00 00 00 00 00 04 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (494) ** Unsupported Log page
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [05 24 00] 0xc0 0002
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_illegal_request():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (495) (delay 2805): 12 00 00 00 24 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_inquiry(): INQUIRY ** (495)
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (496) (delay 805): 4d 00 5b 00 00 00 00 00 04 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (496) ** Unsupported Log page
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [05 24 00] 0xc0 0002
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_illegal_request():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (497) (delay 7605): 12 00 00 00 24 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_inquiry(): INQUIRY ** (497)
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (498) (delay 805): 4d 00 42 00 00 00 00 00 04 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_log_sense(): LOG SENSE (498) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_log_sense(): LOG SENSE: Unknown code: 0x2
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: return_sense(): [Key/ASC/ASCQ] [05 24 00] 0xc0 0002
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: sam_illegal_request():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (499) (delay 2805): 12 00 00 00 24 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_inquiry(): INQUIRY ** (499)
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (500) (delay 405): 4d 00 43 00 00 00 00 00 04 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_log_sense(): LOG SENSE (500) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_log_sense(): LOG SENSE: Unknown code: 0x3
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: return_sense(): [Key/ASC/ASCQ] [05 24 00] 0xc0 0002
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: sam_illegal_request():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (501) (delay 2805): 12 00 00 00 24 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_inquiry(): INQUIRY ** (501)
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (502) (delay 405): 4d 00 6e 00 00 00 00 00 04 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_log_sense(): LOG SENSE (502) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_log_sense(): LOG SENSE: TapeAlert page
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_log_sense(): TapeAlert : Alloc len short - Not clearing TapeAlert flags.
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (503) (delay 405): 4d 00 6e 00 00 00 00 01 44 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_log_sense(): LOG SENSE (503) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_log_sense(): LOG SENSE: TapeAlert page
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (504) (delay 6005): 12 00 00 00 24 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_inquiry(): INQUIRY ** (504)
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (505) (delay 805): 4d 00 57 00 00 00 00 00 04 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (505) ** Volume Statistics
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (506) (delay 405): 4d 00 57 00 00 00 00 02 1a 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (506) ** Volume Statistics
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (507) (delay 4805): 12 00 00 00 ff 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_inquiry(): INQUIRY ** (507)
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (508) (delay 805): 12 01 80 00 ff 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_inquiry(): INQUIRY ** (508)
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (509) (delay 805): a3 0c 80 00 00 00 00 00 10 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: log_opcode(): *** Unsupported op code: REPORT SUPPORTED OPCODES ** ***
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [05 20 00] 0xc0 0000
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_illegal_request():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (509) (delay 805): a3 0c 80 00 00 00 00 00 10 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (510) (delay 805): 1d 10 00 00 08 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_send_diagnostics(): SSC SEND DIAGNOSTICS (510) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (511) (delay 805): 3c 03 01 00 00 00 00 00 04 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (512) (delay 805): 3c 02 01 00 00 00 00 00 04 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (513) (delay 805): 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_tur(): TEST UNIT READY (513) ** : Yes
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (514) (delay 405): 5f 06 00 00 00 00 00 00 18 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_pr_out(): PERSISTENT RESERVE OUT (514) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (515) (delay 405): 5f 01 03 00 00 00 00 00 18 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_pr_out(): PERSISTENT RESERVE OUT (515) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (516) (delay 405): 1e 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_allow_prevent_removal(): ALLOW MEDIA REMOVAL (516) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (517) (delay 405): 05 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_block_limits(): READ BLOCK LIMITS (517) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (518) (delay 805): 1b 00 00 00 01 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_load_unload(): TAPE LOADING (518) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: rewind_tape(): Media is writable
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (519) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (519) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/0, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (520) (delay 405): 5a 00 3f 00 00 00 00 00 ff 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (520) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (521) (delay 405): 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_tur(): TEST UNIT READY (521) ** : Yes
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (522) (delay 405): 1e 00 00 00 01 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_allow_prevent_removal(): PREVENT MEDIA REMOVAL (522) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (523) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (523) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/0, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (524) (delay 405): 5a 00 0a f0 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (524) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (525) (delay 405): 55 10 00 00 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select(): MODE SELECT 10 (525) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select():  Save Pages: 0, Page Format conforms to T10 standard
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_logical_block_protection(): Updating Logical Block Protection: Method: 0x00, LBP_R: False, LPB_W: False
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (526) (delay 805): 4d 00 57 00 00 00 00 ff ff 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (526) ** Volume Statistics
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (527) (delay 405): 5a 00 10 00 00 00 00 00 20 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (527) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (528) (delay 405): 05 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_block_limits(): READ BLOCK LIMITS (528) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (529) (delay 405): 5a 00 10 01 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (529) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (530) (delay 405): 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_tur(): TEST UNIT READY (530) ** : Yes
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (531) (delay 405): 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_tur(): TEST UNIT READY (531) ** : Yes
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (532) (delay 405): 4d 00 57 00 00 00 00 ff ff 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (532) ** Volume Statistics
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (533) (delay 405): 5a 00 10 01 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (533) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (534) (delay 405): 55 10 00 00 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select(): MODE SELECT 10 (534) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select():  Save Pages: 0, Page Format conforms to T10 standard
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (535) (delay 405): 5a 00 10 01 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (535) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (536) (delay 405): 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_tur(): TEST UNIT READY (536) ** : Yes
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (537) (delay 405): 1b 00 00 00 01 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_load_unload(): TAPE LOADING (537) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: rewind_tape(): Media is writable
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (538) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (538) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/0, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (539) (delay 405): 5a 00 3f 00 00 00 00 00 ff 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (539) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (540) (delay 405): 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_tur(): TEST UNIT READY (540) ** : Yes
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (541) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (541) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/0, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (542) (delay 405): 5a 00 0a f0 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (542) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (543) (delay 405): 55 10 00 00 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select(): MODE SELECT 10 (543) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select():  Save Pages: 0, Page Format conforms to T10 standard
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_logical_block_protection(): Updating Logical Block Protection: Method: 0x00, LBP_R: False, LPB_W: False
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (544) (delay 405): 4d 00 57 00 00 00 00 ff ff 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (544) ** Volume Statistics
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (545) (delay 405): 5a 00 10 00 00 00 00 00 20 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (545) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (546) (delay 405): 05 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_block_limits(): READ BLOCK LIMITS (546) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (547) (delay 405): 5a 00 10 01 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (547) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (548) (delay 405): 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_locate(): LOCATE 16 (548) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: rewind_tape(): Media is writable
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (549) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (549) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/0, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (550) (delay 405): 4d 00 57 00 00 00 00 ff ff 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (550) ** Volume Statistics
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (551) (delay 405): 5a 00 10 00 00 00 00 00 20 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (551) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (552) (delay 405): 05 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_block_limits(): READ BLOCK LIMITS (552) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (553) (delay 405): 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_locate(): LOCATE 16 (553) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: rewind_tape(): Media is writable
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (554) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (554) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/0, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (555) (delay 405): 08 02 00 10 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 1
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 3
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (559) (delay 405): 5a 00 10 00 00 00 00 00 20 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (559) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (560) (delay 405): 05 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_block_limits(): READ BLOCK LIMITS (560) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (561) (delay 405): 92 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_locate(): LOCATE 16 (561) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: rewind_tape(): Media is writable
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (562) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (562) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/0, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (563) (delay 405): 08 02 00 10 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 1
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 3
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (567) (delay 405): 5a 00 0f 00 00 00 00 00 20 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (567) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (568) (delay 405): 55 10 00 00 00 00 00 00 20 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select(): MODE SELECT 10 (568) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select():  Save Pages: 0, Page Format conforms to T10 standard
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: set_mode_compression():  Setting compression
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (569) (delay 405): 5a 00 10 00 00 00 00 00 20 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (569) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (570) (delay 405): 05 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_block_limits(): READ BLOCK LIMITS (570) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (571) (delay 805): 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_tur(): TEST UNIT READY (571) ** : Yes
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (572) (delay 405): 1b 00 00 00 01 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_load_unload(): TAPE LOADING (572) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: rewind_tape(): Media is writable
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (573) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (573) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/0, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (574) (delay 405): 5a 00 3f 00 00 00 00 00 ff 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (574) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (575) (delay 405): 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_tur(): TEST UNIT READY (575) ** : Yes
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (576) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (576) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/0, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (577) (delay 405): 5a 00 0a f0 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (577) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (578) (delay 405): 55 10 00 00 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select(): MODE SELECT 10 (578) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select():  Save Pages: 0, Page Format conforms to T10 standard
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_logical_block_protection(): Updating Logical Block Protection: Method: 0x00, LBP_R: False, LPB_W: False
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (579) (delay 405): 4d 00 57 00 00 00 00 ff ff 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (579) ** Volume Statistics
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (580) (delay 405): 5a 00 10 00 00 00 00 00 20 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (580) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (581) (delay 405): 05 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_block_limits(): READ BLOCK LIMITS (581) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (582) (delay 405): 5a 00 10 01 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (582) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (583) (delay 405): 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_locate(): LOCATE 16 (583) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: rewind_tape(): Media is writable
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (584) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (584) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/0, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (585) (delay 405): 4d 00 57 00 00 00 00 ff ff 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (585) ** Volume Statistics
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (586) (delay 805): 5a 00 10 00 00 00 00 00 20 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (586) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (587) (delay 405): 05 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_block_limits(): READ BLOCK LIMITS (587) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (588) (delay 405): 92 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_locate(): LOCATE 16 (588) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: rewind_tape(): Media is writable
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (589) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (589) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/0, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (590) (delay 405): 08 02 00 10 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 1
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 3
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (594) (delay 405): 5a 00 10 00 00 00 00 00 20 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (594) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (595) (delay 405): 05 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_block_limits(): READ BLOCK LIMITS (595) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (596) (delay 405): 92 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_locate(): LOCATE 16 (596) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: rewind_tape(): Media is writable
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (597) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (597) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/0, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (598) (delay 405): 08 02 00 10 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 1
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 3
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (602) (delay 405): 5a 00 0f 00 00 00 00 00 20 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (602) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (603) (delay 405): 55 10 00 00 00 00 00 00 20 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select(): MODE SELECT 10 (603) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select():  Save Pages: 0, Page Format conforms to T10 standard
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: set_mode_compression():  Setting compression
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (604) (delay 405): 5a 00 10 00 00 00 00 00 20 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (604) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (605) (delay 405): 05 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_block_limits(): READ BLOCK LIMITS (605) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (606) (delay 405): 8c 00 00 00 00 00 00 00 16 23 00 00 00 0a 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (606) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (607) (delay 405): 5a 00 25 00 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (607) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (608) (delay 405): 4d 00 57 00 00 00 00 ff ff 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (608) ** Volume Statistics
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (609) (delay 405): 4d 00 57 00 00 00 00 ff ff 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_log_sense(): LOG SENSE (609) ** Volume Statistics
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): approx used native capacity for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 0 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_VolumeStatistics(): remaining capacity to EW for partition 1 : 4294967294
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (610) (delay 405): 8c 00 00 00 00 00 00 00 08 0c 00 00 00 4f 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (610) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (611) (delay 805): 8c 00 00 00 00 00 00 01 08 0c 00 00 00 4f 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (611) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (612) (delay 805): 8c 00 00 00 00 00 00 00 00 09 00 00 00 0d 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (612) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (613) (delay 405): 92 02 00 00 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_locate(): LOCATE 16 (613) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [08 00 05]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_blank_check():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_to_block(): End of data detected while positioning
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (614) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (614) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/7, 4 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (615) (delay 405): 91 01 00 00 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (615) ** back  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (616) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (616) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/6, 3 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (617) (delay 405): 91 01 00 00 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (617) ** back  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (618) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (618) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/4, 2 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (619) (delay 405): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (619) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (620) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (620) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/5, 3 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (621) (delay 405): 08 00 08 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 6
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (623) (delay 805): 91 01 00 00 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (623) ** back  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (624) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (624) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/6, 3 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (625) (delay 805): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (625) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (626) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (626) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/7, 4 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (627) (delay 405): 92 02 00 01 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_locate(): LOCATE 16 (627) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [08 00 05]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_blank_check():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_to_block(): End of data detected while positioning
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (628) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (628) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/782, 8 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (629) (delay 405): 91 01 00 00 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (629) ** back  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (630) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (630) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/781, 7 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (631) (delay 405): 91 01 00 00 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (631) ** back  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (632) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (632) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/779, 6 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (633) (delay 405): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (633) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (634) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (634) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/780, 7 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (635) (delay 405): 08 00 08 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 781
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (637) (delay 405): 91 01 00 00 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (637) ** back  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (638) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (638) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/781, 7 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (639) (delay 805): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (639) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (640) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (640) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/782, 8 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (641) (delay 405): 8c 00 00 00 00 00 00 00 00 09 00 00 00 0d 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (641) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (642) (delay 405): 8c 00 00 00 00 00 00 00 08 00 00 00 00 11 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (642) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (643) (delay 405): 8c 00 00 00 00 00 00 00 08 01 00 00 00 29 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (643) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (644) (delay 405): 8c 00 00 00 00 00 00 00 08 02 00 00 00 11 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (644) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (645) (delay 405): 8c 00 00 00 00 00 00 00 08 03 00 00 00 a9 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (645) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (646) (delay 405): 8c 00 00 00 00 00 00 00 08 05 00 00 00 0a 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (646) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (647) (delay 405): 8c 00 00 00 00 00 00 00 08 06 00 00 00 29 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (647) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (648) (delay 405): 8c 00 00 00 00 00 00 00 08 0b 00 00 00 19 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (648) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (649) (delay 405): 8c 00 00 00 00 00 00 00 16 23 00 00 00 0a 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (649) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (650) (delay 405): 8c 00 00 00 00 00 00 00 08 08 00 00 00 a9 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_attributes(): READ ATTRIBUTE (650) ** Attribute Values
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (651) (delay 805): 92 02 00 00 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_locate(): LOCATE 16 (651) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [08 00 05]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_blank_check():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_to_block(): End of data detected while positioning
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (652) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (652) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/7, 4 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (653) (delay 405): 91 01 00 00 ff ff ff ff ff ff ff fe 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (653) ** back  2 filemarks
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (654) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (654) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/4, 2 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (655) (delay 405): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (655) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (656) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (656) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/5, 3 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (657) (delay 405): 08 00 08 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 6
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (659) (delay 805): 91 01 00 00 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (659) ** back  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (660) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (660) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/6, 3 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (661) (delay 805): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (661) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (662) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (662) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/7, 4 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (663) (delay 3205): 91 01 00 00 ff ff ff ff ff ff ff fc 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (663) ** back  4 filemarks
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (664) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (664) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/1, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (665) (delay 405): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (665) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (666) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (666) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 0/2, 1 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (667) (delay 405): 92 02 00 01 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_locate(): LOCATE 16 (667) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [08 00 05]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_blank_check():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_to_block(): End of data detected while positioning
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (668) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (668) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/782, 8 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (669) (delay 405): 91 01 00 00 ff ff ff ff ff ff ff fe 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (669) ** back  2 filemarks
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (670) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (670) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/779, 6 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (671) (delay 405): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (671) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (672) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (672) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/780, 7 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (673) (delay 405): 08 00 08 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 781
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (675) (delay 405): 91 01 00 00 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (675) ** back  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (676) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (676) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/781, 7 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (677) (delay 805): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (677) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (678) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (678) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/782, 8 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (679) (delay 805): 91 01 00 00 ff ff ff ff ff ff ff fc 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (679) ** back  4 filemarks
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (680) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (680) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/14, 4 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (681) (delay 405): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (681) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (682) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (682) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/15, 5 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (683) (delay 405): 08 00 08 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 16
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (685) (delay 805): 91 01 00 00 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (685) ** back  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (686) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (686) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/16, 5 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (687) (delay 805): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (687) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (688) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (688) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/17, 6 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (689) (delay 805): 91 01 00 00 ff ff ff ff ff ff ff fc 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (689) ** back  4 filemarks
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (690) (delay 805): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (690) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/4, 2 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (691) (delay 405): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (691) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (692) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (692) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/5, 3 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (693) (delay 405): 08 00 08 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: readBlock(): Expected to find DATA header, found: FILEMARK
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: position_blocks_forw(): Filemark encountered: block 6
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [20 00 00]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: return_sense(): [Key/ASC/ASCQ] [80 00 01]
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: sam_no_sense():
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (695) (delay 405): 91 01 00 00 ff ff ff ff ff ff ff ff 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (695) ** back  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (696) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (696) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/6, 3 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (697) (delay 805): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (697) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (698) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (698) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/7, 4 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (699) (delay 805): 91 01 00 00 ff ff ff ff ff ff ff fc 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (699) ** back  4 filemarks
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (700) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (700) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/1, 0 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (701) (delay 405): 91 01 00 00 00 00 00 00 00 00 00 01 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_space_16(): SPACE 16 (701) ** forward  1 filemark
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (702) (delay 405): 34 06 00 00 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): READ POSITION (702) ** Long form
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_read_position(): Positioned at partition/block 1/2, 1 filemarks after BOP
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (703) (delay 405): 1e 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_allow_prevent_removal(): ALLOW MEDIA REMOVAL (703) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (704) (delay 405): 00 00 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_tur(): TEST UNIT READY (704) ** : Yes
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (705) (delay 405): 5a 00 10 01 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (705) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (706) (delay 405): 55 10 00 00 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select(): MODE SELECT 10 (706) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select():  Save Pages: 0, Page Format conforms to T10 standard
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (707) (delay 405): 5f 02 03 00 00 00 00 00 18 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_pr_out(): PERSISTENT RESERVE OUT (707) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (708) (delay 405): 5a 00 0a f0 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: spc_mode_sense(): MODE SENSE 10 (708) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (709) (delay 405): 55 10 00 00 00 00 00 00 30 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select(): MODE SELECT 10 (709) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_mode_select():  Save Pages: 0, Page Format conforms to T10 standard
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: update_logical_block_protection(): Updating Logical Block Protection: Method: 0x00, LBP_R: False, LPB_W: False
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: CDB (710) (delay 405): 5f 06 00 00 00 00 00 00 18 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: ssc_pr_out(): PERSISTENT RESERVE OUT (710) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (711) (delay 9205): 12 00 00 00 38 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_inquiry(): INQUIRY ** (711)
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (712) (delay 805): 1a 08 1d 00 88 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_mode_sense(): MODE SENSE 6 (712) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (713) (delay 405): b8 12 03 e8 00 28 00 00 10 3c 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (713) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (714) (delay 405): b8 13 00 0a 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (714) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (715) (delay 405): b8 14 01 f4 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (715) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (716) (delay 405): b8 11 00 01 00 01 00 00 10 3c 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (716) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (717) (delay 405): a5 00 00 01 01 f6 03 ea 00 00 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_move_medium(): MOVE MEDIUM (717) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_move_medium(): Moving from slot 502 to slot 1002 using transport 1, Invert media: no
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: is_drive_empty(): 10: Sending "mount_state" to snd_id 13
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: processMessageQ(): 13: Received message "mount_state" from snd_id 10
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: processMessageQ(): 13: Replying to snd_id 10 with "occupied"
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: is_drive_empty(): 10: Received "occupied" from snd_id 13
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: processMessageQ(): 13: Received message "unload A00003L8        " from snd_id 10
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: processMessageQ(): 13: Replying to snd_id 10 with "Unloaded OK"
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: check_tape_unload(): 10: Received "Unloaded OK" from snd_id 13
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: move_cart(): Setting src slot access true
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: processMessageQ(): 13: Received message "set_empty" from snd_id 10
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtltape[1470]: processMessageQ(): 13: Replying to snd_id 10 with "Unloaded OK"
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: check_tape_unload(): 10: Received "Unloaded OK" from snd_id 13
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (718) (delay 4405): 12 00 00 00 38 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_inquiry(): INQUIRY ** (718)
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (719) (delay 405): 1a 08 1d 00 88 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: spc_mode_sense(): MODE SENSE 6 (719) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (720) (delay 405): b8 12 03 e8 00 28 00 00 10 3c 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (720) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (721) (delay 405): b8 13 00 0a 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (721) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (722) (delay 405): b8 14 01 f4 00 04 00 00 10 3c 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (722) **
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: CDB (723) (delay 405): b8 11 00 01 00 01 00 00 10 3c 00 00
+2026-10-21T13:01:47-0400 tapehost01 /usr/bin/vtllibrary[1467]: smc_read_element_status(): READ ELEMENT STATUS (723) **

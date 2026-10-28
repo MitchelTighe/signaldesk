@@ -1,0 +1,149 @@
+# ts: 2026-10-21T13:01:00-04:00
+# cmd: /usr/local/bin/ltfs -f -o devname=/dev/sg12 -o verbose=3 /media/ltfs-b
+# ---
+f20 LTFS14000I LTFS starting, LTFS version 2.4.9.0 (Prelim), log level 3.
+f20 LTFS14058I LTFS Format Specification version 2.4.0.
+f20 LTFS14104I Launched by "/usr/local/bin/ltfs -f -o devname=/dev/sg12 -o verbose=3 /media/ltfs-b".
+f20 LTFS14105I This binary is built for Linux (x86_64).
+f20 LTFS14106I GCC version is 11.5.0 20240719 (Red Hat 11.5.0-11).
+f20 LTFS17087I Kernel version: Linux version 5.14.0-611.36.1.el9_7.x86_64 (mockbuild@iad1-prod-build001.bld.equ.rockylinux.org) (gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), GNU ld version 2.35.2-67.el9_7.1) #1 SMP PREEMPT_DYNAMIC Tue Mar 3 17:30:12 UTC 2026 i386.
+f20 LTFS17089I Distribution: NAME="Rocky Linux".
+f20 LTFS17089I Distribution: Rocky Linux release 9.7 (Blue Onyx).
+f20 LTFS17089I Distribution: Rocky Linux release 9.7 (Blue Onyx).
+f20 LTFS17089I Distribution: Rocky Linux release 9.7 (Blue Onyx).
+f20 LTFS14063I Sync type is "time", Sync time is 300 sec.
+f20 LTFS17085I Plugin: Loading "sg" tape backend.
+f20 LTFS17085I Plugin: Loading "unified" iosched backend.
+f20 LTFS14095I Set the tape device write-anywhere mode to avoid cartridge ejection.
+f20 LTFS30209I Opening a device through sg-ibmtape driver (/dev/sg12).
+f20 LTFS30250I Opened the SCSI tape device 7.0.2.0 (/dev/sg12).
+f20 LTFS30207I Vendor ID is IBM     .
+f20 LTFS30208I Product ID is ULT3580-TD8     .
+f20 LTFS30214I Firmware revision is HB81.
+f20 LTFS30215I Drive serial is DRVSN0002.
+f20 LTFS30285I The reserved buffer size of /dev/sg12 is 1048576.
+f20 LTFS30201D CDB check condition: sense = 052000, Invalid Command Operation Code.
+f20 LTFS30205I RSOC (0xa3) returns 05/2000 (-20500).
+f20 LTFS30263I RSOC returns Invalid Command Operation Code (-20500) /dev/sg12.
+f20 LTFS30262I Forcing drive dump.
+f20 LTFS30393D Backend force dump: 0 DRVSN0002.
+f20 LTFS39802W Unknown SCSI OP code 0x1d, use default timeout.
+f20 LTFS30253I Saving drive dump to /tmp/ltfs_DRVSN0002_2026_1021_130101_f.dmp.
+f20 LTFS30393D Backend read buffer: 1 DRVSN0002.
+f20 LTFS39802W Unknown SCSI OP code 0x3c, use default timeout.
+f20 LTFS30255D Total dump data length is 4.
+f20 LTFS30256D Total number of transfers is 1.
+f20 LTFS30257D Transferring dump data.
+f20 LTFS30393D Backend read buffer: 1 DRVSN0002.
+f20 LTFS39802W Unknown SCSI OP code 0x3c, use default timeout.
+f20 LTFS30294I Setting up timeout values from vendor and device.
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30245D Tape device returns -20202, ignore for buffered sense cleaning.
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30245D Tape device returns -20202, ignore for buffered sense cleaning.
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30245D Tape device returns -20202, ignore for buffered sense cleaning.
+f20 LTFS12023D Reserving device.
+f20 LTFS30392D Backend reserve (PRO) DRVSN0002.
+f20 LTFS12028D Unlocking medium.
+f20 LTFS30392D Backend allow medium removal DRVSN0002.
+f20 LTFS30392D Backend read block limits DRVSN0002.
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I READ_BLOCK_LIMITS (0x05) returns 02/0401 (-20202).
+f20 LTFS30263I READ_BLOCK_LIMITS returns Logical Unit Is in Process of Becoming Ready (-20202) /dev/sg12.
+f20 LTFS30262I Forcing drive dump.
+f20 LTFS30393D Backend force dump: 0 DRVSN0002.
+f20 LTFS30253I Saving drive dump to /tmp/ltfs_DRVSN0002_2026_1021_130101_f.dmp.
+f20 LTFS30393D Backend read buffer: 1 DRVSN0002.
+f20 LTFS30255D Total dump data length is 4.
+f20 LTFS30256D Total number of transfers is 1.
+f20 LTFS30257D Transferring dump data.
+f20 LTFS30393D Backend read buffer: 1 DRVSN0002.
+f20 LTFS30392D Backend read block limits DRVSN0002.
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I READ_BLOCK_LIMITS (0x05) returns 02/0401 (-20202).
+f20 LTFS30263I READ_BLOCK_LIMITS returns Logical Unit Is in Process of Becoming Ready (-20202) /dev/sg12.
+f20 LTFS30262I Forcing drive dump.
+f20 LTFS30393D Backend force dump: 0 DRVSN0002.
+f20 LTFS30253I Saving drive dump to /tmp/ltfs_DRVSN0002_2026_1021_130101_f.dmp.
+f20 LTFS30393D Backend read buffer: 1 DRVSN0002.
+f20 LTFS30255D Total dump data length is 4.
+f20 LTFS30256D Total number of transfers is 1.
+f20 LTFS30257D Transferring dump data.
+f20 LTFS30393D Backend read buffer: 1 DRVSN0002.
+f20 LTFS17160I Maximum device block size is -20202.
+f20 LTFS11330I Loading cartridge.
+f20 LTFS30392D Backend load DRVSN0002.
+f20 LTFS30287I Received an unknown sense code 023100.
+f20 LTFS30201D CDB check condition: sense = 023100, Unknown Error code.
+f20 LTFS30205I LOAD_UNLOAD (0x1b) returns 02/3100 (-29998).
+f20 LTFS30263I LOAD_UNLOAD returns Unknown Error code (-29998) /dev/sg12.
+f20 LTFS30287I Received an unknown sense code 023100.
+f20 LTFS30201D CDB check condition: sense = 023100, Unknown Error code.
+f20 LTFS30205I READPOS (0x34) returns 02/3100 (-29998).
+f20 LTFS30263I READPOS returns Unknown Error code (-29998) /dev/sg12.
+f20 LTFS11331E Failed to load the cartridge (ltfs_load_tape).
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS17189I Device is becoming ready (-20202).
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30201D CDB check condition: sense = 020401, Logical Unit Is in Process of Becoming Ready.
+f20 LTFS30205I TEST_UNIT_READY (0x00) returns 02/0401 (-20202).
+f20 LTFS30392D Backend load DRVSN0002.
+f20 LTFS30398D Backend readpos: (0, 0) FM = 0 DRVSN0002.
+f20 LTFS12026D Locking medium in the drive.
+f20 LTFS30392D Backend prevent medium removal DRVSN0002.
+f20 LTFS30398D Backend readpos: (0, 0) FM = 0 DRVSN0002.
+f20 LTFS30392D Backend sg_set_default Resetting LBP.
+f20 LTFS30393D Backend LBP Enable: 0 .
+f20 LTFS30393D Backend LBP Method: 2 .
+f20 LTFS30252I Logical block protection is disabled.
+f20 LTFS30392D Backend read block limits DRVSN0002.
+f20 LTFS17157I Changing the drive setting to write-anywhere mode.
+f20 LTFS11005I Mounting the volume.
+f20 LTFS11012D Loading the tape.
+f20 LTFS30392D Backend load DRVSN0002.
+f20 LTFS30398D Backend readpos: (0, 0) FM = 0 DRVSN0002.
+f20 LTFS30398D Backend readpos: (0, 0) FM = 0 DRVSN0002.
+f20 LTFS30392D Backend sg_set_default Resetting LBP.
+f20 LTFS30393D Backend LBP Enable: 0 .
+f20 LTFS30393D Backend LBP Method: 2 .
+f20 LTFS30252I Logical block protection is disabled.
+f20 LTFS30392D Backend read block limits DRVSN0002.
+f20 LTFS30397D Backend locate: (0, 0) DRVSN0002.
+f20 LTFS30398D Backend readpos: (0, 0) FM = 0 DRVSN0002.
+f20 LTFS11007D Tape is loaded.
+f20 LTFS17168E Cannot read volume: medium is not partitioned.
+f20 LTFS14013E Cannot mount the volume.
+f20 LTFS12028D Unlocking medium.
+f20 LTFS30392D Backend allow medium removal DRVSN0002.
+f20 LTFS12025D Releasing device.
+f20 LTFS30392D Backend release (PRO) DRVSN0002.
+f20 LTFS30393D Backend LBP Enable: 0 .
+f20 LTFS30393D Backend LBP Method: 2 .
+f20 LTFS30252I Logical block protection is disabled.
+# --- exit: 1

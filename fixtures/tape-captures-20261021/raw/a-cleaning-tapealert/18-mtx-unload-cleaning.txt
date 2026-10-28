@@ -1,0 +1,5 @@
+# ts: 2026-10-21T13:00:52-04:00
+# cmd: mtx -f /dev/sg10 unload 39 0
+# ---
+Data Transfer Element 0 is Empty
+# --- exit: 1

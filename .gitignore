@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.env
+*.key
+*.token
+cache/
+runs/
+acceptance-output/
+public-export/
+!fixtures/*.png
+browser-output/
+new-fresh-check/
+!scripts/secret_scan.sh

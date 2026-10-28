@@ -1,0 +1,8 @@
+# Build only on the authorized rendering host. Runtime acceptance uses no network.
+FROM mcr.microsoft.com/playwright/python@sha256:640d578aae63cfb632461d1b0aecb01414e4e020864ac3dd45a868dc0eff3078
+COPY requirements-browser.txt /tmp/requirements-browser.txt
+RUN python3 -m pip install --no-cache-dir --disable-pip-version-check --only-binary=:all: --no-deps -r /tmp/requirements-browser.txt
+RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg && rm -rf /var/lib/apt/lists/*
+ADD https://unpkg.com/axe-core@4.10.3/axe.min.js /opt/axe.min.js
+RUN echo '880970c081707360e64f34cea25ff91892f5bc95675b0776925b9709dd8a68bb  /opt/axe.min.js' | sha256sum -c - && chmod 644 /opt/axe.min.js
+ENV PYTHONDONTWRITEBYTECODE=1

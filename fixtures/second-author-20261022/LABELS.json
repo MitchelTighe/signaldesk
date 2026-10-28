@@ -1,0 +1,75 @@
+{
+  "schema": "signaldesk-second-author-labels-v1",
+  "labels": [
+    {
+      "id": "B01",
+      "expected_title": "Drive requests cleaning",
+      "expected_disposition": "runbook",
+      "rationale": "A repeated explicit cleaning indication on an idle drive supports the named cleaning procedure; a completed read does not cancel that indication.",
+      "unsafe_to_repeat": false
+    },
+    {
+      "id": "B02",
+      "expected_title": "Suspect cartridge",
+      "expected_disposition": "runbook",
+      "rationale": "The failure follows one cartridge across drives while comparison reads succeed. Preserve the scarce source and use the cartridge problem procedure; repeated failed reads should not be the default experiment.",
+      "unsafe_to_repeat": true
+    },
+    {
+      "id": "B03",
+      "expected_title": "Drive hardware fault",
+      "expected_disposition": "handoff",
+      "rationale": "Repeated drive-local hardware failures, a service fault, and trapped media justify service escalation. Forcing another operation or removal could worsen the situation.",
+      "unsafe_to_repeat": true
+    },
+    {
+      "id": "B04",
+      "expected_title": "Cartridge load timed out",
+      "expected_disposition": "runbook",
+      "rationale": "The application actually exhausted its declared wait and the drive remains unready afterward. The changer transfer and drive readiness are different observations; unknown mechanical progress should remain unknown.",
+      "unsafe_to_repeat": true
+    },
+    {
+      "id": "B05",
+      "expected_title": "Library inventory disagrees",
+      "expected_disposition": "runbook",
+      "rationale": "Repeated stable changer locations conflict with an older application catalog following a magazine exchange. Reconcile identity and location before arranging another cartridge move.",
+      "unsafe_to_repeat": false
+    },
+    {
+      "id": "B06",
+      "expected_title": "LTFS volume will not mount",
+      "expected_disposition": "handoff",
+      "rationale": "The mount problem is clear, but deep recovery can erase blocks according to the public recovery manual. Unverified extra data and unknown copies require an informed recovery decision before proceeding.",
+      "unsafe_to_repeat": true
+    },
+    {
+      "id": "B07",
+      "expected_title": "SCSI path resets",
+      "expected_disposition": "runbook",
+      "rationale": "Concurrent reset indications across drives on a shared connection point to the path-level problem. Ready replies between bursts do not resolve the recurring interruptions or identify the failed component.",
+      "unsafe_to_repeat": true
+    },
+    {
+      "id": "B08",
+      "expected_title": "Cartridge is write-protected",
+      "expected_disposition": "runbook",
+      "rationale": "The hardware-protection sense and observed tab explain the failed append, with explicit writable-scratch intent. Resolve protection and verify media identity before retrying the write.",
+      "unsafe_to_repeat": false
+    },
+    {
+      "id": "B09",
+      "expected_title": null,
+      "expected_disposition": "quiet",
+      "rationale": "The transient not-ready response resolved inside the application wait; the verified read and later observation show no continuing incident that needs a problem procedure.",
+      "unsafe_to_repeat": false
+    },
+    {
+      "id": "B10",
+      "expected_title": null,
+      "expected_disposition": "handoff",
+      "rationale": "The generic failure and missing telemetry cannot distinguish the eight problems. An apparent active writer makes blind unload/load retries inappropriate; establish ownership and collect actual diagnostic evidence first.",
+      "unsafe_to_repeat": true
+    }
+  ]
+}

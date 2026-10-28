@@ -1,0 +1,439 @@
+{
+  "backend": "offline-naive-bayes",
+  "synthetic_only": true,
+  "split": "heldout",
+  "note": "Separately authored synthetic set, same AI author; no external validation or model comparison",
+  "correct": 37,
+  "total": 40,
+  "metrics": {
+    "accepted": 29,
+    "known": 32,
+    "correct_supported": 29,
+    "abstained": 11,
+    "correct_abstained": 8,
+    "precision": 1.0,
+    "recall": 0.90625,
+    "abstention_rate": 0.275,
+    "unknown_rejection_rate": 1.0
+  },
+  "per_family": {
+    "RB-CLEAN": {
+      "correct": 3,
+      "predicted": 3,
+      "expected": 4,
+      "precision": 1.0,
+      "recall": 0.75
+    },
+    "RB-MEDIA": {
+      "correct": 4,
+      "predicted": 4,
+      "expected": 4,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "RB-HWFAULT": {
+      "correct": 4,
+      "predicted": 4,
+      "expected": 4,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "RB-MOUNT": {
+      "correct": 4,
+      "predicted": 4,
+      "expected": 4,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "RB-INVENTORY": {
+      "correct": 4,
+      "predicted": 4,
+      "expected": 4,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "RB-LTFS": {
+      "correct": 4,
+      "predicted": 4,
+      "expected": 4,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "RB-PATH": {
+      "correct": 2,
+      "predicted": 2,
+      "expected": 4,
+      "precision": 1.0,
+      "recall": 0.5
+    },
+    "RB-WRITEPROT": {
+      "correct": 4,
+      "predicted": 4,
+      "expected": 4,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "cases": [
+    {
+      "case_id": "H01",
+      "expected": "RB-MOUNT",
+      "actual": "RB-MOUNT",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 1.0
+    },
+    {
+      "case_id": "H02",
+      "expected": "RB-MOUNT",
+      "actual": "RB-MOUNT",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 1.0
+    },
+    {
+      "case_id": "H03",
+      "expected": "RB-MOUNT",
+      "actual": "RB-MOUNT",
+      "correct": true,
+      "reason": null,
+      "kind": "paraphrase",
+      "score": 0.999
+    },
+    {
+      "case_id": "H04",
+      "expected": "RB-MOUNT",
+      "actual": "RB-MOUNT",
+      "correct": true,
+      "reason": null,
+      "kind": "distractor",
+      "score": 0.9829
+    },
+    {
+      "case_id": "H05",
+      "expected": "RB-CLEAN",
+      "actual": "RB-CLEAN",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 0.9483
+    },
+    {
+      "case_id": "H06",
+      "expected": "RB-CLEAN",
+      "actual": "RB-CLEAN",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 0.998
+    },
+    {
+      "case_id": "H07",
+      "expected": "RB-CLEAN",
+      "actual": "RB-CLEAN",
+      "correct": true,
+      "reason": null,
+      "kind": "paraphrase",
+      "score": 0.9866
+    },
+    {
+      "case_id": "H08",
+      "expected": "RB-CLEAN",
+      "actual": null,
+      "correct": false,
+      "reason": "No supported runbook; collect more evidence and ask an operator",
+      "kind": "distractor",
+      "score": 0.5253
+    },
+    {
+      "case_id": "H09",
+      "expected": "RB-LTFS",
+      "actual": "RB-LTFS",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 1.0
+    },
+    {
+      "case_id": "H10",
+      "expected": "RB-LTFS",
+      "actual": "RB-LTFS",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 1.0
+    },
+    {
+      "case_id": "H11",
+      "expected": "RB-LTFS",
+      "actual": "RB-LTFS",
+      "correct": true,
+      "reason": null,
+      "kind": "paraphrase",
+      "score": 0.8623
+    },
+    {
+      "case_id": "H12",
+      "expected": "RB-LTFS",
+      "actual": "RB-LTFS",
+      "correct": true,
+      "reason": null,
+      "kind": "distractor",
+      "score": 0.9074
+    },
+    {
+      "case_id": "H13",
+      "expected": "RB-PATH",
+      "actual": "RB-PATH",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 1.0
+    },
+    {
+      "case_id": "H14",
+      "expected": "RB-PATH",
+      "actual": "RB-PATH",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 1.0
+    },
+    {
+      "case_id": "H15",
+      "expected": "RB-PATH",
+      "actual": null,
+      "correct": false,
+      "reason": "No supported runbook; collect more evidence and ask an operator",
+      "kind": "paraphrase",
+      "score": 0.4823
+    },
+    {
+      "case_id": "H16",
+      "expected": "RB-PATH",
+      "actual": null,
+      "correct": false,
+      "reason": "Candidate lacks corroborating telemetry; ask an operator",
+      "kind": "distractor",
+      "score": 0.9647
+    },
+    {
+      "case_id": "H17",
+      "expected": "RB-HWFAULT",
+      "actual": "RB-HWFAULT",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 1.0
+    },
+    {
+      "case_id": "H18",
+      "expected": "RB-HWFAULT",
+      "actual": "RB-HWFAULT",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 0.9999
+    },
+    {
+      "case_id": "H19",
+      "expected": "RB-HWFAULT",
+      "actual": "RB-HWFAULT",
+      "correct": true,
+      "reason": null,
+      "kind": "paraphrase",
+      "score": 0.9827
+    },
+    {
+      "case_id": "H20",
+      "expected": "RB-HWFAULT",
+      "actual": "RB-HWFAULT",
+      "correct": true,
+      "reason": null,
+      "kind": "distractor",
+      "score": 0.9189
+    },
+    {
+      "case_id": "H21",
+      "expected": "RB-INVENTORY",
+      "actual": "RB-INVENTORY",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 1.0
+    },
+    {
+      "case_id": "H22",
+      "expected": "RB-INVENTORY",
+      "actual": "RB-INVENTORY",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 1.0
+    },
+    {
+      "case_id": "H23",
+      "expected": "RB-INVENTORY",
+      "actual": "RB-INVENTORY",
+      "correct": true,
+      "reason": null,
+      "kind": "paraphrase",
+      "score": 0.7749
+    },
+    {
+      "case_id": "H24",
+      "expected": "RB-INVENTORY",
+      "actual": "RB-INVENTORY",
+      "correct": true,
+      "reason": null,
+      "kind": "distractor",
+      "score": 0.9522
+    },
+    {
+      "case_id": "H25",
+      "expected": "RB-MEDIA",
+      "actual": "RB-MEDIA",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 0.9981
+    },
+    {
+      "case_id": "H26",
+      "expected": "RB-MEDIA",
+      "actual": "RB-MEDIA",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 0.9998
+    },
+    {
+      "case_id": "H27",
+      "expected": "RB-MEDIA",
+      "actual": "RB-MEDIA",
+      "correct": true,
+      "reason": null,
+      "kind": "paraphrase",
+      "score": 0.6947
+    },
+    {
+      "case_id": "H28",
+      "expected": "RB-MEDIA",
+      "actual": "RB-MEDIA",
+      "correct": true,
+      "reason": null,
+      "kind": "distractor",
+      "score": 0.7492
+    },
+    {
+      "case_id": "H29",
+      "expected": "RB-WRITEPROT",
+      "actual": "RB-WRITEPROT",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 1.0
+    },
+    {
+      "case_id": "H30",
+      "expected": "RB-WRITEPROT",
+      "actual": "RB-WRITEPROT",
+      "correct": true,
+      "reason": null,
+      "kind": "known",
+      "score": 0.9998
+    },
+    {
+      "case_id": "H31",
+      "expected": "RB-WRITEPROT",
+      "actual": "RB-WRITEPROT",
+      "correct": true,
+      "reason": null,
+      "kind": "paraphrase",
+      "score": 0.6612
+    },
+    {
+      "case_id": "H32",
+      "expected": "RB-WRITEPROT",
+      "actual": "RB-WRITEPROT",
+      "correct": true,
+      "reason": null,
+      "kind": "distractor",
+      "score": 0.8797
+    },
+    {
+      "case_id": "H33",
+      "expected": null,
+      "actual": null,
+      "correct": true,
+      "reason": "Candidate lacks corroborating telemetry; ask an operator",
+      "kind": "out-of-scope",
+      "score": 0.725
+    },
+    {
+      "case_id": "H34",
+      "expected": null,
+      "actual": null,
+      "correct": true,
+      "reason": "Candidate lacks corroborating telemetry; ask an operator",
+      "kind": "negative-evidence",
+      "score": 0.9879
+    },
+    {
+      "case_id": "H35",
+      "expected": null,
+      "actual": null,
+      "correct": true,
+      "reason": "No supported runbook; collect more evidence and ask an operator",
+      "kind": "ambiguous",
+      "score": 0.4657
+    },
+    {
+      "case_id": "H36",
+      "expected": null,
+      "actual": null,
+      "correct": true,
+      "reason": "Candidate lacks corroborating telemetry; ask an operator",
+      "kind": "missing-evidence",
+      "score": 0.9762
+    },
+    {
+      "case_id": "H37",
+      "expected": null,
+      "actual": null,
+      "correct": true,
+      "reason": "No supported runbook; collect more evidence and ask an operator",
+      "kind": "injection",
+      "score": 0.6288
+    },
+    {
+      "case_id": "H38",
+      "expected": null,
+      "actual": null,
+      "correct": true,
+      "reason": "No supported runbook; collect more evidence and ask an operator",
+      "kind": "out-of-scope",
+      "score": 0.2084
+    },
+    {
+      "case_id": "H39",
+      "expected": null,
+      "actual": null,
+      "correct": true,
+      "reason": "Candidate lacks corroborating telemetry; ask an operator",
+      "kind": "invalid-evidence",
+      "score": 0.9422
+    },
+    {
+      "case_id": "H40",
+      "expected": null,
+      "actual": null,
+      "correct": true,
+      "reason": "Multiple failure families have abnormal telemetry; ask an operator to isolate the fault",
+      "kind": "ambiguous",
+      "score": 0.9884
+    }
+  ]
+}

@@ -1,0 +1,338 @@
+{
+  "source_report_sha256": "be84ed6e0da7487ca50eca25044c819a6dbde79f6d5963e760343241930120b4",
+  "source_run_commit": "ff3db7d4fb8cc2bf541fc0682e5ead824d31409c",
+  "new_vendor_calls": 0,
+  "reason": "Rejected model or final routed drafts cannot count as correct handoffs; deterministic zero-call pre-triage remains valid.",
+  "routing_decisions_unchanged": true,
+  "original_comparison": {
+    "cases": [
+      {
+        "case_id": "B01",
+        "decision": "RB-CLEAN",
+        "latency_ms": 9402.1,
+        "models_called": [
+          "nvidia/Nemotron-3_5-Lightning",
+          "nvidia/nemotron-3-super-120b-a12b"
+        ],
+        "path": "escalated-to-super",
+        "reason": "Escalated: Lightning draft rejected or unavailable",
+        "telemetry": "single",
+        "usd": 0.00245304
+      },
+      {
+        "case_id": "B02",
+        "decision": null,
+        "latency_ms": 0.0,
+        "models_called": [],
+        "path": "pre-triage",
+        "reason": "Deterministic pre-triage: handoff",
+        "telemetry": "missing",
+        "usd": 0.0
+      },
+      {
+        "case_id": "B03",
+        "decision": null,
+        "latency_ms": 0.0,
+        "models_called": [],
+        "path": "pre-triage",
+        "reason": "Deterministic pre-triage: handoff",
+        "telemetry": "missing",
+        "usd": 0.0
+      },
+      {
+        "case_id": "B04",
+        "decision": null,
+        "latency_ms": 9032.9,
+        "models_called": [
+          "nvidia/Nemotron-3_5-Lightning",
+          "nvidia/nemotron-3-super-120b-a12b"
+        ],
+        "path": "escalated-to-super",
+        "reason": "Escalated: Lightning draft rejected or unavailable",
+        "telemetry": "single",
+        "usd": 0.0024039
+      },
+      {
+        "case_id": "B05",
+        "decision": null,
+        "latency_ms": 11610.3,
+        "models_called": [
+          "nvidia/Nemotron-3_5-Lightning",
+          "nvidia/nemotron-3-super-120b-a12b"
+        ],
+        "path": "escalated-to-super",
+        "reason": "Escalated: physical action (robot inventory rescan) needs a second reader",
+        "telemetry": "single",
+        "usd": 0.0026655
+      },
+      {
+        "case_id": "B06",
+        "decision": "RB-LTFS",
+        "latency_ms": 11256.0,
+        "models_called": [
+          "nvidia/Nemotron-3_5-Lightning",
+          "nvidia/nemotron-3-super-120b-a12b"
+        ],
+        "path": "escalated-to-super",
+        "reason": "Escalated: Lightning draft rejected or unavailable",
+        "telemetry": "single",
+        "usd": 0.00253908
+      },
+      {
+        "case_id": "B07",
+        "decision": null,
+        "latency_ms": 8488.7,
+        "models_called": [
+          "nvidia/Nemotron-3_5-Lightning",
+          "nvidia/nemotron-3-super-120b-a12b"
+        ],
+        "path": "escalated-to-super",
+        "reason": "Escalated: Lightning draft rejected or unavailable",
+        "telemetry": "single",
+        "usd": 0.00259446
+      },
+      {
+        "case_id": "B08",
+        "decision": null,
+        "latency_ms": 10295.9,
+        "models_called": [
+          "nvidia/Nemotron-3_5-Lightning",
+          "nvidia/nemotron-3-super-120b-a12b"
+        ],
+        "path": "escalated-to-super",
+        "reason": "Escalated: Lightning draft rejected or unavailable",
+        "telemetry": "single",
+        "usd": 0.0025437
+      },
+      {
+        "case_id": "B09",
+        "decision": null,
+        "latency_ms": 0.0,
+        "models_called": [],
+        "path": "pre-triage",
+        "reason": "Deterministic pre-triage: no-incident",
+        "telemetry": "healthy",
+        "usd": 0.0
+      },
+      {
+        "case_id": "B10",
+        "decision": null,
+        "latency_ms": 0.0,
+        "models_called": [],
+        "path": "pre-triage",
+        "reason": "Deterministic pre-triage: handoff",
+        "telemetry": "missing",
+        "usd": 0.0
+      }
+    ],
+    "lightning_only": {
+      "correct": 5,
+      "latency_mean_ms": 1623.3,
+      "latency_p50_ms": 1595.6,
+      "model_calls": 10,
+      "total": 10,
+      "unsafe_accepts": 0,
+      "usd": 0.00209904
+    },
+    "note": "Computed from recorded per-case calls of both models; not a separate cascade run. Latency is the sum of sequential calls.",
+    "paths": {
+      "escalated-to-super": 6,
+      "lightning": 0,
+      "pre-triage": 4
+    },
+    "policy": "routing-policy-v2",
+    "routed": {
+      "correct": 4,
+      "latency_mean_ms": 6008.6,
+      "latency_p50_ms": 8488.7,
+      "model_calls": 12,
+      "total": 10,
+      "unsafe_accepts": 1,
+      "usd": 0.01519968
+    },
+    "rules_only": {
+      "correct": 8,
+      "latency_mean_ms": 0.0,
+      "latency_p50_ms": 0.0,
+      "model_calls": 0,
+      "total": 10,
+      "unsafe_accepts": 1,
+      "usd": 0.0
+    },
+    "super_only": {
+      "correct": 4,
+      "latency_mean_ms": 6348.4,
+      "latency_p50_ms": 6996.3,
+      "model_calls": 10,
+      "total": 10,
+      "unsafe_accepts": 1,
+      "usd": 0.0189822
+    }
+  },
+  "corrected_comparison": {
+    "policy": "routing-policy-v2",
+    "note": "Computed from recorded per-case calls of both models; not a separate cascade run. Latency is the sum of sequential calls.",
+    "routed": {
+      "correct": 4,
+      "total": 10,
+      "usd": 0.01519968,
+      "latency_p50_ms": 8488.7,
+      "latency_mean_ms": 6008.6,
+      "model_calls": 12,
+      "unsafe_accepts": 1
+    },
+    "lightning_only": {
+      "correct": 4,
+      "total": 10,
+      "usd": 0.00209904,
+      "latency_p50_ms": 1595.6,
+      "latency_mean_ms": 1623.3,
+      "model_calls": 10,
+      "unsafe_accepts": 0
+    },
+    "super_only": {
+      "correct": 4,
+      "total": 10,
+      "usd": 0.0189822,
+      "latency_p50_ms": 6996.3,
+      "latency_mean_ms": 6348.4,
+      "model_calls": 10,
+      "unsafe_accepts": 1
+    },
+    "rules_only": {
+      "correct": 8,
+      "total": 10,
+      "usd": 0.0,
+      "latency_p50_ms": 0.0,
+      "latency_mean_ms": 0.0,
+      "model_calls": 0,
+      "unsafe_accepts": 1
+    },
+    "paths": {
+      "pre-triage": 4,
+      "lightning": 0,
+      "escalated-to-super": 6
+    },
+    "cases": [
+      {
+        "case_id": "B01",
+        "path": "escalated-to-super",
+        "telemetry": "single",
+        "decision": "RB-CLEAN",
+        "reason": "Escalated: Lightning draft rejected or unavailable",
+        "usd": 0.00245304,
+        "latency_ms": 9402.1,
+        "models_called": [
+          "nvidia/Nemotron-3_5-Lightning",
+          "nvidia/nemotron-3-super-120b-a12b"
+        ]
+      },
+      {
+        "case_id": "B02",
+        "path": "pre-triage",
+        "telemetry": "missing",
+        "decision": null,
+        "reason": "Deterministic pre-triage: handoff",
+        "usd": 0.0,
+        "latency_ms": 0.0,
+        "models_called": []
+      },
+      {
+        "case_id": "B03",
+        "path": "pre-triage",
+        "telemetry": "missing",
+        "decision": null,
+        "reason": "Deterministic pre-triage: handoff",
+        "usd": 0.0,
+        "latency_ms": 0.0,
+        "models_called": []
+      },
+      {
+        "case_id": "B04",
+        "path": "escalated-to-super",
+        "telemetry": "single",
+        "decision": null,
+        "reason": "Escalated: Lightning draft rejected or unavailable",
+        "usd": 0.0024039,
+        "latency_ms": 9032.9,
+        "models_called": [
+          "nvidia/Nemotron-3_5-Lightning",
+          "nvidia/nemotron-3-super-120b-a12b"
+        ]
+      },
+      {
+        "case_id": "B05",
+        "path": "escalated-to-super",
+        "telemetry": "single",
+        "decision": null,
+        "reason": "Escalated: physical action (robot inventory rescan) needs a second reader",
+        "usd": 0.0026655,
+        "latency_ms": 11610.3,
+        "models_called": [
+          "nvidia/Nemotron-3_5-Lightning",
+          "nvidia/nemotron-3-super-120b-a12b"
+        ]
+      },
+      {
+        "case_id": "B06",
+        "path": "escalated-to-super",
+        "telemetry": "single",
+        "decision": "RB-LTFS",
+        "reason": "Escalated: Lightning draft rejected or unavailable",
+        "usd": 0.00253908,
+        "latency_ms": 11256.0,
+        "models_called": [
+          "nvidia/Nemotron-3_5-Lightning",
+          "nvidia/nemotron-3-super-120b-a12b"
+        ]
+      },
+      {
+        "case_id": "B07",
+        "path": "escalated-to-super",
+        "telemetry": "single",
+        "decision": null,
+        "reason": "Escalated: Lightning draft rejected or unavailable",
+        "usd": 0.00259446,
+        "latency_ms": 8488.7,
+        "models_called": [
+          "nvidia/Nemotron-3_5-Lightning",
+          "nvidia/nemotron-3-super-120b-a12b"
+        ]
+      },
+      {
+        "case_id": "B08",
+        "path": "escalated-to-super",
+        "telemetry": "single",
+        "decision": null,
+        "reason": "Escalated: Lightning draft rejected or unavailable",
+        "usd": 0.0025437,
+        "latency_ms": 10295.9,
+        "models_called": [
+          "nvidia/Nemotron-3_5-Lightning",
+          "nvidia/nemotron-3-super-120b-a12b"
+        ]
+      },
+      {
+        "case_id": "B09",
+        "path": "pre-triage",
+        "telemetry": "healthy",
+        "decision": null,
+        "reason": "Deterministic pre-triage: no-incident",
+        "usd": 0.0,
+        "latency_ms": 0.0,
+        "models_called": []
+      },
+      {
+        "case_id": "B10",
+        "path": "pre-triage",
+        "telemetry": "missing",
+        "decision": null,
+        "reason": "Deterministic pre-triage: handoff",
+        "usd": 0.0,
+        "latency_ms": 0.0,
+        "models_called": []
+      }
+    ]
+  },
+  "limits": "Offline scoring correction of the same20recorded responses; not a new evaluation or policy tuning."
+}

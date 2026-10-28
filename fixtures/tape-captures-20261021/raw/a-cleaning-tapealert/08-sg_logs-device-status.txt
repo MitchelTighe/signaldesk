@@ -1,0 +1,11 @@
+# ts: 2026-10-21T13:00:52-04:00
+# cmd: sg_logs -p 0x11 /dev/sg9
+# ---
+    IBM       ULT3580-TD8       HB81
+DT device status page (ssc-3, adc-3) [0x11]
+  Very high frequency data:
+  PAMR=0 HUI=0 MACC=1 CMPR=1 WRTP=0 CRQST=0 CRQRD=0 DINIT=0
+  INXTN=0 RAA=1 MPRSNT=1 MSTD=1 MTHRD=1 MOUNTED=1
+  DT device activity: Rewinding medium
+  VS=0 TDDEC=0 EPP=0 ESR=0 RRQST=0 INTFC=0 TAFC=0
+# --- exit: 0

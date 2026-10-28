@@ -1,0 +1,14 @@
+map: CH=/dev/sg10 D1=/dev/sg9//dev/st1 D2=/dev/sg12//dev/st3 D3=/dev/sg11//dev/st2
+[0:0:0:0]    disk    ATA      TOSHIBA THNSNJ25 0102  /dev/sdc   /dev/sg0 
+[0:0:1:0]    disk    ATA      ST9500620NS      SN03  /dev/sdb   /dev/sg1 
+[0:0:2:0]    disk    ATA      TOSHIBA THNSNJ25 0102  /dev/sdg   /dev/sg2 
+[0:0:3:0]    disk    ATA      ST9500620NS      SN03  /dev/sda   /dev/sg3 
+[0:0:4:0]    disk    ATA      ST9500620NS      SN03  /dev/sdd   /dev/sg4 
+[0:0:5:0]    disk    ATA      ST9500620NS      SN03  /dev/sdf   /dev/sg5 
+[0:0:6:0]    disk    ATA      ST9500620NS      SN02  /dev/sdh   /dev/sg6 
+[0:0:7:0]    disk    ATA      TOSHIBA THNSNJ25 0102  /dev/sde   /dev/sg7 
+[7:0:0:0]    mediumx STK      L700             0108  /dev/sch0  /dev/sg10
+[7:0:1:0]    tape    IBM      ULT3580-TD8      HB81  /dev/st1   /dev/sg9 
+[7:0:2:0]    tape    IBM      ULT3580-TD8      HB81  /dev/st3   /dev/sg12
+[7:0:3:0]    tape    IBM      ULT3580-TD8      HB81  /dev/st2   /dev/sg11
+[7:0:4:0]    tape    IBM      ULT3580-TD8      HB81  /dev/st0   /dev/sg8 

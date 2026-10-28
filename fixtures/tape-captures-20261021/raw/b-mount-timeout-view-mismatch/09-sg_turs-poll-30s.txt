@@ -1,0 +1,16 @@
+# ts: 2026-10-21T13:01:13-04:00
+# cmd: bash -c for i in 1 2 3 4 5 6; do date +%T; sg_turs -v /dev/sg12; sleep 5; done
+# ---
+13:01:13
+    test unit ready cdb: [00 00 00 00 00 00]
+13:01:18
+    test unit ready cdb: [00 00 00 00 00 00]
+13:01:23
+    test unit ready cdb: [00 00 00 00 00 00]
+13:01:28
+    test unit ready cdb: [00 00 00 00 00 00]
+13:01:33
+    test unit ready cdb: [00 00 00 00 00 00]
+13:01:38
+    test unit ready cdb: [00 00 00 00 00 00]
+# --- exit: 0

@@ -1,0 +1,1077 @@
+{
+  "status": "passed",
+  "failure": null,
+  "checks_passed": 390,
+  "checks": [
+    "editable readings panel exists: details#try-readings (required acceptance surface)",
+    "readings summary opens the actual editor",
+    "eight editable metric inputs are present",
+    "editor metric order matches original Python dataset",
+    "tapealert_cleaning_flags accepts editable text including invalid numeric literals",
+    "tapealert_media_flags accepts editable text including invalid numeric literals",
+    "tapealert_hardware_flags accepts editable text including invalid numeric literals",
+    "load_wait_seconds accepts editable text including invalid numeric literals",
+    "inventory_mismatch_count accepts editable text including invalid numeric literals",
+    "ltfs_mount_errors accepts editable text including invalid numeric literals",
+    "scsi_unit_attention_count accepts editable text including invalid numeric literals",
+    "write_protect_rejections accepts editable text including invalid numeric literals",
+    "embedded authored runbooks match Python dataset exactly",
+    "proposal selector has empty default and eight real runbooks",
+    "no proposed runbook is selected by default",
+    "proposed instruction is editable",
+    "editor explicitly discloses validator only and no model call",
+    "editor discloses limitations and zero actions",
+    "initial missing readings without a proposal: state agrees with Python telemetry_state",
+    "initial missing readings without a proposal: abnormal families agree with Python",
+    "initial missing readings without a proposal: invalid evidence IDs agree with Python",
+    "initial missing readings without a proposal: proposal agrees with core.validate_selection and exact authored step",
+    "missing: state agrees with Python telemetry_state",
+    "missing: abnormal families agree with Python",
+    "missing: invalid evidence IDs agree with Python",
+    "missing: proposal agrees with core.validate_selection and exact authored step",
+    "whitespace omitted: state agrees with Python telemetry_state",
+    "whitespace omitted: abnormal families agree with Python",
+    "whitespace omitted: invalid evidence IDs agree with Python",
+    "whitespace omitted: proposal agrees with core.validate_selection and exact authored step",
+    "one zero is healthy: state agrees with Python telemetry_state",
+    "one zero is healthy: abnormal families agree with Python",
+    "one zero is healthy: invalid evidence IDs agree with Python",
+    "one zero is healthy: proposal agrees with core.validate_selection and exact authored step",
+    "all zero is healthy: state agrees with Python telemetry_state",
+    "all zero is healthy: abnormal families agree with Python",
+    "all zero is healthy: invalid evidence IDs agree with Python",
+    "all zero is healthy: proposal agrees with core.validate_selection and exact authored step",
+    "RB-CLEAN below: state agrees with Python telemetry_state",
+    "RB-CLEAN below: abnormal families agree with Python",
+    "RB-CLEAN below: invalid evidence IDs agree with Python",
+    "RB-CLEAN below: proposal agrees with core.validate_selection and exact authored step",
+    "RB-CLEAN exact: state agrees with Python telemetry_state",
+    "RB-CLEAN exact: abnormal families agree with Python",
+    "RB-CLEAN exact: invalid evidence IDs agree with Python",
+    "RB-CLEAN exact: proposal agrees with core.validate_selection and exact authored step",
+    "RB-CLEAN above: state agrees with Python telemetry_state",
+    "RB-CLEAN above: abnormal families agree with Python",
+    "RB-CLEAN above: invalid evidence IDs agree with Python",
+    "RB-CLEAN above: proposal agrees with core.validate_selection and exact authored step",
+    "RB-MEDIA below: state agrees with Python telemetry_state",
+    "RB-MEDIA below: abnormal families agree with Python",
+    "RB-MEDIA below: invalid evidence IDs agree with Python",
+    "RB-MEDIA below: proposal agrees with core.validate_selection and exact authored step",
+    "RB-MEDIA exact: state agrees with Python telemetry_state",
+    "RB-MEDIA exact: abnormal families agree with Python",
+    "RB-MEDIA exact: invalid evidence IDs agree with Python",
+    "RB-MEDIA exact: proposal agrees with core.validate_selection and exact authored step",
+    "RB-MEDIA above: state agrees with Python telemetry_state",
+    "RB-MEDIA above: abnormal families agree with Python",
+    "RB-MEDIA above: invalid evidence IDs agree with Python",
+    "RB-MEDIA above: proposal agrees with core.validate_selection and exact authored step",
+    "RB-HWFAULT below: state agrees with Python telemetry_state",
+    "RB-HWFAULT below: abnormal families agree with Python",
+    "RB-HWFAULT below: invalid evidence IDs agree with Python",
+    "RB-HWFAULT below: proposal agrees with core.validate_selection and exact authored step",
+    "RB-HWFAULT exact: state agrees with Python telemetry_state",
+    "RB-HWFAULT exact: abnormal families agree with Python",
+    "RB-HWFAULT exact: invalid evidence IDs agree with Python",
+    "RB-HWFAULT exact: proposal agrees with core.validate_selection and exact authored step",
+    "RB-HWFAULT above: state agrees with Python telemetry_state",
+    "RB-HWFAULT above: abnormal families agree with Python",
+    "RB-HWFAULT above: invalid evidence IDs agree with Python",
+    "RB-HWFAULT above: proposal agrees with core.validate_selection and exact authored step",
+    "RB-MOUNT below: state agrees with Python telemetry_state",
+    "RB-MOUNT below: abnormal families agree with Python",
+    "RB-MOUNT below: invalid evidence IDs agree with Python",
+    "RB-MOUNT below: proposal agrees with core.validate_selection and exact authored step",
+    "RB-MOUNT exact: state agrees with Python telemetry_state",
+    "RB-MOUNT exact: abnormal families agree with Python",
+    "RB-MOUNT exact: invalid evidence IDs agree with Python",
+    "RB-MOUNT exact: proposal agrees with core.validate_selection and exact authored step",
+    "RB-MOUNT above: state agrees with Python telemetry_state",
+    "RB-MOUNT above: abnormal families agree with Python",
+    "RB-MOUNT above: invalid evidence IDs agree with Python",
+    "RB-MOUNT above: proposal agrees with core.validate_selection and exact authored step",
+    "RB-INVENTORY below: state agrees with Python telemetry_state",
+    "RB-INVENTORY below: abnormal families agree with Python",
+    "RB-INVENTORY below: invalid evidence IDs agree with Python",
+    "RB-INVENTORY below: proposal agrees with core.validate_selection and exact authored step",
+    "RB-INVENTORY exact: state agrees with Python telemetry_state",
+    "RB-INVENTORY exact: abnormal families agree with Python",
+    "RB-INVENTORY exact: invalid evidence IDs agree with Python",
+    "RB-INVENTORY exact: proposal agrees with core.validate_selection and exact authored step",
+    "RB-INVENTORY above: state agrees with Python telemetry_state",
+    "RB-INVENTORY above: abnormal families agree with Python",
+    "RB-INVENTORY above: invalid evidence IDs agree with Python",
+    "RB-INVENTORY above: proposal agrees with core.validate_selection and exact authored step",
+    "RB-LTFS below: state agrees with Python telemetry_state",
+    "RB-LTFS below: abnormal families agree with Python",
+    "RB-LTFS below: invalid evidence IDs agree with Python",
+    "RB-LTFS below: proposal agrees with core.validate_selection and exact authored step",
+    "RB-LTFS exact: state agrees with Python telemetry_state",
+    "RB-LTFS exact: abnormal families agree with Python",
+    "RB-LTFS exact: invalid evidence IDs agree with Python",
+    "RB-LTFS exact: proposal agrees with core.validate_selection and exact authored step",
+    "RB-LTFS above: state agrees with Python telemetry_state",
+    "RB-LTFS above: abnormal families agree with Python",
+    "RB-LTFS above: invalid evidence IDs agree with Python",
+    "RB-LTFS above: proposal agrees with core.validate_selection and exact authored step",
+    "RB-PATH below: state agrees with Python telemetry_state",
+    "RB-PATH below: abnormal families agree with Python",
+    "RB-PATH below: invalid evidence IDs agree with Python",
+    "RB-PATH below: proposal agrees with core.validate_selection and exact authored step",
+    "RB-PATH exact: state agrees with Python telemetry_state",
+    "RB-PATH exact: abnormal families agree with Python",
+    "RB-PATH exact: invalid evidence IDs agree with Python",
+    "RB-PATH exact: proposal agrees with core.validate_selection and exact authored step",
+    "RB-PATH above: state agrees with Python telemetry_state",
+    "RB-PATH above: abnormal families agree with Python",
+    "RB-PATH above: invalid evidence IDs agree with Python",
+    "RB-PATH above: proposal agrees with core.validate_selection and exact authored step",
+    "RB-WRITEPROT below: state agrees with Python telemetry_state",
+    "RB-WRITEPROT below: abnormal families agree with Python",
+    "RB-WRITEPROT below: invalid evidence IDs agree with Python",
+    "RB-WRITEPROT below: proposal agrees with core.validate_selection and exact authored step",
+    "RB-WRITEPROT exact: state agrees with Python telemetry_state",
+    "RB-WRITEPROT exact: abnormal families agree with Python",
+    "RB-WRITEPROT exact: invalid evidence IDs agree with Python",
+    "RB-WRITEPROT exact: proposal agrees with core.validate_selection and exact authored step",
+    "RB-WRITEPROT above: state agrees with Python telemetry_state",
+    "RB-WRITEPROT above: abnormal families agree with Python",
+    "RB-WRITEPROT above: invalid evidence IDs agree with Python",
+    "RB-WRITEPROT above: proposal agrees with core.validate_selection and exact authored step",
+    "decimal below load gate: state agrees with Python telemetry_state",
+    "decimal below load gate: abnormal families agree with Python",
+    "decimal below load gate: invalid evidence IDs agree with Python",
+    "decimal below load gate: proposal agrees with core.validate_selection and exact authored step",
+    "decimal exact load gate: state agrees with Python telemetry_state",
+    "decimal exact load gate: abnormal families agree with Python",
+    "decimal exact load gate: invalid evidence IDs agree with Python",
+    "decimal exact load gate: proposal agrees with core.validate_selection and exact authored step",
+    "scientific exact load gate: state agrees with Python telemetry_state",
+    "scientific exact load gate: abnormal families agree with Python",
+    "scientific exact load gate: invalid evidence IDs agree with Python",
+    "scientific exact load gate: proposal agrees with core.validate_selection and exact authored step",
+    "scientific small healthy: state agrees with Python telemetry_state",
+    "scientific small healthy: abnormal families agree with Python",
+    "scientific small healthy: invalid evidence IDs agree with Python",
+    "scientific small healthy: proposal agrees with core.validate_selection and exact authored step",
+    "scientific uppercase signed: state agrees with Python telemetry_state",
+    "scientific uppercase signed: abnormal families agree with Python",
+    "scientific uppercase signed: invalid evidence IDs agree with Python",
+    "scientific uppercase signed: proposal agrees with core.validate_selection and exact authored step",
+    "padded finite number: state agrees with Python telemetry_state",
+    "padded finite number: abnormal families agree with Python",
+    "padded finite number: invalid evidence IDs agree with Python",
+    "padded finite number: proposal agrees with core.validate_selection and exact authored step",
+    "leading decimal: state agrees with Python telemetry_state",
+    "leading decimal: abnormal families agree with Python",
+    "leading decimal: invalid evidence IDs agree with Python",
+    "leading decimal: proposal agrees with core.validate_selection and exact authored step",
+    "trailing decimal: state agrees with Python telemetry_state",
+    "trailing decimal: abnormal families agree with Python",
+    "trailing decimal: invalid evidence IDs agree with Python",
+    "trailing decimal: proposal agrees with core.validate_selection and exact authored step",
+    "negative count follows canonical healthy: state agrees with Python telemetry_state",
+    "negative count follows canonical healthy: abnormal families agree with Python",
+    "negative count follows canonical healthy: invalid evidence IDs agree with Python",
+    "negative count follows canonical healthy: proposal agrees with core.validate_selection and exact authored step",
+    "negative zero: state agrees with Python telemetry_state",
+    "negative zero: abnormal families agree with Python",
+    "negative zero: invalid evidence IDs agree with Python",
+    "negative zero: proposal agrees with core.validate_selection and exact authored step",
+    "two abnormal families: state agrees with Python telemetry_state",
+    "two abnormal families: abnormal families agree with Python",
+    "two abnormal families: invalid evidence IDs agree with Python",
+    "two abnormal families: proposal agrees with core.validate_selection and exact authored step",
+    "three abnormal families: state agrees with Python telemetry_state",
+    "three abnormal families: abnormal families agree with Python",
+    "three abnormal families: invalid evidence IDs agree with Python",
+    "three abnormal families: proposal agrees with core.validate_selection and exact authored step",
+    "single outranks invalid: state agrees with Python telemetry_state",
+    "single outranks invalid: abnormal families agree with Python",
+    "single outranks invalid: invalid evidence IDs agree with Python",
+    "single outranks invalid: proposal agrees with core.validate_selection and exact authored step",
+    "conflict outranks invalid: state agrees with Python telemetry_state",
+    "conflict outranks invalid: abnormal families agree with Python",
+    "conflict outranks invalid: invalid evidence IDs agree with Python",
+    "conflict outranks invalid: proposal agrees with core.validate_selection and exact authored step",
+    "invalid outranks healthy: state agrees with Python telemetry_state",
+    "invalid outranks healthy: abnormal families agree with Python",
+    "invalid outranks healthy: invalid evidence IDs agree with Python",
+    "invalid outranks healthy: proposal agrees with core.validate_selection and exact authored step",
+    "invalid IDs retain metric order: state agrees with Python telemetry_state",
+    "invalid IDs retain metric order: abnormal families agree with Python",
+    "invalid IDs retain metric order: invalid evidence IDs agree with Python",
+    "invalid IDs retain metric order: proposal agrees with core.validate_selection and exact authored step",
+    "invalid literal NaN: state agrees with Python telemetry_state",
+    "invalid literal NaN: abnormal families agree with Python",
+    "invalid literal NaN: invalid evidence IDs agree with Python",
+    "invalid literal NaN: proposal agrees with core.validate_selection and exact authored step",
+    "invalid literal Infinity: state agrees with Python telemetry_state",
+    "invalid literal Infinity: abnormal families agree with Python",
+    "invalid literal Infinity: invalid evidence IDs agree with Python",
+    "invalid literal Infinity: proposal agrees with core.validate_selection and exact authored step",
+    "invalid literal -Infinity: state agrees with Python telemetry_state",
+    "invalid literal -Infinity: abnormal families agree with Python",
+    "invalid literal -Infinity: invalid evidence IDs agree with Python",
+    "invalid literal -Infinity: proposal agrees with core.validate_selection and exact authored step",
+    "invalid literal not a number: state agrees with Python telemetry_state",
+    "invalid literal not a number: abnormal families agree with Python",
+    "invalid literal not a number: invalid evidence IDs agree with Python",
+    "invalid literal not a number: proposal agrees with core.validate_selection and exact authored step",
+    "invalid literal 0x78: state agrees with Python telemetry_state",
+    "invalid literal 0x78: abnormal families agree with Python",
+    "invalid literal 0x78: invalid evidence IDs agree with Python",
+    "invalid literal 0x78: proposal agrees with core.validate_selection and exact authored step",
+    "invalid literal 120seconds: state agrees with Python telemetry_state",
+    "invalid literal 120seconds: abnormal families agree with Python",
+    "invalid literal 120seconds: invalid evidence IDs agree with Python",
+    "invalid literal 120seconds: proposal agrees with core.validate_selection and exact authored step",
+    "invalid literal 1e: state agrees with Python telemetry_state",
+    "invalid literal 1e: abnormal families agree with Python",
+    "invalid literal 1e: invalid evidence IDs agree with Python",
+    "invalid literal 1e: proposal agrees with core.validate_selection and exact authored step",
+    "invalid literal 1e309: state agrees with Python telemetry_state",
+    "invalid literal 1e309: abnormal families agree with Python",
+    "invalid literal 1e309: invalid evidence IDs agree with Python",
+    "invalid literal 1e309: proposal agrees with core.validate_selection and exact authored step",
+    "invalid literal 0b11: state agrees with Python telemetry_state",
+    "invalid literal 0b11: abnormal families agree with Python",
+    "invalid literal 0b11: invalid evidence IDs agree with Python",
+    "invalid literal 0b11: proposal agrees with core.validate_selection and exact authored step",
+    "invalid literal 0o10: state agrees with Python telemetry_state",
+    "invalid literal 0o10: abnormal families agree with Python",
+    "invalid literal 0o10: invalid evidence IDs agree with Python",
+    "invalid literal 0o10: proposal agrees with core.validate_selection and exact authored step",
+    "invalid literal 1_000: state agrees with Python telemetry_state",
+    "invalid literal 1_000: abnormal families agree with Python",
+    "invalid literal 1_000: invalid evidence IDs agree with Python",
+    "invalid literal 1_000: proposal agrees with core.validate_selection and exact authored step",
+    "RB-CLEAN: actual authored steps use one-based proposal numbering",
+    "correct or wrong book RB-CLEAN: state agrees with Python telemetry_state",
+    "correct or wrong book RB-CLEAN: abnormal families agree with Python",
+    "correct or wrong book RB-CLEAN: invalid evidence IDs agree with Python",
+    "correct or wrong book RB-CLEAN: proposal agrees with core.validate_selection and exact authored step",
+    "RB-MEDIA: actual authored steps use one-based proposal numbering",
+    "correct or wrong book RB-MEDIA: state agrees with Python telemetry_state",
+    "correct or wrong book RB-MEDIA: abnormal families agree with Python",
+    "correct or wrong book RB-MEDIA: invalid evidence IDs agree with Python",
+    "correct or wrong book RB-MEDIA: proposal agrees with core.validate_selection and exact authored step",
+    "RB-HWFAULT: actual authored steps use one-based proposal numbering",
+    "correct or wrong book RB-HWFAULT: state agrees with Python telemetry_state",
+    "correct or wrong book RB-HWFAULT: abnormal families agree with Python",
+    "correct or wrong book RB-HWFAULT: invalid evidence IDs agree with Python",
+    "correct or wrong book RB-HWFAULT: proposal agrees with core.validate_selection and exact authored step",
+    "RB-MOUNT: actual authored steps use one-based proposal numbering",
+    "correct or wrong book RB-MOUNT: state agrees with Python telemetry_state",
+    "correct or wrong book RB-MOUNT: abnormal families agree with Python",
+    "correct or wrong book RB-MOUNT: invalid evidence IDs agree with Python",
+    "correct or wrong book RB-MOUNT: proposal agrees with core.validate_selection and exact authored step",
+    "RB-INVENTORY: actual authored steps use one-based proposal numbering",
+    "correct or wrong book RB-INVENTORY: state agrees with Python telemetry_state",
+    "correct or wrong book RB-INVENTORY: abnormal families agree with Python",
+    "correct or wrong book RB-INVENTORY: invalid evidence IDs agree with Python",
+    "correct or wrong book RB-INVENTORY: proposal agrees with core.validate_selection and exact authored step",
+    "RB-LTFS: actual authored steps use one-based proposal numbering",
+    "correct or wrong book RB-LTFS: state agrees with Python telemetry_state",
+    "correct or wrong book RB-LTFS: abnormal families agree with Python",
+    "correct or wrong book RB-LTFS: invalid evidence IDs agree with Python",
+    "correct or wrong book RB-LTFS: proposal agrees with core.validate_selection and exact authored step",
+    "RB-PATH: actual authored steps use one-based proposal numbering",
+    "correct or wrong book RB-PATH: state agrees with Python telemetry_state",
+    "correct or wrong book RB-PATH: abnormal families agree with Python",
+    "correct or wrong book RB-PATH: invalid evidence IDs agree with Python",
+    "correct or wrong book RB-PATH: proposal agrees with core.validate_selection and exact authored step",
+    "RB-WRITEPROT: actual authored steps use one-based proposal numbering",
+    "correct or wrong book RB-WRITEPROT: state agrees with Python telemetry_state",
+    "correct or wrong book RB-WRITEPROT: abnormal families agree with Python",
+    "correct or wrong book RB-WRITEPROT: invalid evidence IDs agree with Python",
+    "correct or wrong book RB-WRITEPROT: proposal agrees with core.validate_selection and exact authored step",
+    "reference shows authored cleaning step 1 as literal text",
+    "copy reference inserts exact authored step 1",
+    "copied exact step 1: state agrees with Python telemetry_state",
+    "copied exact step 1: abnormal families agree with Python",
+    "copied exact step 1: invalid evidence IDs agree with Python",
+    "copied exact step 1: proposal agrees with core.validate_selection and exact authored step",
+    "reference shows authored cleaning step 2 as literal text",
+    "copy reference inserts exact authored step 2",
+    "copied exact step 2: state agrees with Python telemetry_state",
+    "copied exact step 2: abnormal families agree with Python",
+    "copied exact step 2: invalid evidence IDs agree with Python",
+    "copied exact step 2: proposal agrees with core.validate_selection and exact authored step",
+    "reference shows authored cleaning step 3 as literal text",
+    "copy reference inserts exact authored step 3",
+    "copied exact step 3: state agrees with Python telemetry_state",
+    "copied exact step 3: abnormal families agree with Python",
+    "copied exact step 3: invalid evidence IDs agree with Python",
+    "copied exact step 3: proposal agrees with core.validate_selection and exact authored step",
+    "blank step: state agrees with Python telemetry_state",
+    "blank step: abnormal families agree with Python",
+    "blank step: invalid evidence IDs agree with Python",
+    "blank step: proposal agrees with core.validate_selection and exact authored step",
+    "edited step: state agrees with Python telemetry_state",
+    "edited step: abnormal families agree with Python",
+    "edited step: invalid evidence IDs agree with Python",
+    "edited step: proposal agrees with core.validate_selection and exact authored step",
+    "trailing whitespace step: state agrees with Python telemetry_state",
+    "trailing whitespace step: abnormal families agree with Python",
+    "trailing whitespace step: invalid evidence IDs agree with Python",
+    "trailing whitespace step: proposal agrees with core.validate_selection and exact authored step",
+    "wrong numbered step: state agrees with Python telemetry_state",
+    "wrong numbered step: abnormal families agree with Python",
+    "wrong numbered step: invalid evidence IDs agree with Python",
+    "wrong numbered step: proposal agrees with core.validate_selection and exact authored step",
+    "injected markup step: state agrees with Python telemetry_state",
+    "injected markup step: abnormal families agree with Python",
+    "injected markup step: invalid evidence IDs agree with Python",
+    "injected markup step: proposal agrees with core.validate_selection and exact authored step",
+    "typed markup remains inert",
+    "proposed instruction is never rendered as HTML",
+    "manually typed exact authored step accepted: state agrees with Python telemetry_state",
+    "manually typed exact authored step accepted: abnormal families agree with Python",
+    "manually typed exact authored step accepted: invalid evidence IDs agree with Python",
+    "manually typed exact authored step accepted: proposal agrees with core.validate_selection and exact authored step",
+    "check recomputes edited readings and removes stale backing: state agrees with Python telemetry_state",
+    "check recomputes edited readings and removes stale backing: abnormal families agree with Python",
+    "check recomputes edited readings and removes stale backing: invalid evidence IDs agree with Python",
+    "check recomputes edited readings and removes stale backing: proposal agrees with core.validate_selection and exact authored step",
+    "empty selection explicitly has no proposal: state agrees with Python telemetry_state",
+    "empty selection explicitly has no proposal: abnormal families agree with Python",
+    "empty selection explicitly has no proposal: invalid evidence IDs agree with Python",
+    "empty selection explicitly has no proposal: proposal agrees with core.validate_selection and exact authored step",
+    "reset clears every reading input",
+    "reset clears proposed runbook and text",
+    "reset clears old telemetry and backed status immediately",
+    "reset result remains missing on check: state agrees with Python telemetry_state",
+    "reset result remains missing on check: abnormal families agree with Python",
+    "reset result remains missing on check: invalid evidence IDs agree with Python",
+    "reset result remains missing on check: proposal agrees with core.validate_selection and exact authored step",
+    "responsive backed example: state agrees with Python telemetry_state",
+    "responsive backed example: abnormal families agree with Python",
+    "responsive backed example: invalid evidence IDs agree with Python",
+    "responsive backed example: proposal agrees with core.validate_selection and exact authored step",
+    "no page horizontal overflow with open readings at 1280px",
+    "no readings panel horizontal overflow at 1280px",
+    "no page horizontal overflow with open readings at 768px",
+    "no readings panel horizontal overflow at 768px",
+    "no page horizontal overflow with open readings at 390px",
+    "no readings panel horizontal overflow at 390px",
+    "390px touch target summary is at least 44px",
+    "390px touch target try-tapealert_cleaning_flags is at least 44px",
+    "390px touch target try-tapealert_media_flags is at least 44px",
+    "390px touch target try-tapealert_hardware_flags is at least 44px",
+    "390px touch target try-load_wait_seconds is at least 44px",
+    "390px touch target try-inventory_mismatch_count is at least 44px",
+    "390px touch target try-ltfs_mount_errors is at least 44px",
+    "390px touch target try-scsi_unit_attention_count is at least 44px",
+    "390px touch target try-write_protect_rejections is at least 44px",
+    "390px touch target try-book is at least 44px",
+    "390px touch target try-step-number is at least 44px",
+    "390px touch target try-use-step is at least 44px",
+    "390px touch target try-step-text is at least 44px",
+    "390px touch target try-check is at least 44px",
+    "390px touch target try-reset is at least 44px",
+    "no page horizontal overflow with open readings at 320px",
+    "no readings panel horizontal overflow at 320px",
+    "320px touch target summary is at least 44px",
+    "320px touch target try-tapealert_cleaning_flags is at least 44px",
+    "320px touch target try-tapealert_media_flags is at least 44px",
+    "320px touch target try-tapealert_hardware_flags is at least 44px",
+    "320px touch target try-load_wait_seconds is at least 44px",
+    "320px touch target try-inventory_mismatch_count is at least 44px",
+    "320px touch target try-ltfs_mount_errors is at least 44px",
+    "320px touch target try-scsi_unit_attention_count is at least 44px",
+    "320px touch target try-write_protect_rejections is at least 44px",
+    "320px touch target try-book is at least 44px",
+    "320px touch target try-step-number is at least 44px",
+    "320px touch target try-use-step is at least 44px",
+    "320px touch target try-step-text is at least 44px",
+    "320px touch target try-check is at least 44px",
+    "320px touch target try-reset is at least 44px",
+    "editable tools leave embedded recorded replay rows byte-unchanged",
+    "editable tools leave the recorded incident hypothesis unchanged",
+    "no local or session storage entries",
+    "no cookies created",
+    "no browser storage writes or IndexedDB opens",
+    "zero external page requests or WebSockets",
+    "zero browser console errors"
+  ],
+  "cases": [
+    {
+      "label": "initial missing readings without a proposal",
+      "state": "missing",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "no-proposal"
+    },
+    {
+      "label": "missing",
+      "state": "missing",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "whitespace omitted",
+      "state": "missing",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "one zero is healthy",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "all zero is healthy",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "RB-CLEAN below",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "RB-CLEAN exact",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-CLEAN above",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-MEDIA below",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "RB-MEDIA exact",
+      "state": "single",
+      "families": [
+        "RB-MEDIA"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-MEDIA above",
+      "state": "single",
+      "families": [
+        "RB-MEDIA"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-HWFAULT below",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "RB-HWFAULT exact",
+      "state": "single",
+      "families": [
+        "RB-HWFAULT"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-HWFAULT above",
+      "state": "single",
+      "families": [
+        "RB-HWFAULT"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-MOUNT below",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "RB-MOUNT exact",
+      "state": "single",
+      "families": [
+        "RB-MOUNT"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-MOUNT above",
+      "state": "single",
+      "families": [
+        "RB-MOUNT"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-INVENTORY below",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "RB-INVENTORY exact",
+      "state": "single",
+      "families": [
+        "RB-INVENTORY"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-INVENTORY above",
+      "state": "single",
+      "families": [
+        "RB-INVENTORY"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-LTFS below",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "RB-LTFS exact",
+      "state": "single",
+      "families": [
+        "RB-LTFS"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-LTFS above",
+      "state": "single",
+      "families": [
+        "RB-LTFS"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-PATH below",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "RB-PATH exact",
+      "state": "single",
+      "families": [
+        "RB-PATH"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-PATH above",
+      "state": "single",
+      "families": [
+        "RB-PATH"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-WRITEPROT below",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "RB-WRITEPROT exact",
+      "state": "single",
+      "families": [
+        "RB-WRITEPROT"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "RB-WRITEPROT above",
+      "state": "single",
+      "families": [
+        "RB-WRITEPROT"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "decimal below load gate",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "decimal exact load gate",
+      "state": "single",
+      "families": [
+        "RB-MOUNT"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "scientific exact load gate",
+      "state": "single",
+      "families": [
+        "RB-MOUNT"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "scientific small healthy",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "scientific uppercase signed",
+      "state": "single",
+      "families": [
+        "RB-MOUNT"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "padded finite number",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "leading decimal",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "trailing decimal",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "negative count follows canonical healthy",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "negative zero",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "two abnormal families",
+      "state": "conflict",
+      "families": [
+        "RB-CLEAN",
+        "RB-MOUNT"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "three abnormal families",
+      "state": "conflict",
+      "families": [
+        "RB-CLEAN",
+        "RB-MEDIA",
+        "RB-MOUNT"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "single outranks invalid",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [
+        "try-load_wait_seconds"
+      ],
+      "proposal": "backed"
+    },
+    {
+      "label": "conflict outranks invalid",
+      "state": "conflict",
+      "families": [
+        "RB-CLEAN",
+        "RB-MOUNT"
+      ],
+      "invalid_ids": [
+        "try-tapealert_media_flags"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "invalid outranks healthy",
+      "state": "invalid",
+      "families": [],
+      "invalid_ids": [
+        "try-tapealert_cleaning_flags"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "invalid IDs retain metric order",
+      "state": "invalid",
+      "families": [],
+      "invalid_ids": [
+        "try-tapealert_cleaning_flags",
+        "try-load_wait_seconds"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "invalid literal NaN",
+      "state": "invalid",
+      "families": [],
+      "invalid_ids": [
+        "try-load_wait_seconds"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "invalid literal Infinity",
+      "state": "invalid",
+      "families": [],
+      "invalid_ids": [
+        "try-load_wait_seconds"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "invalid literal -Infinity",
+      "state": "invalid",
+      "families": [],
+      "invalid_ids": [
+        "try-load_wait_seconds"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "invalid literal not a number",
+      "state": "invalid",
+      "families": [],
+      "invalid_ids": [
+        "try-load_wait_seconds"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "invalid literal 0x78",
+      "state": "invalid",
+      "families": [],
+      "invalid_ids": [
+        "try-load_wait_seconds"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "invalid literal 120seconds",
+      "state": "invalid",
+      "families": [],
+      "invalid_ids": [
+        "try-load_wait_seconds"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "invalid literal 1e",
+      "state": "invalid",
+      "families": [],
+      "invalid_ids": [
+        "try-load_wait_seconds"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "invalid literal 1e309",
+      "state": "invalid",
+      "families": [],
+      "invalid_ids": [
+        "try-load_wait_seconds"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "invalid literal 0b11",
+      "state": "invalid",
+      "families": [],
+      "invalid_ids": [
+        "try-load_wait_seconds"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "invalid literal 0o10",
+      "state": "invalid",
+      "families": [],
+      "invalid_ids": [
+        "try-load_wait_seconds"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "invalid literal 1_000",
+      "state": "invalid",
+      "families": [],
+      "invalid_ids": [
+        "try-load_wait_seconds"
+      ],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "correct or wrong book RB-CLEAN",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "correct or wrong book RB-MEDIA",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "correct or wrong book RB-HWFAULT",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "correct or wrong book RB-MOUNT",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "correct or wrong book RB-INVENTORY",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "correct or wrong book RB-LTFS",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "correct or wrong book RB-PATH",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "correct or wrong book RB-WRITEPROT",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "copied exact step 1",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "copied exact step 2",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "copied exact step 3",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "blank step",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "edited step",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "trailing whitespace step",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "wrong numbered step",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "injected markup step",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "manually typed exact authored step accepted",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    },
+    {
+      "label": "check recomputes edited readings and removes stale backing",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "vetoed"
+    },
+    {
+      "label": "empty selection explicitly has no proposal",
+      "state": "healthy",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "no-proposal"
+    },
+    {
+      "label": "reset result remains missing on check",
+      "state": "missing",
+      "families": [],
+      "invalid_ids": [],
+      "proposal": "no-proposal"
+    },
+    {
+      "label": "responsive backed example",
+      "state": "single",
+      "families": [
+        "RB-CLEAN"
+      ],
+      "invalid_ids": [],
+      "proposal": "backed"
+    }
+  ],
+  "external_requests": [],
+  "console_errors": [],
+  "storage_calls": [],
+  "browser": "140.0.7339.16",
+  "playwright": "1.55.0",
+  "source_sha256": {
+    "tests/readings_browser.py": "98fc336ae5d4e0a81620f4ea04d6474089f0aed5dd83a357c3f535a9b70d7064",
+    "signaldesk/core.py": "9f814fb4d4b9d8f35e14436a5810e8b82eabfcb6b3543ace047569ef14086bf0",
+    "signaldesk/telemetry.py": "bdf9a908ae6898867dc62b26a0ac577fac106b842b8a4c11a8624d24f9574eb4",
+    "signaldesk/data.json": "3b41f32d8272dbbf6a917125d02258fdde32069490839401f979758358b3a4c9",
+    "web/replay-template.html": "b5724feef1e27334b7027fd6987f047aa5757570e2de37199d998fcb82458564",
+    "site_under_test": "75cda3d9088181674fb52f16570ba3e5fe61256667eee38ee7babcc86e4a6115"
+  },
+  "surface": "local file; sandboxed Chromium; Python telemetry_state and core.validate_selection oracles",
+  "screenshots": [
+    "readings-1280.png",
+    "readings-390.png"
+  ]
+}

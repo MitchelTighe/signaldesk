@@ -1,0 +1,9 @@
+# ts: 2026-10-21T13:00:52-04:00
+# cmd: sg_logs -p 0x00 /dev/sg10
+# ---
+    STK       L700              0108
+Supported log pages  [0x0]:
+    0x00        Supported log pages [sp]
+    0x0d        Temperature [temp]
+    0x2e        
+# --- exit: 0

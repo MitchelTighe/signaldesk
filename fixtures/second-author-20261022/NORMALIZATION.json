@@ -1,0 +1,312 @@
+{
+  "frozen_at": "2026-10-22T08:59:47.830001+00:00",
+  "author_case_sha256": "6a748d28c284ff7d896137432d2feca74f5be304b9be1fd217fbeb0131a03438",
+  "labels_consulted_before_mapping": false,
+  "mappings": [
+    {
+      "case": "B01",
+      "reading_index": 0,
+      "raw_name": "Cleaning indication set",
+      "metric": "tapealert_cleaning_flags",
+      "method": "direct explicit quantity"
+    },
+    {
+      "case": "B01",
+      "reading_index": 1,
+      "raw_name": "Completed read jobs",
+      "metric": "observed_completed_read_jobs",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B01",
+      "reading_index": 2,
+      "raw_name": "Read jobs ending in error",
+      "metric": "observed_read_jobs_ending_in_error",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B01",
+      "reading_index": 3,
+      "raw_name": "Cleaning cycles attempted",
+      "metric": "observed_cleaning_cycles_attempted",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B02",
+      "reading_index": 0,
+      "raw_name": "Failed read attempts on cartridge C",
+      "metric": "observed_failed_read_attempts_on_cartridge_c",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B02",
+      "reading_index": 1,
+      "raw_name": "Distinct drives reporting the cartridge C failure",
+      "metric": "observed_distinct_drives_reporting_the_cartridge_c_failure",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B02",
+      "reading_index": 2,
+      "raw_name": "Successful comparison-cartridge reads",
+      "metric": "observed_successful_comparison_cartridge_reads",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B02",
+      "reading_index": 3,
+      "raw_name": "Additional located copies of requested material",
+      "metric": "observed_additional_located_copies_of_requested_material",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B03",
+      "reading_index": 0,
+      "raw_name": "Operations reporting the internal target fault",
+      "metric": "observed_operations_reporting_the_internal_target_fault",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B03",
+      "reading_index": 1,
+      "raw_name": "Different cartridges involved",
+      "metric": "observed_different_cartridges_involved",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B03",
+      "reading_index": 2,
+      "raw_name": "Successful reads of the second cartridge in another drive",
+      "metric": "observed_successful_reads_of_the_second_cartridge_in_another_drive",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B03",
+      "reading_index": 3,
+      "raw_name": "Cartridges still inside affected drive",
+      "metric": "observed_cartridges_still_inside_affected_drive",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B04",
+      "reading_index": 0,
+      "raw_name": "Application load wait limit",
+      "metric": "observed_application_load_wait_limit",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B04",
+      "reading_index": 1,
+      "raw_name": "Elapsed time since reported changer transfer",
+      "metric": "load_wait_seconds",
+      "method": "direct explicit quantity"
+    },
+    {
+      "case": "B04",
+      "reading_index": 2,
+      "raw_name": "Readiness checks returning not ready",
+      "metric": "observed_readiness_checks_returning_not_ready",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B04",
+      "reading_index": 3,
+      "raw_name": "Reported operation progress",
+      "metric": "observed_reported_operation_progress",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B05",
+      "reading_index": 0,
+      "raw_name": "Changer status queries agreeing on cartridge location",
+      "metric": "observed_changer_status_queries_agreeing_on_cartridge_location",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B05",
+      "reading_index": 1,
+      "raw_name": "Changer-reported slot for cartridge R",
+      "metric": "observed_changer_reported_slot_for_cartridge_r",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B05",
+      "reading_index": 2,
+      "raw_name": "Application-reported slot for cartridge R",
+      "metric": "observed_application_reported_slot_for_cartridge_r",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B05",
+      "reading_index": 3,
+      "raw_name": "Age of application location refresh",
+      "metric": "observed_age_of_application_location_refresh",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B05",
+      "reading_indices": [
+        1,
+        2
+      ],
+      "metric": "inventory_mismatch_count",
+      "method": "one identified barcode; compare explicit changer/application slot locations",
+      "value": 1
+    },
+    {
+      "case": "B06",
+      "reading_index": 0,
+      "raw_name": "Unsuccessful ordinary LTFS mount attempts",
+      "metric": "ltfs_mount_errors",
+      "method": "direct explicit quantity"
+    },
+    {
+      "case": "B06",
+      "reading_index": 1,
+      "raw_name": "Successful drive readiness checks",
+      "metric": "observed_successful_drive_readiness_checks",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B06",
+      "reading_index": 2,
+      "raw_name": "Data written after last confirmed clean unmount",
+      "metric": "observed_data_written_after_last_confirmed_clean_unmount",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B06",
+      "reading_index": 3,
+      "raw_name": "Verified additional copies of later material",
+      "metric": "observed_verified_additional_copies_of_later_material",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B06",
+      "reading_index": 4,
+      "raw_name": "Recovery or rollback operations performed",
+      "metric": "observed_recovery_or_rollback_operations_performed",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B07",
+      "reading_index": 0,
+      "raw_name": "Reset bursts observed on both drives",
+      "metric": "scsi_unit_attention_count",
+      "method": "direct explicit quantity"
+    },
+    {
+      "case": "B07",
+      "reading_index": 1,
+      "raw_name": "Affected drives sharing the connection",
+      "metric": "observed_affected_drives_sharing_the_connection",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B07",
+      "reading_index": 2,
+      "raw_name": "Interrupted read jobs",
+      "metric": "observed_interrupted_read_jobs",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B07",
+      "reading_index": 3,
+      "raw_name": "Time since most recent reset",
+      "metric": "observed_time_since_most_recent_reset",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B08",
+      "reading_index": 0,
+      "raw_name": "Append attempts rejected with protection sense",
+      "metric": "write_protect_rejections",
+      "method": "direct explicit quantity"
+    },
+    {
+      "case": "B08",
+      "reading_index": 1,
+      "raw_name": "Successful appended data",
+      "metric": "observed_successful_appended_data",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B08",
+      "reading_index": 2,
+      "raw_name": "Successful prior read volume",
+      "metric": "observed_successful_prior_read_volume",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B08",
+      "reading_index": 3,
+      "raw_name": "Physical protection tab observed engaged",
+      "metric": "observed_physical_protection_tab_observed_engaged",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B09",
+      "reading_index": 0,
+      "raw_name": "Time from load start to ready",
+      "metric": "load_wait_seconds",
+      "method": "direct explicit quantity"
+    },
+    {
+      "case": "B09",
+      "reading_index": 1,
+      "raw_name": "Application load wait limit",
+      "metric": "observed_application_load_wait_limit",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B09",
+      "reading_index": 2,
+      "raw_name": "Successfully verified read jobs",
+      "metric": "observed_successfully_verified_read_jobs",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B09",
+      "reading_index": 3,
+      "raw_name": "New error responses after completed read",
+      "metric": "observed_new_error_responses_after_completed_read",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B10",
+      "reading_index": 0,
+      "raw_name": "Failed tape jobs reported by console",
+      "metric": "observed_failed_tape_jobs_reported_by_console",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B10",
+      "reading_index": 1,
+      "raw_name": "Status collection attempts",
+      "metric": "observed_status_collection_attempts",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B10",
+      "reading_index": 2,
+      "raw_name": "Retained usable status responses",
+      "metric": "observed_retained_usable_status_responses",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B10",
+      "reading_index": 3,
+      "raw_name": "Active writers listed by application",
+      "metric": "observed_active_writers_listed_by_application",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    },
+    {
+      "case": "B10",
+      "reading_index": 4,
+      "raw_name": "Time since listed writer last made progress",
+      "metric": "observed_time_since_listed_writer_last_made_progress",
+      "method": "retained as an unsupported observable; no invented canonical reading"
+    }
+  ],
+  "limits": "Format normalization by product reviewer. Explicit diagnostic counts do not become unobserved TapeAlert bits. Case wording and every original observation are retained; unsupported observables are not zero-filled."
+}

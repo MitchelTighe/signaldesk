@@ -1,0 +1,366 @@
+{
+  "schema": "signaldesk-second-author-raw-v1",
+  "synthetic": true,
+  "cases": [
+    {
+      "id": "B01",
+      "title": "Cleaning indication after a completed read",
+      "text": "SYNTHETIC scenario: A scheduled read finished successfully. The next status response carries ASC/ASCQ 00h/17h, and a decoded TapeAlert cleaning indication is set. A second log-page read two minutes later shows the same indication. The drive is idle, no application owns it, and a compatible cleaning cartridge with uses remaining is available. No cleaning cycle has been attempted since the indication appeared.",
+      "readings": [
+        {
+          "name": "Cleaning indication set",
+          "value": 1,
+          "unit": "boolean",
+          "window": "latest two samples, 2 minutes apart"
+        },
+        {
+          "name": "Completed read jobs",
+          "value": 1,
+          "unit": "jobs",
+          "window": "last 45 minutes"
+        },
+        {
+          "name": "Read jobs ending in error",
+          "value": 0,
+          "unit": "jobs",
+          "window": "last 45 minutes"
+        },
+        {
+          "name": "Cleaning cycles attempted",
+          "value": 0,
+          "unit": "cycles",
+          "window": "since indication first appeared 6 minutes ago"
+        }
+      ],
+      "source_urls": [
+        "https://www.t10.org/lists/asc-num.htm",
+        "https://raw.githubusercontent.com/doug-gilbert/sg3_utils/master/doc/sg_logs.8"
+      ]
+    },
+    {
+      "id": "B02",
+      "title": "Read failure follows one cartridge",
+      "text": "SYNTHETIC scenario: Cartridge C returns medium-error sense with ASC/ASCQ 11h/00h at the same logical region in two drives, during two read attempts 18 minutes apart. A different cartridge completed a 12 GiB read on each drive earlier in the hour. Neither drive currently requests cleaning. Cartridge C holds the only presently located copy of the requested material. The two failed attempts have already occurred; no further retry is running.",
+      "readings": [
+        {
+          "name": "Failed read attempts on cartridge C",
+          "value": 2,
+          "unit": "attempts",
+          "window": "last 25 minutes"
+        },
+        {
+          "name": "Distinct drives reporting the cartridge C failure",
+          "value": 2,
+          "unit": "drives",
+          "window": "last 25 minutes"
+        },
+        {
+          "name": "Successful comparison-cartridge reads",
+          "value": 2,
+          "unit": "reads of 12 GiB each",
+          "window": "last 60 minutes"
+        },
+        {
+          "name": "Additional located copies of requested material",
+          "value": 0,
+          "unit": "copies",
+          "window": "operator inventory check at incident review"
+        }
+      ],
+      "source_urls": [
+        "https://www.t10.org/lists/asc-num.htm"
+      ]
+    },
+    {
+      "id": "B03",
+      "title": "Drive-local failures with different media",
+      "text": "SYNTHETIC scenario: An idle drive has returned hardware-error sense and ASC/ASCQ 44h/00h on three attempted operations involving two cartridges over 11 minutes. The second cartridge then completed its read in another drive. The affected drive display also reports a service fault. There is no observed cable disconnect, and its cleaning indication is clear. A data cartridge remains inside; the operator has stopped further jobs and has not forced removal or cycled power.",
+      "readings": [
+        {
+          "name": "Operations reporting the internal target fault",
+          "value": 3,
+          "unit": "operations",
+          "window": "last 11 minutes"
+        },
+        {
+          "name": "Different cartridges involved",
+          "value": 2,
+          "unit": "cartridges",
+          "window": "last 11 minutes"
+        },
+        {
+          "name": "Successful reads of the second cartridge in another drive",
+          "value": 1,
+          "unit": "reads",
+          "window": "last 6 minutes"
+        },
+        {
+          "name": "Cartridges still inside affected drive",
+          "value": 1,
+          "unit": "cartridges",
+          "window": "current operator review"
+        }
+      ],
+      "source_urls": [
+        "https://www.t10.org/lists/asc-num.htm"
+      ]
+    },
+    {
+      "id": "B04",
+      "title": "Application gave up while a loaded drive stayed unready",
+      "text": "SYNTHETIC scenario: The changer reports a completed transfer from storage slot 9 into drive 0 and now reports slot 9 empty and drive 0 occupied. The application ended its load request after its configured 360-second wait. At 540 seconds after the transfer, six readiness checks taken one minute apart have all returned ASC/ASCQ 04h/01h. No progress percentage was supplied. The cartridge has not been unloaded or loaded again, and the mechanical position beyond the reported occupied drive is unknown.",
+      "readings": [
+        {
+          "name": "Application load wait limit",
+          "value": 360,
+          "unit": "seconds",
+          "window": "current load request configuration"
+        },
+        {
+          "name": "Elapsed time since reported changer transfer",
+          "value": 540,
+          "unit": "seconds",
+          "window": "current request"
+        },
+        {
+          "name": "Readiness checks returning not ready",
+          "value": 6,
+          "unit": "checks",
+          "window": "last 5 minutes"
+        },
+        {
+          "name": "Reported operation progress",
+          "value": null,
+          "unit": "percent",
+          "window": "latest readiness response; not supplied"
+        }
+      ],
+      "source_urls": [
+        "https://sourceforge.net/p/mtx/code/HEAD/tree/trunk/mtx/mtx.1",
+        "https://raw.githubusercontent.com/doug-gilbert/sg3_utils/master/doc/sg_turs.8",
+        "https://www.t10.org/lists/asc-num.htm"
+      ]
+    },
+    {
+      "id": "B05",
+      "title": "A barcode moved but the application location did not",
+      "text": "SYNTHETIC scenario: Following a planned magazine exchange, two changer status queries 90 seconds apart identify cartridge R in slot 18 and slot 4 empty. The application still identifies cartridge R in slot 4. Both changer queries report the same 24 storage elements and two empty drives; no robot movement or application job occurred between queries. The application catalog has not refreshed since before the exchange, 22 minutes ago. The operator needs to resolve the location disagreement before scheduling the cartridge.",
+      "readings": [
+        {
+          "name": "Changer status queries agreeing on cartridge location",
+          "value": 2,
+          "unit": "queries",
+          "window": "last 90 seconds"
+        },
+        {
+          "name": "Changer-reported slot for cartridge R",
+          "value": 18,
+          "unit": "slot number",
+          "window": "both recent status queries"
+        },
+        {
+          "name": "Application-reported slot for cartridge R",
+          "value": 4,
+          "unit": "slot number",
+          "window": "current catalog view"
+        },
+        {
+          "name": "Age of application location refresh",
+          "value": 22,
+          "unit": "minutes",
+          "window": "since last refresh"
+        }
+      ],
+      "source_urls": [
+        "https://sourceforge.net/p/mtx/code/HEAD/tree/trunk/mtx/mtx.1"
+      ]
+    },
+    {
+      "id": "B06",
+      "title": "LTFS mount refused after an interrupted session",
+      "text": "SYNTHETIC scenario: After an interrupted writing session, two ordinary LTFS mount attempts on the same cartridge fail before any filesystem becomes available. The diagnostic messages say the expected end-of-data marker is missing. The drive answers readiness checks successfully and the changer reports the intended cartridge. The last confirmed clean unmount predates 37 GiB of subsequent writing. No recovery or rollback has been run. The operator cannot establish whether that later material exists elsewhere and asks whether to proceed with deep recovery.",
+      "readings": [
+        {
+          "name": "Unsuccessful ordinary LTFS mount attempts",
+          "value": 2,
+          "unit": "attempts",
+          "window": "last 14 minutes"
+        },
+        {
+          "name": "Successful drive readiness checks",
+          "value": 3,
+          "unit": "checks",
+          "window": "last 3 minutes"
+        },
+        {
+          "name": "Data written after last confirmed clean unmount",
+          "value": 37,
+          "unit": "GiB",
+          "window": "interrupted session"
+        },
+        {
+          "name": "Verified additional copies of later material",
+          "value": null,
+          "unit": "copies",
+          "window": "incident review; not established"
+        },
+        {
+          "name": "Recovery or rollback operations performed",
+          "value": 0,
+          "unit": "operations",
+          "window": "since interruption"
+        }
+      ],
+      "source_urls": [
+        "https://github.com/LinearTapeFileSystem/ltfs/wiki/ltfs",
+        "https://github.com/LinearTapeFileSystem/ltfs/wiki/ltfsck"
+      ]
+    },
+    {
+      "id": "B07",
+      "title": "Two drives interrupted together",
+      "text": "SYNTHETIC scenario: Two drives sharing a SCSI connection each report ASC/ASCQ 29h/02h during the same three bursts. The bursts occur over eight minutes and interrupt one read job on each drive. Distinct cartridges were in use. Both drives now answer readiness checks, but another reset appeared 40 seconds before review. No planned adapter restart, maintenance, or cable handling is recorded in this synthetic operator context. The evidence does not identify whether the adapter, link, or another initiator caused the resets.",
+      "readings": [
+        {
+          "name": "Reset bursts observed on both drives",
+          "value": 3,
+          "unit": "bursts",
+          "window": "last 8 minutes"
+        },
+        {
+          "name": "Affected drives sharing the connection",
+          "value": 2,
+          "unit": "drives",
+          "window": "last 8 minutes"
+        },
+        {
+          "name": "Interrupted read jobs",
+          "value": 2,
+          "unit": "jobs",
+          "window": "last 8 minutes"
+        },
+        {
+          "name": "Time since most recent reset",
+          "value": 40,
+          "unit": "seconds",
+          "window": "at incident review"
+        }
+      ],
+      "source_urls": [
+        "https://www.t10.org/lists/asc-num.htm",
+        "https://raw.githubusercontent.com/doug-gilbert/sg3_utils/master/doc/sg_turs.8"
+      ]
+    },
+    {
+      "id": "B08",
+      "title": "Append rejected on a physically protected cartridge",
+      "text": "SYNTHETIC scenario: A newly selected output cartridge rejects the first append with data-protect sense and ASC/ASCQ 27h/01h. The operator observes that its physical protection tab is in the protected position. A 4 GiB read completed successfully ten minutes earlier. This cartridge is designated as writable scratch media for this job, and no retention or preservation instruction applies in the synthetic context. No append has succeeded and no operator has moved the tab yet.",
+      "readings": [
+        {
+          "name": "Append attempts rejected with protection sense",
+          "value": 1,
+          "unit": "attempts",
+          "window": "current job"
+        },
+        {
+          "name": "Successful appended data",
+          "value": 0,
+          "unit": "GiB",
+          "window": "current job"
+        },
+        {
+          "name": "Successful prior read volume",
+          "value": 4,
+          "unit": "GiB",
+          "window": "read completed 10 minutes ago"
+        },
+        {
+          "name": "Physical protection tab observed engaged",
+          "value": 1,
+          "unit": "boolean",
+          "window": "current visual observation"
+        }
+      ],
+      "source_urls": [
+        "https://www.t10.org/lists/asc-num.htm"
+      ]
+    },
+    {
+      "id": "B09",
+      "title": "Short readiness transition resolved within the request",
+      "text": "SYNTHETIC scenario: During a planned cartridge load, one readiness check at 28 seconds returns ASC/ASCQ 04h/01h. At 52 seconds the drive reports ready, and the application begins its expected read without its 300-second load limit expiring. The read finishes 19 minutes later with its verification successful. There are no unfinished jobs, new error responses, or current cleaning indications in the subsequent ten-minute observation. The operator is reviewing the earlier not-ready line after the successful job.",
+      "readings": [
+        {
+          "name": "Time from load start to ready",
+          "value": 52,
+          "unit": "seconds",
+          "window": "completed load request"
+        },
+        {
+          "name": "Application load wait limit",
+          "value": 300,
+          "unit": "seconds",
+          "window": "completed request configuration"
+        },
+        {
+          "name": "Successfully verified read jobs",
+          "value": 1,
+          "unit": "jobs",
+          "window": "completed 10 minutes before review"
+        },
+        {
+          "name": "New error responses after completed read",
+          "value": 0,
+          "unit": "responses",
+          "window": "last 10 minutes"
+        }
+      ],
+      "source_urls": [
+        "https://raw.githubusercontent.com/doug-gilbert/sg3_utils/master/doc/sg_turs.8",
+        "https://www.t10.org/lists/asc-num.htm"
+      ]
+    },
+    {
+      "id": "B10",
+      "title": "Incomplete status report with an ownership question",
+      "text": "SYNTHETIC scenario: A console observation says only that the tape job failed; it supplies no sense bytes, cartridge identity, load timing, or error counters. One of two status collection attempts was denied by device-access permissions and the other output was not retained. The application still lists an active writer, but its last activity time is unavailable. The operator proposes repeatedly unloading and loading the cartridge to see whether the message disappears. There is insufficient evidence to determine which tape problem occurred or whether the drive can safely be disturbed.",
+      "readings": [
+        {
+          "name": "Failed tape jobs reported by console",
+          "value": 1,
+          "unit": "jobs",
+          "window": "last 30 minutes"
+        },
+        {
+          "name": "Status collection attempts",
+          "value": 2,
+          "unit": "attempts",
+          "window": "last 5 minutes"
+        },
+        {
+          "name": "Retained usable status responses",
+          "value": 0,
+          "unit": "responses",
+          "window": "last 5 minutes"
+        },
+        {
+          "name": "Active writers listed by application",
+          "value": 1,
+          "unit": "writers",
+          "window": "current application view"
+        },
+        {
+          "name": "Time since listed writer last made progress",
+          "value": null,
+          "unit": "seconds",
+          "window": "current review; unavailable"
+        }
+      ],
+      "source_urls": [
+        "https://raw.githubusercontent.com/doug-gilbert/sg3_utils/master/doc/sg_logs.8",
+        "https://raw.githubusercontent.com/doug-gilbert/sg3_utils/master/doc/sg_turs.8",
+        "https://sourceforge.net/p/mtx/code/HEAD/tree/trunk/mtx/mtx.1"
+      ]
+    }
+  ]
+}

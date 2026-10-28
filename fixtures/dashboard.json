@@ -1,0 +1,8 @@
+{
+  "case_id": "clean-demo",
+  "sha256": "5a341456dab61bcd86728a93f9769f92b3ccbaee3a91e12a08b0a96a60b00f54",
+  "width": 1280,
+  "height": 720,
+  "source": "fixtures/dashboard.html",
+  "synthetic_only": true
+}

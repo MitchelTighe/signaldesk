@@ -1,0 +1,21 @@
+{
+  "schema": "signaldesk-current-gallery-v1",
+  "observed_at": "2026-10-22T06:54:16.597562+00:00",
+  "capture_source": "October22 accepted local-file browser verification; reused exact captures, no new inference",
+  "site_index_sha256": "75cda3d9088181674fb52f16570ba3e5fe61256667eee38ee7babcc86e4a6115",
+  "implementation_commit": "d573e77bf61dc1aa9329a80140b34ef8ba760b68",
+  "recording": "108original genuine TokenFactory model/case rows,54incidents; same-author/tuned limitations remain",
+  "browser": "Chromium140.0.7339.16/Playwright1.55.0; enabled sandbox; networknone",
+  "files": {
+    "panel-1280-light.png": "ea54fefdf484d27ebdb746c123b28c1a04ef504c7a81967834b9e386e741cdc0",
+    "panel-390-dark.png": "4d5f2b25176e381310940d3886f72a41fb698ef5498e825db7cd8c21c981d458",
+    "readings-results.json": "acec0dbb276701f35809cfbdfeb5ca69431bbe36238d7552f05e3cf7606ace2f",
+    "replay-1280-abstention.png": "63de7cb3f35523f741ab7f81ad6751da9faa6186ae6fbe5f1f4816dad58f63f5",
+    "replay-1280-quiet.png": "46c9d1c040f91454cf911d26c63bf6d95cf03ad1a283cbd9ecca9219c5bc9047",
+    "replay-1280-supported.png": "1edadc477b60d601869a864c094c45773d82072ae192ff2fda8dcc0059fe43cf",
+    "replay-390-abstention.png": "d8e8e104aebb23c05553b02ce06530eea01b7da009f7cf56ee404387cd21ffb9",
+    "replay-390-supported.png": "ce953eab3faa3cbe050d3b08855637ef7c364f89038bd233201199676cdaf5c9",
+    "replay-results.json": "5efc2e2164294443facee699e418d5fb6548b4a1d43256ce0bf752e34ce25aba"
+  },
+  "limits": "Viewport captures, not physical-device or operator validation. Local records are not provider cryptographic attestation."
+}

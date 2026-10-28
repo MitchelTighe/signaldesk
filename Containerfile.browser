@@ -1,0 +1,5 @@
+# Build on an authorized rootless container host; no host Python packages.
+FROM mcr.microsoft.com/playwright/python@sha256:640d578aae63cfb632461d1b0aecb01414e4e020864ac3dd45a868dc0eff3078
+COPY requirements-browser.txt /tmp/requirements-browser.txt
+RUN python3 -m pip install --no-cache-dir --disable-pip-version-check --only-binary=:all: --no-deps -r /tmp/requirements-browser.txt
+ENV PYTHONDONTWRITEBYTECODE=1

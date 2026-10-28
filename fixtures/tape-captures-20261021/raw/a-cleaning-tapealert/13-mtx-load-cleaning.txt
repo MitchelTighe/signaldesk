@@ -1,0 +1,18 @@
+# ts: 2026-10-21T13:00:52-04:00
+# cmd: mtx -f /dev/sg10 load 39 0
+# ---
+Loading media from Storage Element 39 into drive 0...mtx: Request Sense: Long Report=yes
+mtx: Request Sense: Valid Residual=yes
+mtx: Request Sense: Error Code=70 (Current)
+mtx: Request Sense: Sense Key=Hardware Error
+mtx: Request Sense: FileMark=no
+mtx: Request Sense: EOM=no
+mtx: Request Sense: ILI=no
+mtx: Request Sense: Residual = 00 00 00 00
+mtx: Request Sense: Additional Sense Code = 04
+mtx: Request Sense: Additional Sense Qualifier = 03
+mtx: Request Sense: BPV=no
+mtx: Request Sense: Error in CDB=no
+mtx: Request Sense: SKSV=no
+MOVE MEDIUM from Element Address 1038 to 500 Failed
+# --- exit: 1

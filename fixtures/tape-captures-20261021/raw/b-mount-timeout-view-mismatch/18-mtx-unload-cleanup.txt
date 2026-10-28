@@ -1,0 +1,5 @@
+# ts: 2026-10-21T13:01:46-04:00
+# cmd: mtx -f /dev/sg10 unload 5 1
+# ---
+Unloading drive 1 into Storage Element 5...done
+# --- exit: 0

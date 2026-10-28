@@ -1,0 +1,13 @@
+{
+  "frozen_at": "2026-10-22T08:57:36.960464+00:00",
+  "agent": "signaldesk_blind_author",
+  "fork": "none; an independent second author",
+  "author_inputs": "Eight problem titles and primary public manuals; no product files/runbooks/thresholds/prior cases/results",
+  "files": {
+    "CASES.json": "6a748d28c284ff7d896137432d2feca74f5be304b9be1fd217fbeb0131a03438",
+    "LABELS.json": "a89ee3c6ada46395db2c970bc87dfd4038282767e93b8e104f8c6a092ff0cbf6",
+    "SOURCE-NOTES.md": "0f1865ae6858612938d00a142db20e2f0d918a91158fd39e19c3de34ec15843f"
+  },
+  "model_evaluation_performed": false,
+  "all_cases_retained": true
+}

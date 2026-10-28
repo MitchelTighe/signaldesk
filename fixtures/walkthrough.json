@@ -1,0 +1,147 @@
+{
+  "schema": "signaldesk-walkthrough-v1",
+  "split": "synthetic-tape-showcase-v1",
+  "disclosure": "Deterministic mocks; synthetic timestamp; zero token usage. Not a benchmark.",
+  "steps": [
+    {
+      "id": "supported",
+      "case_id": "H05",
+      "status": "supported-hypothesis",
+      "outcome": "validated"
+    },
+    {
+      "id": "conflict",
+      "case_id": "H35",
+      "status": "needs-human",
+      "outcome": "validated"
+    },
+    {
+      "id": "missing",
+      "case_id": "H36",
+      "status": "needs-human",
+      "outcome": "validated"
+    },
+    {
+      "id": "family-1",
+      "case_id": "D01",
+      "status": "supported-hypothesis",
+      "outcome": "validated"
+    },
+    {
+      "id": "family-2",
+      "case_id": "D02",
+      "status": "supported-hypothesis",
+      "outcome": "validated"
+    },
+    {
+      "id": "family-3",
+      "case_id": "D03",
+      "status": "supported-hypothesis",
+      "outcome": "validated"
+    },
+    {
+      "id": "family-4",
+      "case_id": "D04",
+      "status": "supported-hypothesis",
+      "outcome": "validated"
+    },
+    {
+      "id": "family-5",
+      "case_id": "D05",
+      "status": "supported-hypothesis",
+      "outcome": "validated"
+    },
+    {
+      "id": "family-6",
+      "case_id": "D06",
+      "status": "supported-hypothesis",
+      "outcome": "validated"
+    },
+    {
+      "id": "family-7",
+      "case_id": "D07",
+      "status": "supported-hypothesis",
+      "outcome": "validated"
+    },
+    {
+      "id": "family-8",
+      "case_id": "D08",
+      "status": "supported-hypothesis",
+      "outcome": "validated"
+    },
+    {
+      "id": "threshold",
+      "case_id": "D09",
+      "status": "supported-hypothesis",
+      "outcome": "validated"
+    },
+    {
+      "id": "below-threshold",
+      "case_id": "D10",
+      "status": "needs-human",
+      "outcome": "validated"
+    },
+    {
+      "id": "invalid-count",
+      "case_id": "D11",
+      "status": "needs-human",
+      "outcome": "validated"
+    },
+    {
+      "id": "wrong-type",
+      "case_id": "D12",
+      "status": "needs-human",
+      "outcome": "validated"
+    },
+    {
+      "id": "empty-telemetry",
+      "case_id": "D13",
+      "status": "needs-human",
+      "outcome": "validated"
+    },
+    {
+      "id": "multiple-faults",
+      "case_id": "D14",
+      "status": "needs-human",
+      "outcome": "validated"
+    },
+    {
+      "id": "unicode-long-text",
+      "case_id": "D15",
+      "status": "supported-hypothesis",
+      "outcome": "validated"
+    },
+    {
+      "id": "transport-error",
+      "case_id": "D16",
+      "status": "needs-human",
+      "outcome": "error"
+    },
+    {
+      "id": "rejected-source",
+      "case_id": "D17",
+      "status": "needs-human",
+      "outcome": "error"
+    },
+    {
+      "id": "budget-stop",
+      "case_id": "D18",
+      "status": "needs-human",
+      "outcome": "not-run"
+    }
+  ],
+  "interaction_paths": [
+    "source-link",
+    "step-link",
+    "model-switch",
+    "search",
+    "empty-search",
+    "decision-filter",
+    "previous-next",
+    "download",
+    "tour-pause-resume",
+    "keyboard",
+    "reduced-motion",
+    "light-dark"
+  ]
+}

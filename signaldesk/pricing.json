@@ -1,0 +1,12 @@
+{
+  "observed_at": "2026-10-18",
+  "source": "https://tokenfactory.nebius.com/api/public/models_info",
+  "unit": "USD per million tokens; public standard flavor rates, excluding discounts",
+  "models": {
+    "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B": {"input": 0.06, "output": 0.24},
+    "nvidia/Nemotron-3_5-Lightning": {"input": 0.06, "output": 0.24},
+    "nvidia/Nemotron-3-Ultra-550b-a55b": {"input": 1.0, "output": 3.0},
+    "nvidia/nemotron-3-super-120b-a12b": {"input": 0.3, "output": 0.9},
+    "nvidia/Nemotron-3.5-Super-VL": {"input": 0.3, "output": 0.9}
+  }
+}

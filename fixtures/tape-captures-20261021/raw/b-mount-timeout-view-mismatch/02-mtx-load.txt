@@ -1,0 +1,5 @@
+# ts: 2026-10-21T13:00:52-04:00
+# cmd: mtx -f /dev/sg10 load 5 1
+# ---
+Loading media from Storage Element 5 into drive 1...done
+# --- exit: 0

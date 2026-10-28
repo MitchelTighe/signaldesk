@@ -1,0 +1,9 @@
+# ts: 2026-10-21T13:00:52-04:00
+# cmd: sg_turs -v /dev/sg12
+# ---
+    test unit ready cdb: [00 00 00 00 00 00]
+test unit ready:
+Fixed format, current; Sense key: Unit Attention
+Additional sense: Power on, reset, or bus device reset occurred
+Unit attention, type: sense key
+# --- exit: 6

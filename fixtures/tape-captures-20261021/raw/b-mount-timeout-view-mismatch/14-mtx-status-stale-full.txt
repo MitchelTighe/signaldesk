@@ -1,0 +1,53 @@
+# ts: 2026-10-21T13:01:46-04:00
+# cmd: mtx -f /dev/sg10 status
+# ---
+  Storage Changer /dev/sg10:4 Drives, 44 Slots ( 4 Import/Export )
+Data Transfer Element 0:Empty
+Data Transfer Element 1:Full (Storage Element 5 Loaded):VolumeTag = A00005L8                            
+Data Transfer Element 2:Empty
+Data Transfer Element 3:Empty
+      Storage Element 1:Full :VolumeTag=A00001L8                            
+      Storage Element 2:Full :VolumeTag=A00002L8                            
+      Storage Element 3:Full :VolumeTag=A00003L8                            
+      Storage Element 4:Full :VolumeTag=A00004L8                            
+      Storage Element 5:Empty
+      Storage Element 6:Full :VolumeTag=A00006L8                            
+      Storage Element 7:Full :VolumeTag=A00007L8                            
+      Storage Element 8:Full :VolumeTag=A00008L8                            
+      Storage Element 9:Full :VolumeTag=A00009L8                            
+      Storage Element 10:Full :VolumeTag=A00010L8                            
+      Storage Element 11:Full :VolumeTag=A00011L8                            
+      Storage Element 12:Full :VolumeTag=A00012L8                            
+      Storage Element 13:Full :VolumeTag=A00013L8                            
+      Storage Element 14:Full :VolumeTag=A00014L8                            
+      Storage Element 15:Full :VolumeTag=A00015L8                            
+      Storage Element 16:Full :VolumeTag=A00016L8                            
+      Storage Element 17:Full :VolumeTag=A00017L8                            
+      Storage Element 18:Full :VolumeTag=A00018L8                            
+      Storage Element 19:Full :VolumeTag=A00019L8                            
+      Storage Element 20:Full :VolumeTag=A00020L8                            
+      Storage Element 21:Full :VolumeTag=A00021L8                            
+      Storage Element 22:Full :VolumeTag=A00022L8                            
+      Storage Element 23:Full :VolumeTag=A00023L8                            
+      Storage Element 24:Full :VolumeTag=A00024L8                            
+      Storage Element 25:Full :VolumeTag=A00025L8                            
+      Storage Element 26:Full :VolumeTag=A00026L8                            
+      Storage Element 27:Full :VolumeTag=A00027L8                            
+      Storage Element 28:Full :VolumeTag=A00028L8                            
+      Storage Element 29:Full :VolumeTag=A00029L8                            
+      Storage Element 30:Full :VolumeTag=A00030L8                            
+      Storage Element 31:Full :VolumeTag=B00001L8                            
+      Storage Element 32:Full :VolumeTag=B00002L8                            
+      Storage Element 33:Full :VolumeTag=B00003L8                            
+      Storage Element 34:Full :VolumeTag=B00004L8                            
+      Storage Element 35:Full :VolumeTag=B00005L8                            
+      Storage Element 36:Full :VolumeTag=B00006L8                            
+      Storage Element 37:Full :VolumeTag=B00007L8                            
+      Storage Element 38:Full :VolumeTag=B00008L8                            
+      Storage Element 39:Full :VolumeTag=CLN001L1                            
+      Storage Element 40:Empty
+      Storage Element 41 IMPORT/EXPORT:Empty
+      Storage Element 42 IMPORT/EXPORT:Empty
+      Storage Element 43 IMPORT/EXPORT:Empty
+      Storage Element 44 IMPORT/EXPORT:Empty
+# --- exit: 0

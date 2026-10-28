@@ -1,0 +1,6 @@
+# re-pulled after run: journalctl -k --since '2026-10-21 13:00:51' --until '2026-10-21 13:00:54' -o short-iso
+# ---
+2026-10-21T13:00:52-0400 tapehost01 kernel: st 7:0:2:0: Power-on or device reset occurred
+2026-10-21T13:00:52-0400 tapehost01 kernel: st 7:0:3:0: Power-on or device reset occurred
+2026-10-21T13:00:52-0400 tapehost01 kernel: st 7:0:1:0: [st1] Power on/reset recognized.
+2026-10-21T13:00:52-0400 tapehost01 kernel: st 7:0:1:0: [st1] Block limits 1 - 2097152 bytes.

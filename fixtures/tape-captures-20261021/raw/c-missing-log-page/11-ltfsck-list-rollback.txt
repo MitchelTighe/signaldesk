@@ -1,0 +1,82 @@
+# ts: 2026-10-21T13:01:47-04:00
+# cmd: /usr/local/bin/ltfsck -l /dev/sg11
+# ---
+LTFS16000I Starting ltfsck, LTFS version 2.4.9.0 (Prelim), log level 2.
+LTFS16088I Launched by "/usr/local/bin/ltfsck -l /dev/sg11".
+LTFS16089I This binary is built for Linux (x86_64).
+LTFS16090I GCC version is 11.5.0 20240719 (Red Hat 11.5.0-11).
+LTFS17087I Kernel version: Linux version 5.14.0-611.36.1.el9_7.x86_64 (mockbuild@iad1-prod-build001.bld.equ.rockylinux.org) (gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), GNU ld version 2.35.2-67.el9_7.1) #1 SMP PREEMPT_DYNAMIC Tue Mar 3 17:30:12 UTC 2026 i386.
+LTFS17089I Distribution: NAME="Rocky Linux".
+LTFS17089I Distribution: Rocky Linux release 9.7 (Blue Onyx).
+LTFS17089I Distribution: Rocky Linux release 9.7 (Blue Onyx).
+LTFS17089I Distribution: Rocky Linux release 9.7 (Blue Onyx).
+LTFS16084I List indexes in backward direction strategy.
+LTFS17085I Plugin: Loading "sg" tape backend.
+LTFS30209I Opening a device through sg-ibmtape driver (/dev/sg11).
+LTFS30250I Opened the SCSI tape device 7.0.3.0 (/dev/sg11).
+LTFS30207I Vendor ID is IBM     .
+LTFS30208I Product ID is ULT3580-TD8     .
+LTFS30214I Firmware revision is HB81.
+LTFS30215I Drive serial is DRVSN0003.
+LTFS30285I The reserved buffer size of /dev/sg11 is 1048576.
+LTFS30205I RSOC (0xa3) returns 05/2000 (-20500).
+LTFS30263I RSOC returns Invalid Command Operation Code (-20500) /dev/sg11.
+LTFS30262I Forcing drive dump.
+LTFS39802W Unknown SCSI OP code 0x1d, use default timeout.
+LTFS30253I Saving drive dump to /tmp/ltfs_DRVSN0003_2026_1021_130147_f.dmp.
+LTFS39802W Unknown SCSI OP code 0x3c, use default timeout.
+LTFS39802W Unknown SCSI OP code 0x3c, use default timeout.
+LTFS30294I Setting up timeout values from vendor and device.
+LTFS17160I Maximum device block size is 1048576.
+LTFS11330I Loading cartridge.
+LTFS30252I Logical block protection is disabled.
+LTFS11332I Load successful.
+LTFS17157I Changing the drive setting to write-anywhere mode.
+LTFS16018I Listing LTFS file system rollback points on '/dev/sg11'.
+LTFS30252I Logical block protection is disabled.
+LTFS16023I LTFS volume information:.
+LTFS16024I Volser (bar code) :       .
+LTFS16025I Volume UUID     : b52147aa-d7e5-4a30-8df1-1e0b992816d7.
+LTFS16026I Format time     : 2026-10-17 13:46:00.069277377 EDT.
+LTFS16027I Block size      : 524288.
+LTFS16028I Compression     : Enabled.
+LTFS16029I Index partition : ID = a, SCSI Partition = 0.
+LTFS16030I Data partition  : ID = b, SCSI Partition = 1.
+
+LTFS11005I Mounting the volume.
+LTFS30252I Logical block protection is disabled.
+LTFS12059W Cannot get VCI data: unexpected length 0x002e.
+LTFS11016W The index partition MAM parameter is not usable. Mounting will take longer.
+LTFS12059W Cannot get VCI data: unexpected length 0x002e.
+LTFS11017W The data partition MAM parameter is not usable. Mounting will take longer.
+LTFS11015W VCR MAM parameter is not usable. Mounting will take longer.
+LTFS11026I Performing a full medium consistency check.
+LTFS11233I Updating MAM coherency data.
+LTFS17227I Tape attribute: Vendor = IBM     .
+LTFS17227I Tape attribute: Application Name = LTFS                            .
+LTFS17227I Tape attribute: Application Version = 2.4.9.0 .
+LTFS17227I Tape attribute: Medium Label = INTR3.
+LTFS17228I Tape attribute: Text Localization ID = 0x81.
+LTFS17227I Tape attribute: Barcode =                                 .
+LTFS17227I Tape attribute: Application Format Version = 2.4.0           .
+LTFS17228I Tape attribute: Volume Lock Status = 0x00.
+LTFS17227I Tape attribute: Media Pool name = .
+LTFS11031I Volume mounted successfully. NO_BARCODE : Gen = 3 / (a, 5) -> (b, 780) / DRVSN0003.
+LTFS30252I Logical block protection is disabled.
+Generation: Date       Time               Zone     SelfPtr->BackPtr (Part, Pos)
+           (UTC Date   UTC Time           UTC)                                 
+            Commit Message                                                     
+-------------------------------------------------------------------------------
+         3: 2026-10-17 13:47:21.606335111 EDT      (0, 5)->(1, 780)
+           (2026-10-17 17:47:21.606335111 UTC)
+            No commit message
+         3: 2026-10-17 13:47:21.606335111 EDT      (1, 780)->(1, 15)
+           (2026-10-17 17:47:21.606335111 UTC)
+            No commit message
+         2: 2026-10-17 13:47:00.032481456 EDT      (1, 15)->(1, 5)
+           (2026-10-17 17:47:00.032481456 UTC)
+            No commit message
+         1: 2026-10-17 13:46:00.080142705 EDT      (1, 5) <<Initial Index>>
+           (2026-10-17 17:46:00.080142705 UTC)
+            No commit message
+# --- exit: 0

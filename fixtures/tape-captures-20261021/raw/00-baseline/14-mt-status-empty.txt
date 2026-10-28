@@ -1,0 +1,10 @@
+# ts: 2026-10-21T13:00:52-04:00
+# cmd: mt -f /dev/st1 status
+# ---
+SCSI 2 tape drive:
+File number=-1, block number=-1, partition=0.
+Tape block size 0 bytes. Density code 0x0 (default).
+Soft error count since last status=0
+General status bits on (50000):
+ DR_OPEN IM_REP_EN
+# --- exit: 0

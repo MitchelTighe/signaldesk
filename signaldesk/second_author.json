@@ -1,0 +1,340 @@
+{
+  "provenance": "Ten synthetic incidents by a fresh second AI instance given only eight problem titles and primary public manuals. Blind to product runbooks, thresholds, previous cases and results during authorship. Parent normalized explicit observations before reading labels; not independent human/field validation. All ten retained, no policy tuning.",
+  "cases": [
+    {
+      "id": "B01",
+      "title": "Cleaning indication after a completed read",
+      "text": "SYNTHETIC scenario: A scheduled read finished successfully. The next status response carries ASC/ASCQ 00h/17h, and a decoded TapeAlert cleaning indication is set. A second log-page read two minutes later shows the same indication. The drive is idle, no application owns it, and a compatible cleaning cartridge with uses remaining is available. No cleaning cycle has been attempted since the indication appeared.",
+      "evidence": [
+        {
+          "id": "B01-E1",
+          "metric": "tapealert_cleaning_flags",
+          "value": 1
+        },
+        {
+          "id": "B01-E2",
+          "metric": "observed_completed_read_jobs",
+          "value": 1
+        },
+        {
+          "id": "B01-E3",
+          "metric": "observed_read_jobs_ending_in_error",
+          "value": 0
+        },
+        {
+          "id": "B01-E4",
+          "metric": "observed_cleaning_cycles_attempted",
+          "value": 0
+        }
+      ],
+      "expected": "RB-CLEAN",
+      "kind": "second-author",
+      "author_disposition": "runbook",
+      "author_problem_title": "Drive requests cleaning",
+      "unsafe_to_repeat": false
+    },
+    {
+      "id": "B02",
+      "title": "Read failure follows one cartridge",
+      "text": "SYNTHETIC scenario: Cartridge C returns medium-error sense with ASC/ASCQ 11h/00h at the same logical region in two drives, during two read attempts 18 minutes apart. A different cartridge completed a 12 GiB read on each drive earlier in the hour. Neither drive currently requests cleaning. Cartridge C holds the only presently located copy of the requested material. The two failed attempts have already occurred; no further retry is running.",
+      "evidence": [
+        {
+          "id": "B02-E1",
+          "metric": "observed_failed_read_attempts_on_cartridge_c",
+          "value": 2
+        },
+        {
+          "id": "B02-E2",
+          "metric": "observed_distinct_drives_reporting_the_cartridge_c_failure",
+          "value": 2
+        },
+        {
+          "id": "B02-E3",
+          "metric": "observed_successful_comparison_cartridge_reads",
+          "value": 2
+        },
+        {
+          "id": "B02-E4",
+          "metric": "observed_additional_located_copies_of_requested_material",
+          "value": 0
+        }
+      ],
+      "expected": "RB-MEDIA",
+      "kind": "second-author",
+      "author_disposition": "runbook",
+      "author_problem_title": "Suspect cartridge",
+      "unsafe_to_repeat": true
+    },
+    {
+      "id": "B03",
+      "title": "Drive-local failures with different media",
+      "text": "SYNTHETIC scenario: An idle drive has returned hardware-error sense and ASC/ASCQ 44h/00h on three attempted operations involving two cartridges over 11 minutes. The second cartridge then completed its read in another drive. The affected drive display also reports a service fault. There is no observed cable disconnect, and its cleaning indication is clear. A data cartridge remains inside; the operator has stopped further jobs and has not forced removal or cycled power.",
+      "evidence": [
+        {
+          "id": "B03-E1",
+          "metric": "observed_operations_reporting_the_internal_target_fault",
+          "value": 3
+        },
+        {
+          "id": "B03-E2",
+          "metric": "observed_different_cartridges_involved",
+          "value": 2
+        },
+        {
+          "id": "B03-E3",
+          "metric": "observed_successful_reads_of_the_second_cartridge_in_another_drive",
+          "value": 1
+        },
+        {
+          "id": "B03-E4",
+          "metric": "observed_cartridges_still_inside_affected_drive",
+          "value": 1
+        }
+      ],
+      "expected": null,
+      "kind": "second-author",
+      "author_disposition": "handoff",
+      "author_problem_title": "Drive hardware fault",
+      "unsafe_to_repeat": true
+    },
+    {
+      "id": "B04",
+      "title": "Application gave up while a loaded drive stayed unready",
+      "text": "SYNTHETIC scenario: The changer reports a completed transfer from storage slot 9 into drive 0 and now reports slot 9 empty and drive 0 occupied. The application ended its load request after its configured 360-second wait. At 540 seconds after the transfer, six readiness checks taken one minute apart have all returned ASC/ASCQ 04h/01h. No progress percentage was supplied. The cartridge has not been unloaded or loaded again, and the mechanical position beyond the reported occupied drive is unknown.",
+      "evidence": [
+        {
+          "id": "B04-E1",
+          "metric": "observed_application_load_wait_limit",
+          "value": 360
+        },
+        {
+          "id": "B04-E2",
+          "metric": "load_wait_seconds",
+          "value": 540
+        },
+        {
+          "id": "B04-E3",
+          "metric": "observed_readiness_checks_returning_not_ready",
+          "value": 6
+        },
+        {
+          "id": "B04-E4",
+          "metric": "observed_reported_operation_progress",
+          "value": null
+        }
+      ],
+      "expected": "RB-MOUNT",
+      "kind": "second-author",
+      "author_disposition": "runbook",
+      "author_problem_title": "Cartridge load timed out",
+      "unsafe_to_repeat": true
+    },
+    {
+      "id": "B05",
+      "title": "A barcode moved but the application location did not",
+      "text": "SYNTHETIC scenario: Following a planned magazine exchange, two changer status queries 90 seconds apart identify cartridge R in slot 18 and slot 4 empty. The application still identifies cartridge R in slot 4. Both changer queries report the same 24 storage elements and two empty drives; no robot movement or application job occurred between queries. The application catalog has not refreshed since before the exchange, 22 minutes ago. The operator needs to resolve the location disagreement before scheduling the cartridge.",
+      "evidence": [
+        {
+          "id": "B05-E1",
+          "metric": "observed_changer_status_queries_agreeing_on_cartridge_location",
+          "value": 2
+        },
+        {
+          "id": "B05-E2",
+          "metric": "observed_changer_reported_slot_for_cartridge_r",
+          "value": 18
+        },
+        {
+          "id": "B05-E3",
+          "metric": "observed_application_reported_slot_for_cartridge_r",
+          "value": 4
+        },
+        {
+          "id": "B05-E4",
+          "metric": "observed_age_of_application_location_refresh",
+          "value": 22
+        },
+        {
+          "id": "B05-E5",
+          "metric": "inventory_mismatch_count",
+          "value": 1
+        }
+      ],
+      "expected": "RB-INVENTORY",
+      "kind": "second-author",
+      "author_disposition": "runbook",
+      "author_problem_title": "Library inventory disagrees",
+      "unsafe_to_repeat": false
+    },
+    {
+      "id": "B06",
+      "title": "LTFS mount refused after an interrupted session",
+      "text": "SYNTHETIC scenario: After an interrupted writing session, two ordinary LTFS mount attempts on the same cartridge fail before any filesystem becomes available. The diagnostic messages say the expected end-of-data marker is missing. The drive answers readiness checks successfully and the changer reports the intended cartridge. The last confirmed clean unmount predates 37 GiB of subsequent writing. No recovery or rollback has been run. The operator cannot establish whether that later material exists elsewhere and asks whether to proceed with deep recovery.",
+      "evidence": [
+        {
+          "id": "B06-E1",
+          "metric": "ltfs_mount_errors",
+          "value": 2
+        },
+        {
+          "id": "B06-E2",
+          "metric": "observed_successful_drive_readiness_checks",
+          "value": 3
+        },
+        {
+          "id": "B06-E3",
+          "metric": "observed_data_written_after_last_confirmed_clean_unmount",
+          "value": 37
+        },
+        {
+          "id": "B06-E4",
+          "metric": "observed_verified_additional_copies_of_later_material",
+          "value": null
+        },
+        {
+          "id": "B06-E5",
+          "metric": "observed_recovery_or_rollback_operations_performed",
+          "value": 0
+        }
+      ],
+      "expected": null,
+      "kind": "second-author",
+      "author_disposition": "handoff",
+      "author_problem_title": "LTFS volume will not mount",
+      "unsafe_to_repeat": true
+    },
+    {
+      "id": "B07",
+      "title": "Two drives interrupted together",
+      "text": "SYNTHETIC scenario: Two drives sharing a SCSI connection each report ASC/ASCQ 29h/02h during the same three bursts. The bursts occur over eight minutes and interrupt one read job on each drive. Distinct cartridges were in use. Both drives now answer readiness checks, but another reset appeared 40 seconds before review. No planned adapter restart, maintenance, or cable handling is recorded in this synthetic operator context. The evidence does not identify whether the adapter, link, or another initiator caused the resets.",
+      "evidence": [
+        {
+          "id": "B07-E1",
+          "metric": "scsi_unit_attention_count",
+          "value": 3
+        },
+        {
+          "id": "B07-E2",
+          "metric": "observed_affected_drives_sharing_the_connection",
+          "value": 2
+        },
+        {
+          "id": "B07-E3",
+          "metric": "observed_interrupted_read_jobs",
+          "value": 2
+        },
+        {
+          "id": "B07-E4",
+          "metric": "observed_time_since_most_recent_reset",
+          "value": 40
+        }
+      ],
+      "expected": "RB-PATH",
+      "kind": "second-author",
+      "author_disposition": "runbook",
+      "author_problem_title": "SCSI path resets",
+      "unsafe_to_repeat": true
+    },
+    {
+      "id": "B08",
+      "title": "Append rejected on a physically protected cartridge",
+      "text": "SYNTHETIC scenario: A newly selected output cartridge rejects the first append with data-protect sense and ASC/ASCQ 27h/01h. The operator observes that its physical protection tab is in the protected position. A 4 GiB read completed successfully ten minutes earlier. This cartridge is designated as writable scratch media for this job, and no retention or preservation instruction applies in the synthetic context. No append has succeeded and no operator has moved the tab yet.",
+      "evidence": [
+        {
+          "id": "B08-E1",
+          "metric": "write_protect_rejections",
+          "value": 1
+        },
+        {
+          "id": "B08-E2",
+          "metric": "observed_successful_appended_data",
+          "value": 0
+        },
+        {
+          "id": "B08-E3",
+          "metric": "observed_successful_prior_read_volume",
+          "value": 4
+        },
+        {
+          "id": "B08-E4",
+          "metric": "observed_physical_protection_tab_observed_engaged",
+          "value": 1
+        }
+      ],
+      "expected": "RB-WRITEPROT",
+      "kind": "second-author",
+      "author_disposition": "runbook",
+      "author_problem_title": "Cartridge is write-protected",
+      "unsafe_to_repeat": false
+    },
+    {
+      "id": "B09",
+      "title": "Short readiness transition resolved within the request",
+      "text": "SYNTHETIC scenario: During a planned cartridge load, one readiness check at 28 seconds returns ASC/ASCQ 04h/01h. At 52 seconds the drive reports ready, and the application begins its expected read without its 300-second load limit expiring. The read finishes 19 minutes later with its verification successful. There are no unfinished jobs, new error responses, or current cleaning indications in the subsequent ten-minute observation. The operator is reviewing the earlier not-ready line after the successful job.",
+      "evidence": [
+        {
+          "id": "B09-E1",
+          "metric": "load_wait_seconds",
+          "value": 52
+        },
+        {
+          "id": "B09-E2",
+          "metric": "observed_application_load_wait_limit",
+          "value": 300
+        },
+        {
+          "id": "B09-E3",
+          "metric": "observed_successfully_verified_read_jobs",
+          "value": 1
+        },
+        {
+          "id": "B09-E4",
+          "metric": "observed_new_error_responses_after_completed_read",
+          "value": 0
+        }
+      ],
+      "expected": null,
+      "kind": "second-author",
+      "author_disposition": "quiet",
+      "author_problem_title": null,
+      "unsafe_to_repeat": false
+    },
+    {
+      "id": "B10",
+      "title": "Incomplete status report with an ownership question",
+      "text": "SYNTHETIC scenario: A console observation says only that the tape job failed; it supplies no sense bytes, cartridge identity, load timing, or error counters. One of two status collection attempts was denied by device-access permissions and the other output was not retained. The application still lists an active writer, but its last activity time is unavailable. The operator proposes repeatedly unloading and loading the cartridge to see whether the message disappears. There is insufficient evidence to determine which tape problem occurred or whether the drive can safely be disturbed.",
+      "evidence": [
+        {
+          "id": "B10-E1",
+          "metric": "observed_failed_tape_jobs_reported_by_console",
+          "value": 1
+        },
+        {
+          "id": "B10-E2",
+          "metric": "observed_status_collection_attempts",
+          "value": 2
+        },
+        {
+          "id": "B10-E3",
+          "metric": "observed_retained_usable_status_responses",
+          "value": 0
+        },
+        {
+          "id": "B10-E4",
+          "metric": "observed_active_writers_listed_by_application",
+          "value": 1
+        },
+        {
+          "id": "B10-E5",
+          "metric": "observed_time_since_listed_writer_last_made_progress",
+          "value": null
+        }
+      ],
+      "expected": null,
+      "kind": "second-author",
+      "author_disposition": "handoff",
+      "author_problem_title": null,
+      "unsafe_to_repeat": true
+    }
+  ]
+}

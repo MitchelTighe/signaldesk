@@ -1,0 +1,5 @@
+# ts: 2026-10-21T13:00:52-04:00
+# cmd: sg_turs -v /dev/sg9
+# ---
+    test unit ready cdb: [00 00 00 00 00 00]
+# --- exit: 0

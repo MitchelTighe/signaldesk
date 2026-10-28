@@ -1,0 +1,18 @@
+{
+  "schema": "signaldesk-finish-baseline-labels-v1",
+  "synthetic_only": true,
+  "cases_sha256": "83a15f6dd8f592077fea41e2450847f1e9861b9191676610326baee00da3524d",
+  "note": "Baseline family labels authored before any baseline scoring of these ten cases. Underlying valid cleaning-flag observation remains the family label even when text is hostile or the authored model draft is invalid. No training or prior dataset edits.",
+  "labels": {
+    "F01": null,
+    "F02": null,
+    "F03": "RB-CLEAN",
+    "F04": "RB-CLEAN",
+    "F05": "RB-CLEAN",
+    "F06": "RB-CLEAN",
+    "F07": null,
+    "F08": null,
+    "F09": "RB-CLEAN",
+    "F10": "RB-CLEAN"
+  }
+}
