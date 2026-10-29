@@ -7,9 +7,11 @@ readings, and the explicit **Run live on Nebius** button.
 The hosted demo at <https://mitcheltighe.github.io/signaldesk/> is configured for explicit live
 submissions to <https://signaldesk-live.goblinworkbench.workers.dev/api/live>, a Cloudflare
 Worker feeding synthetic tickets and readings to NVIDIA Nemotron on Nebius Token Factory.
-Lightning drafts, the validator checks, and Super reads again when required. Recorded cases
-remain instant; quota or provider failures leave replay visible. [DEPLOY.md](DEPLOY.md)
-covers the proxy, hard quotas, build modes and kill switch. `site/` stays offline by default.
+Lightning drafts, the validator checks, and Super reads again when required. On a Lightning
+timeout (8 s) or HTTP 5xx the Worker retries once, then escalates to Super, and falls back to the
+recorded replay only if Super fails too. Recorded cases remain instant; quota limits also leave
+replay visible. [DEPLOY.md](DEPLOY.md) covers the proxy, hard quotas, build modes and kill switch.
+`site/` stays offline by default.
 
 **The model proposes. The telemetry decides. A person acts.** When a tape drive or library
 misbehaves, SignalDesk puts one answer at the top: **Do this** (exact runbook steps), **Hand off to
@@ -116,8 +118,9 @@ models' recorded calls, not a separately measured cascade.
 **What Token Factory contributes.** All NVIDIA model inference in SignalDesk runs on Nebius
 Token Factory: the recorded evaluation above and every **Run live on Nebius** click on the hosted
 demo, which the [Cloudflare Worker](worker/index.mjs) forwards to the same chat-completions endpoint
-with these two model IDs (reasoning off for both; JSON mode; at most two calls per run and 500
-output tokens per call, see [DEPLOY.md](DEPLOY.md)). Token Factory supplies the hosted NVIDIA open models, JSON
+with these two model IDs (reasoning off for both; JSON mode; at most three calls per run, namely
+Lightning, one Lightning retry and Super, and 500 output tokens per call, see [DEPLOY.md](DEPLOY.md)).
+Token Factory supplies the hosted NVIDIA open models, JSON
 responses and the per-request token usage behind the cost receipts and quota reservations.
 **Other Nebius services:** none. Nebius AI Cloud is not used; the page is hosted on GitHub Pages
 and the proxy runs on Cloudflare Workers.
@@ -162,7 +165,10 @@ template and bundled replay, with an empty endpoint and `connect-src 'none'`.
 using the Worker URL above; running without the flag restores the offline bytes.
 The manual Pages workflow tests the offline default before building and publishing live mode.
 No key enters either static artifact. Worker tests, including the container-only runtime
-and browser suites, are listed in [DEPLOY.md](DEPLOY.md).
+and browser suites, are listed in [DEPLOY.md](DEPLOY.md). The Worker unit tests
+(`node --test worker/worker.test.mjs`) need Node 22+: the retry tests use `Promise.withResolvers`,
+which Node 20 lacks. `pages.yml` does not pin Node; it runs them on the preinstalled Node of its
+`ubuntu-24.04` runner (22.x when checked on 2026-10-29).
 
 Optional isolated runtime: with working rootless Podman, `sh demo.sh` pulls the
 immutable Python 3.12.12 image in [runtime-image.txt](runtime-image.txt), then runs
@@ -184,6 +190,12 @@ flowchart LR
     V2 -- otherwise --> H
     A --> N[Exportable incident note · 0 actions executed]
 ```
+
+**Slow or failing upstream (live Worker).** Each Lightning attempt has an 8 s limit. A timeout or
+HTTP 5xx is retried once; if Lightning is still unavailable, the incident goes to Super (its own 20 s
+limit, same validator). The recorded replay is returned only if Super also fails. The model cascade
+as a whole is capped at about 29 s. A retry or escalation reuses the click's single quota
+reservation, so it costs no extra per-IP or daily quota. Details: [DEPLOY.md](DEPLOY.md).
 
 Models call only through a guard that reserves calls, tokens and estimated cost before each
 request. The model can only choose an authored runbook, cite reading IDs from this incident and copy

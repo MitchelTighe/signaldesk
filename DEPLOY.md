@@ -4,8 +4,9 @@
 Worker at <https://signaldesk-live.goblinworkbench.workers.dev/api/live> for explicit
 **Run live on Nebius** submissions. Synthetic ticket text and readings feed Nemotron
 3.5 Lightning on Nebius Token Factory; a deterministic validator checks the draft, and
-Nemotron 3 Super reads again after a veto, abstention or physical proposal. Recorded
-cases remain the instant default, with local readings validation and zero actions executed.
+Nemotron 3 Super reads again after a veto, abstention or physical proposal, or when Lightning
+is still unavailable after one retry. Recorded cases remain the instant default, with local
+readings validation and zero actions executed.
 The live variant's reasoning settings differ from the recorded evaluation, as detailed below.
 
 The checked-in `site/` is the reproducible **offline judge artifact**, with networking
@@ -39,28 +40,45 @@ logged by this application. Hashes are pseudonymous identifiers, not anonymizati
 Expired IP windows are pruned on the next reservation. Cloudflare and Nebius may retain
 platform-level request metadata under their own policies.
 
-The only upstream is Nebius `/v1/chat/completions`, without redirects or retries:
+The only upstream is Nebius `/v1/chat/completions`, without redirects (the single retry is
+described below):
 
 - `nvidia/Nemotron-3_5-Lightning`, then, when required,
   `nvidia/nemotron-3-super-120b-a12b`.
-- At most **two calls per admitted run**, 500 output tokens each, 24,000 conservative
-  input tokens per call (UTF-8 message bytes plus 4,096 framing tokens).
-- Each call has a 20-second deadline covering its body, a 64 KiB response cap, and
-  required bounded token-usage accounting. Incoming body reading has a 5-second deadline.
+- At most **three calls per admitted run** (Lightning, one Lightning retry, Super), 500 output
+  tokens each, 24,000 conservative input tokens per call (UTF-8 message bytes plus 4,096 framing tokens).
+- Each Lightning attempt has an **8-second** deadline and Super a 20-second one, each covering
+  the call's body, a 64 KiB response cap, and required bounded token-usage accounting.
+  Incoming body reading has a 5-second deadline.
 - Missing/conflicting/healthy telemetry short-circuits. A veto, abstention or physical
   proposal from Lightning escalates to Super. A Super veto becomes an empty human handoff.
+- **Slow or failing upstream: retry, escalate, replay.** A Lightning timeout or HTTP 5xx is
+  retried once, and if the retry answers the run proceeds as usual. If it also fails, or Lightning
+  fails in any other way (not retried), the run escalates to Super with
+  `escalation: lightning-unavailable-escalated`, and Super's draft goes through the same validator.
+  Super is never retried. The recorded replay is returned (HTTP 503) only if Super also has no
+  usable response.
+- **Worst case about 29 s.** A 29-second deadline bounds the whole model cascade: after two
+  8-second Lightning timeouts Super has about 13 s left, not its full 20 s. Request parsing,
+  quota storage and network overhead sit outside that bound, and the page abandons a live
+  request after 45 s.
+- **A retry uses no extra quota.** A click makes one reservation (one run, 2 cents, one slot in the
+  per-IP hourly and daily counts) whether it takes one call or three, and even if it ends in replay.
+  The retry and the escalation are not counted again.
 - This bounded live variant explicitly disables hidden thinking for **both** models,
   so reasoning cannot consume the 500-token allowance. The recorded evaluation uses
   Super with reasoning enabled; its accuracy numbers do not apply to this variant.
   Ticket caveats are model-interpreted; exact citations and numeric evidence do not
   prove semantic safety. All output is advice for operator review, with zero actions executed.
 
-No key, disabled switch, invalid config, quota failure, provider failure, missing usage
-or timeout produces a live answer. The page explicitly keeps the recorded replay visible
+A missing key, disabled switch, invalid config or quota failure produces no live answer, and
+neither does a run where Super also fails (provider failure, missing usage or timeout) after
+the Lightning retry. The page then explicitly keeps the recorded replay visible
 and says custom input has no live answer. It never substitutes a cached answer for the
 custom ticket. Trace rows show fixed model IDs, sanitized proposed runbook IDs, validator
-verdicts/codes, elapsed milliseconds and observed input/output tokens; unavailable usage
-is labeled unavailable. Raw model prose and provider error bodies are never rendered.
+verdicts/codes, elapsed milliseconds and observed input/output tokens, one row per actual
+attempt (a retried Lightning call has its own row, coded `upstream-timeout` or `upstream-5xx`);
+unavailable usage is labeled unavailable. Raw model prose and provider error bodies are never rendered.
 
 ## Validate and prepare on an authorized tooling host
 
@@ -68,6 +86,10 @@ Use Node 22+ and Python 3.12+. Install the locked developer tools **inside a con
 or the existing sandbox; never install these packages on a basement host. The lockfile
 pins Wrangler 4.45.0, Playwright 1.55.0 and packaged Chromium 138.0.2. The Worker itself
 has no runtime npm dependencies. Chromium is a test-only executable, never shipped to Workers.
+The Worker unit tests need Node 22+: the retry tests call `Promise.withResolvers`, which Node 20
+lacks (five of the 29 fail there). `pages.yml` does not pin Node; it runs
+`node --test worker/worker.test.mjs` on the preinstalled Node of its `ubuntu-24.04` runner,
+22.x when checked on 2026-10-29. Add `actions/setup-node` if that default drops below 22.
 
 ```sh
 npm ci --prefix worker --no-audit --no-fund
@@ -187,12 +209,15 @@ and the owner account before enabling; these are estimates, not current provider
 | Cached cases, disabled/limited service, or pre-triage | USD 0 |
 | Lightning only, assuming 3,000 input + 300 output per call | USD 0.252 |
 | Every run escalates, same token assumption for each model | USD 1.422 |
-| Maximum bounded input and 500 output, both models every run | USD 9.21 |
-| Conservative quota reservation, 2x above maximum rounded up | USD 20 reserved |
+| Maximum bounded input and 500 output, Lightning twice (retry) then Super, every run | USD 10.77 |
+| Quota reservation, 2 cents per run (about 1.9x the maximum above) | USD 20 reserved |
 
-Each admitted run reserves **2 cents** regardless of path. With defaults, only 100
+Each admitted run reserves **2 cents** regardless of path, and a retry does not reserve again.
+That still covers the worst path (two Lightning calls plus Super, at most USD 0.01077 per run
+at the recorded rates), but the margin over that maximum is about 1.9x, down from about 2.2x
+when a run made at most two calls. With defaults, only 100
 live attempts are admitted per UTC day, so 1,000 live attempts take at least ten days;
-extra clicks fall back to replay. The daily model-token estimate is at most USD 0.921
+extra clicks fall back to replay. The daily model-token estimate is at most USD 1.077
 at the recorded rates, within the USD 2 reservation cap. No input-cache discounts assumed.
 A changed provider tariff can invalidate dollar estimates, so the provider-side cap
 and owner review remain necessary. The daily cap is not a lifetime project budget.
