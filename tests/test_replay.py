@@ -102,7 +102,8 @@ class ReplayTests(unittest.TestCase):
         template = (ENTRY/'web/replay-template.html').read_text()
         self.assertIn('connect-src \'none\'', template)
         self.assertNotIn('innerHTML', template)
-        self.assertNotIn('fetch(', template)
+        self.assertIn('if(!endpoint){replayMessage(', template)
+        self.assertIn('name="signaldesk-live-endpoint" content=""', template)
         self.assertNotIn('localStorage', template)
 
 
@@ -117,6 +118,8 @@ class PublicPackageTests(unittest.TestCase):
         names = [n for n, _ in files]
         self.assertIn('LICENSE', names); self.assertIn('README.md', names)
         self.assertIn('site/index.html', names)
+        for required in ['DEPLOY.md', 'worker/index.mjs', 'worker/package.json', 'worker/package-lock.json']:
+            self.assertIn(required, names)
         for name in names:
             self.assertFalse(any(p in name.split('/') for p in ['.git', 'cache', 'runs', 'state']))
         self.assertNotIn('REPORT.md', names)

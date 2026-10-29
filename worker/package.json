@@ -1,0 +1,15 @@
+{
+  "name": "signaldesk-live",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test worker.test.mjs",
+    "test:runtime": "node --test runtime.test.mjs",
+    "test:browser": "node --test browser.test.mjs"
+  },
+  "devDependencies": {
+    "@sparticuz/chromium": "138.0.2",
+    "playwright": "1.55.0",
+    "wrangler": "4.45.0"
+  }
+}

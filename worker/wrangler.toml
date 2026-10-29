@@ -1,0 +1,22 @@
+name = "signaldesk-live"
+main = "index.mjs"
+compatibility_date = "2025-10-01"
+workers_dev = true
+preview_urls = false
+
+[vars]
+LIVE_ENABLED = "false"
+ALLOWED_ORIGIN = "https://mitcheltighe.github.io"
+DAILY_RUN_CAP = "100"
+DAILY_SPEND_CENTS = "200"
+
+[[durable_objects.bindings]]
+name = "LIVE_QUOTA"
+class_name = "LiveQuota"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["LiveQuota"]
+
+[observability]
+enabled = false

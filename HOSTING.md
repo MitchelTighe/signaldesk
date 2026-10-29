@@ -59,11 +59,9 @@ if broken, and retests anonymously. Static assets need no warm-up process.
 This is a plan, not an installed monitor or uptime guarantee. Do not remove the
 project, gate access or expire its URL before judging ends.
 
-**Fresh inference option — documented, not built:** if required by organizers,
-put a server-side broker behind an existing authorized host. Accept only bundled
-fixture/model IDs; enforce shared durable daily dollar/token/call reservations
-before transport, one concurrent request, a per-client rate limit plus global
-limit, bounded response/timeouts, no retries, and a kill switch. Cache responses
-and label each replay; stop fresh calls when quota is exhausted while keeping
-recorded judge access free. Never put a key in Pages or count a per-IP limit as
-a spending cap. This needs a separate implementation, budget review and tests.
+**Fresh inference option — code ready, deployment pending:** the optional Cloudflare
+Worker and explicit live button are implemented. See [DEPLOY.md](DEPLOY.md) for atomic
+durable quotas, owner secret injection, exact routes, model/cost bounds and the kill
+switch. The checked-in bundle remains offline by default. Enabling live configures
+both the HTML meta CSP and `_headers` to allow exactly the reviewed proxy origin;
+recorded cases remain the instant default. A replay rebuild resets that opt-in.

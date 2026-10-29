@@ -1,6 +1,10 @@
 # SignalDesk — a tape-library incident desk
 
-**Recorded Nebius run: this page replays saved responses and makes no live model calls.**
+**Instant recorded Nebius cases, with an opt-in live demo path ready for owner deployment.**
+
+The prominent **Run live on Nebius** button opens the editable readings and ticket panel.
+Live inference is disabled in this checkout. [DEPLOY.md](DEPLOY.md) covers the secret-only
+Cloudflare proxy, hard quotas, deployment steps, cost estimates and kill switch.
 
 **The model proposes. The telemetry decides. A person acts.** When a tape drive or library
 misbehaves, SignalDesk puts one answer at the top: **Do this** (exact runbook steps), **Hand off to
@@ -17,7 +21,7 @@ network request.
 choose a runbook and edit a proposed step. It checks gates, conflicting readings and exact
 runbook wording locally: **validator only, no model call**. Blank fields are missing readings,
 not zero. A match does not interpret ticket context or stop caveats, and never approves a
-physical action. Your entries do not alter the recorded run or leave the page.
+physical action. Your entries do not alter the recorded run. Local checks stay in the page; after owner deployment, clicking **Run live on Nebius** explicitly sends your synthetic ticket and readings to the proxy and Nebius. Live results and trace appear separately; unavailable service leaves the recorded replay visible.
 
 ![SignalDesk: what to do now, the validator veto and the model trace (recorded Nebius run)](docs/screenshots/current/replay-1280-supported.png)
 

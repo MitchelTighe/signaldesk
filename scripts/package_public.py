@@ -10,9 +10,9 @@ import re
 import tarfile
 
 ENTRY = Path(__file__).resolve().parents[1]
-ROOT_FILES = {'README.md', 'FEEDBACK.md', 'HOSTING.md', 'LICENSE', 'SUBMISSION.md', '.gitignore', 'run.sh', 'pull.sh', 'demo.sh', 'runtime-image.txt', 'Containerfile.browser', 'Containerfile.judge', 'requirements-browser.txt', '.containerignore',
+ROOT_FILES = {'README.md', 'FEEDBACK.md', 'HOSTING.md', 'DEPLOY.md', 'LICENSE', 'SUBMISSION.md', '.gitignore', 'run.sh', 'pull.sh', 'demo.sh', 'runtime-image.txt', 'Containerfile.browser', 'Containerfile.judge', 'requirements-browser.txt', '.containerignore',
               '.github/workflows/pages.yml'}
-SUFFIXES = {'signaldesk': {'.py', '.json'}, 'scripts': {'.py', '.sh'}, 'tests': {'.py'},
+SUFFIXES = {'signaldesk': {'.py', '.json'}, 'scripts': {'.py', '.sh'}, 'tests': {'.py', '.mjs'}, 'worker': {'.mjs', '.toml', '.json'},
             'docs': {'.md', '.json', '.png'}, 'web': {'.html'}, 'site': {'.html', '.json'},
             'fixtures': {'.html', '.json', '.png', '.txt', '.sh', '.md'}}
 
@@ -42,6 +42,8 @@ def public_files(root=ENTRY):
     result = []
     for path in sorted(root.rglob('*')):
         rel = path.relative_to(root)
+        if 'node_modules' in rel.parts:
+            continue
         if path.is_symlink():
             if rel.parts[0] in SUFFIXES or str(rel) in ROOT_FILES:
                 raise ValueError('Symlink refused in public source')
@@ -49,7 +51,7 @@ def public_files(root=ENTRY):
         if not path.is_file() or any(part in {'__pycache__', 'cache', 'runs', 'state',
                                               'node_modules', '.git'} for part in rel.parts):
             continue
-        permitted = (str(rel) in ROOT_FILES or str(rel) == 'site/_headers' or (len(rel.parts) > 1 and
+        permitted = (str(rel) in ROOT_FILES or (rel.parts[0] == 'site' and rel.name == '_headers') or (len(rel.parts) > 1 and
                      rel.parts[0] in SUFFIXES and path.suffix in SUFFIXES[rel.parts[0]]))
         if not permitted:
             continue

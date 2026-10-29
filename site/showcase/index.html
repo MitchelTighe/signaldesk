@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; font-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="signaldesk-live-endpoint" content="">
 <title>SignalDesk · Tape incident desk</title>
 <style>
 :root{color-scheme:dark;--bg:#0c1417;--panel:#142126;--line:#31464c;--muted:#a7bec4;--ink:#edf6f6;--green:#baf790;--amber:#ffd08b;--red:#ffaea3;font:15px/1.55 system-ui,sans-serif}
@@ -8,7 +9,7 @@
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 85% 0,#1b3335,transparent 55%),var(--bg);color:var(--ink)}:root[data-theme="light"] body{background:var(--bg)}
 a{color:var(--green);text-underline-offset:4px}button,select,input,textarea{font:inherit;color:inherit}button,select,input,textarea,summary{min-height:44px}
 button,select,input,textarea{border:1px solid #55727c;background:#0f1b20;border-radius:9px;padding:10px 12px}:root[data-theme="light"] button,:root[data-theme="light"] select,:root[data-theme="light"] input,:root[data-theme="light"] textarea{background:#fff}
-button{cursor:pointer}button:disabled{opacity:.7;cursor:default}a,button,input,select,textarea,summary{outline-offset:5px}:focus-visible{outline:3px solid var(--green)}
+button{cursor:pointer}.live-primary{background:var(--green);color:var(--bg);font-weight:700;border-color:var(--green)}button:disabled{opacity:.7;cursor:default}a,button,input,select,textarea,summary{outline-offset:5px}:focus-visible{outline:3px solid var(--green)}
 .wrap{max-width:1392px;margin:auto;padding:0 40px}.bar{border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:18px;padding-top:18px;padding-bottom:18px}
 .brand{font-size:23px;font-weight:750;letter-spacing:-1px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.brand svg{flex:none}
 .tag,.eyebrow,.label,.section{font-size:11px;letter-spacing:1.5px;text-transform:uppercase}.tag{color:var(--muted);font-weight:500;letter-spacing:1.4px}
@@ -62,6 +63,7 @@ code{font-family:ui-monospace,monospace;font-size:.92em;border:1px solid var(--l
 </div>
 <div class="receipt" id="receipt" aria-label="Recorded run receipt"><div class="ok"><strong id="r-backed"></strong><span id="r-backed-note"></span></div><div class="veto"><strong id="r-vetoed"></strong><span id="r-vetoed-note"></span></div><div><strong id="r-cost"></strong><span id="r-cost-note"></span></div></div></section>
 <div id="notice" class="notice" role="status"></div>
+<section class="panel tour" aria-label="Live Nebius demo"><div><div class="eyebrow">Instant cached cases + optional live inference</div><p>Explore the recorded cases below, or send a synthetic ticket and readings to Nebius.</p></div><button type="button" class="live-primary" id="live-open">Run live on Nebius</button></section>
 <section class="panel tour" id="tour" aria-label="Guided walkthrough"><div><div class="eyebrow">See it work in 30 seconds</div><p id="tour-text" aria-live="polite">Five recorded incidents: a drive that needs cleaning, a model fooled by the ticket text and vetoed, a third cleaning that should not happen, a library and drive that disagree, and a quiet library with nothing to fix.</p></div><div class="tour-controls"><button id="tour-start" type="button">Start 30-second walkthrough</button><button id="tour-pause" type="button" hidden>Pause</button><button id="tour-next" type="button" hidden>Next scene</button><button id="tour-stop" type="button" hidden>Explore all incidents</button></div></section>
 <details class="panel try-readings" id="try-readings"><summary>Try your own readings</summary>
 <p class="eyebrow">Validator only · no model call · 0 actions executed</p>
@@ -75,6 +77,11 @@ code{font-family:ui-monospace,monospace;font-size:.92em;border:1px solid var(--l
 <div class="actions"><button type="button" id="try-check">Check readings and proposal</button><button type="button" id="try-reset">Reset</button></div>
 <output class="try-output" id="try-proposal" aria-live="polite" aria-atomic="true"></output>
 <p class="small muted" id="try-scope">A backed result means an evidence and wording match, not action approval. This validator cannot read the incident ticket or apply runbook caveats. The original route still needs the reasoner and operator to review context before any physical action.</p>
+<label class="label" for="live-ticket">Synthetic incident ticket for a live run</label><textarea id="live-ticket" maxlength="2000" rows="3" placeholder="Describe a fictional tape incident and any steps already tried."></textarea>
+<p class="small muted" id="live-disclosure">Clicking Run sends this ticket and the entered numeric readings to Nebius through the demo proxy. Use public or synthetic text only. No equipment actions are executed.</p>
+<div class="actions"><button id="live-run" class="live-primary" type="button" aria-describedby="live-disclosure">Run live on Nebius</button></div>
+<output class="try-output" id="live-result" aria-live="polite">Cached cases are the instant default. Live inference requires the owner's deployment.</output>
+<div id="live-trace" class="small mono"></div>
 </details>
 <div class="layout"><aside class="panel" aria-label="Incident queue"><h2>Incident queue</h2>
 <label class="label" for="model">Answer from</label><select id="model"></select>
@@ -83,7 +90,7 @@ code{font-family:ui-monospace,monospace;font-size:.92em;border:1px solid var(--l
 <label class="label" for="case">Incident</label><select id="case"></select><p id="empty" class="empty" role="status" hidden>No matching incidents. Clear the filters.</p>
 <div class="buttons"><button id="previous" type="button">← Previous</button><button id="next" type="button">Next →</button></div>
 <div class="sidebar-stats"><div class="rule"></div><div class="eyebrow">This view</div><div class="stat"><span>Incidents</span><strong id="count"></strong></div><div class="stat"><span>Do this</span><strong id="accepted"></strong></div><div class="stat"><span>Hand off / no incident</span><strong id="abstained"></strong></div><div class="stat"><span>Errors / not run</span><strong id="errors"></strong></div></div>
-<div class="rule"></div><a class="small" id="download-evidence" href="replay.json" download="signaldesk-replay.json">Download all recorded evidence ↗</a><p class="tiny muted">Every selection replays a saved result. No inference or spending happens in your browser.</p></aside>
+<div class="rule"></div><a class="small" id="download-evidence" href="replay.json" download="signaldesk-replay.json">Download all recorded evidence ↗</a><p class="tiny muted">Case selections instantly replay saved results. Only the Run live on Nebius button requests fresh inference.</p></aside>
 <div class="stack" id="brief">
 <section class="panel decision" id="decision" aria-labelledby="hypothesis"><div class="section"><span class="eyebrow" id="draft-label">What to do now</span><span class="status" id="status"></span></div>
 <div aria-live="polite" aria-atomic="true"><h2 id="hypothesis"></h2><p class="answered" id="answered"></p><p id="outcome" class="small"></p><p id="rationale" class="small muted"></p></div>
@@ -95,7 +102,7 @@ code{font-family:ui-monospace,monospace;font-size:.92em;border:1px solid var(--l
 <details class="panel" id="why"><summary>Why: the readings and the validator's checks</summary>
 <p id="telemetry-state" class="small"></p>
 <table class="evidence" tabindex="0" aria-label="Readings and gates"><thead><tr><th>Reading</th><th>Metric</th><th>Value</th><th>Gate</th><th>Verdict</th></tr></thead><tbody id="evidence"></tbody></table>
-<ul class="checks" id="checks"></ul><p class="tiny muted">A reading over its gate supports a hypothesis; it does not prove root cause. The validator is plain Python: it never asks a model to judge a model.</p></details>
+<ul class="checks" id="checks"></ul><p class="tiny muted">A reading over its gate supports a hypothesis; it does not prove root cause. The recorded validator is Python; the live proxy uses the same numeric and exact-citation checks in JavaScript. Neither asks a model to judge a model.</p></details>
 <section class="panel" id="trace-panel"><div class="section"><span>Model trace on this incident</span><span>recorded latency and cost</span></div>
 <table tabindex="0" aria-label="Model trace on this incident"><thead><tr><th>Model</th><th>Draft</th><th>Validator</th><th>Latency</th><th>Tokens in / out</th><th>Cost</th></tr></thead><tbody id="trace"></tbody></table><p class="tiny muted" id="route-note"></p></section>
 <section class="panel" id="source" hidden><div class="eyebrow">Cited tape runbook</div><h2 id="source-title"></h2><p id="threshold" class="small"></p><ol id="source-steps" class="small"></ol><p id="caveat" class="small muted"></p><p class="tiny muted">Authored tape runbook · each step cites public man pages, T10 tables or open-source project docs · MIT</p><ul id="docs"></ul></section>
@@ -138,6 +145,31 @@ const ROUTED='routed',routing=data.routing||null,books=Object.fromEntries(data.r
  $('try-book').addEventListener('change',()=>{selectBook();check();});$('try-step-number').addEventListener('change',()=>{reference();check();});$('try-step-text').addEventListener('input',check);
  $('try-use-step').addEventListener('click',()=>{const step=selectedStep();if(step)$('try-step-text').value=step.text;check();});$('try-check').addEventListener('click',check);
  $('try-reset').addEventListener('click',()=>{for(const input of fields)input.value='';$('try-book').value='';$('try-step-text').value='';selectBook();check();});
+ const liveButton=$('live-run'),liveOutput=$('live-result');let running=false;
+ const endpoint=document.querySelector('meta[name="signaldesk-live-endpoint"]').content;
+ $('live-open').addEventListener('click',()=>{$('try-readings').open=true;$('live-ticket').focus();$('try-readings').scrollIntoView({block:'start'});});
+ const replayMessage=message=>{liveOutput.dataset.state='replay';write('live-result',message+' Showing the recorded replay below; your custom input has no live answer.');};
+ liveButton.addEventListener('click',async()=>{
+  if(running)return;
+  $('live-trace').replaceChildren();
+  if(!endpoint){replayMessage('Live endpoint is not deployed.');return;}
+  const evidence=entered();
+  if(evidence.some(e=>typeof e.value!=='number'||!Number.isFinite(e.value))){replayMessage('Enter finite numeric readings before a live run.');return;}
+  running=true;liveButton.disabled=true;liveOutput.dataset.state='pending';write('live-result','Running on Nebius: Lightning → validator → Super when needed…');
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),45000);
+  try{
+   const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'omit',cache:'no-store',signal:controller.signal,body:JSON.stringify({ticket:$('live-ticket').value,evidence})});
+   const answer=await response.json();
+   for(const row of answer.trace||[]){const usage=row.usage?row.usage.prompt_tokens+' in / '+row.usage.completion_tokens+' out':'usage unavailable';$('live-trace').append(el('p','',row.model+' · '+row.validator+' ('+row.code+') · '+row.latency_ms+' ms · '+usage));}
+   if(!response.ok||answer.mode!=='live'){replayMessage('Live run unavailable ('+(answer.reason||'service-unavailable')+').');return;}
+   liveOutput.dataset.state='live';
+   const result=answer.result,book=books[result.runbook_id];
+   write('live-result',(answer.path==='pre-triage'?'PRE-TRIAGE · NO MODEL CALL':'LIVE NEBIUS RESULT')+' · '+answer.path+' · '+answer.latency_ms+' ms · '+(book?book.title:result.status==='no-incident'?'No incident in supplied readings':'Hand off to an operator')+' · 0 actions executed');
+   if(answer.escalation)$('live-trace').append(el('p','','Escalation: '+answer.escalation));
+   if(book)for(const step of result.steps||[]){if(step.source!==book.id||step.text!==book.steps[step.step-1])throw Error('Invalid sourced step');$('live-trace').append(el('p','',step.source+' §'+step.step+': '+step.text));}
+  }catch{$('live-trace').replaceChildren();replayMessage('Live service is down, timed out, or returned an invalid response.');}
+  finally{clearTimeout(timer);running=false;liveButton.disabled=false;}
+ });
  selectBook();check();
 })();
 const cases=[...new Map(data.rows.map(r=>[r.case_id,r])).values()];let visible=[];
@@ -145,7 +177,7 @@ function setTheme(light){document.documentElement.dataset.theme=light?'light':'d
 setTheme(window.matchMedia('(prefers-color-scheme: light)').matches);$('theme').addEventListener('click',()=>setTheme(document.documentElement.dataset.theme!=='light'));
 $('download-evidence').href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)+'\n'],{type:'application/json'}));
 if(routing){const o=el('option','', 'SignalDesk route (recommended)');o.value=ROUTED;$('model').append(o);}for(const m of data.models){const o=el('option','',short(m)+' only');o.value=m;$('model').append(o);}
-write('notice',data.live_recorded?'RECORDED NEBIUS RUN · This page replays saved Nemotron responses from Nebius Token Factory and makes no live model calls. The 72 of 84 backed and 12 vetoed counts are proposals; 53 of 54 is the number of correct final routed incident decisions. Nothing is sent anywhere from this page.':'LOCAL MOCK PREVIEW · Real Nebius runs are pending. These are transport QA results, not NVIDIA inference or model accuracy.');$('notice').classList.toggle('live',data.live_recorded);
+write('notice',data.live_recorded?'RECORDED NEBIUS RUN · This page replays saved Nemotron responses from Nebius Token Factory. Cached cases are instant; the optional live button sends only your synthetic input. The 72 of 84 backed and 12 vetoed counts are proposals; 53 of 54 is the number of correct final routed incident decisions. Case selection sends nothing.':'LOCAL MOCK PREVIEW · Real Nebius runs are pending. These are transport QA results, not NVIDIA inference or model accuracy.');$('notice').classList.toggle('live',data.live_recorded);
 const usd=v=>'USD '+(v<0.01?v.toFixed(4):v.toFixed(3)),rate=m=>(data.recorded_usage[m]||{}).rates_usd_per_million||{input:0,output:0};
 function rowCost(r){const u=r.brief&&r.brief.provenance&&r.brief.provenance.usage;if(!u)return 0;const k=rate(r.model);return (k.input*u.prompt_tokens+k.output*u.completion_tokens)/1e6;}
 const CODE=/(`[^`]+`|\b[0-9A-F]{2}\/[0-9A-F]{2}\/[0-9A-F]{2}\b|\b0x[0-9a-fA-F]{2}\b)/;
