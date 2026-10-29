@@ -51,12 +51,12 @@ Screenshots (headless Chromium 138.0.2 / Playwright 1.55.0 in a bounded containe
 
 | View | 1280px | 390px |
 |---|---|---|
-| Intro and scoreboard | [Desktop](artifacts/2026-10-28/pass2/intro-1280.png) | [Mobile](artifacts/2026-10-28/pass2/intro-390.png) |
-| X06 cascade | [Desktop](artifacts/2026-10-28/pass2/cascade-1280.png) | [Mobile](artifacts/2026-10-28/pass2/cascade-390.png) |
-| Custom ticket examples | [Desktop](artifacts/2026-10-28/pass2/ticket-1280.png) | [Mobile](artifacts/2026-10-28/pass2/ticket-390.png) |
-| Complete recorded page | [Desktop](artifacts/2026-10-28/pass2/replay-1280.png) | [Mobile](artifacts/2026-10-28/pass2/replay-390.png) |
+| Intro and scoreboard | [Desktop](../artifacts/2026-10-28/pass2/intro-1280.png) | [Mobile](../artifacts/2026-10-28/pass2/intro-390.png) |
+| X06 cascade | [Desktop](../artifacts/2026-10-28/pass2/cascade-1280.png) | [Mobile](../artifacts/2026-10-28/pass2/cascade-390.png) |
+| Custom ticket examples | [Desktop](../artifacts/2026-10-28/pass2/ticket-1280.png) | [Mobile](../artifacts/2026-10-28/pass2/ticket-390.png) |
+| Complete recorded page | [Desktop](../artifacts/2026-10-28/pass2/replay-1280.png) | [Mobile](../artifacts/2026-10-28/pass2/replay-390.png) |
 
-Capture dimensions and hashes: [screenshots.json](artifacts/2026-10-28/pass2/screenshots.json).
+Capture dimensions and hashes: [screenshots.json](../artifacts/2026-10-28/pass2/screenshots.json).
 The capture container was read-only with a writable output mount and temporary filesystem,
 network disabled, non-root user, 2 CPU / 1 GiB / 256 PID bounds. It used the existing pinned
 Python image and Node binary, with pass 1's installed pinned browser tooling. No installs.
