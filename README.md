@@ -113,6 +113,15 @@ to estimate cost, **not an invoice or an account-wide spending limit**. The reco
 USD 0.040 versus USD 0.091 for Super on all 54 incidents; the route is reconstructed from both
 models' recorded calls, not a separately measured cascade.
 
+**What Token Factory contributes.** All NVIDIA model inference in SignalDesk runs on Nebius
+Token Factory: the recorded evaluation above and every **Run live on Nebius** click on the hosted
+demo, which the [Cloudflare Worker](worker/index.mjs) forwards to the same chat-completions endpoint
+with these two model IDs (reasoning off for both; JSON mode; at most two calls per run and 500
+output tokens per call, see [DEPLOY.md](DEPLOY.md)). Token Factory supplies the hosted NVIDIA open models, JSON
+responses and the per-request token usage behind the cost receipts and quota reservations.
+**Other Nebius services:** none. Nebius AI Cloud is not used; the page is hosted on GitHub Pages
+and the proxy runs on Cloudflare Workers.
+
 **Why not Ultra?** Super already scored 14/14 on the recorded hard set, so we kept this two-model
 route. Ultra was not evaluated; this is no claim of superiority over it. The hard set shaped the
 policy, all incidents share an author with the runbooks, and production benefit remains unmeasured.

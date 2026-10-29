@@ -1,8 +1,9 @@
-RESULT: BLOCKED container-only runtime/browser suites unavailable; full-suite verification incomplete
+RESULT: DONE
 
-Pre-judging review on 2026-10-29, within the 60-minute box. The complete Python suite and
-Worker unit suite pass. The remaining test gates need an authorized container host. Small
-fixes are ready for one local scoped commit; no push or deployment was performed.
+Pre-judging review on 2026-10-29. Its fixes are listed below. The container-only gates it could
+not run (Worker runtime and browser suites, Wrangler dry-run, browser, accessibility and
+Pages-subpath acceptance, pinned launchers, Gitleaks scan) were then run in rootless Podman and
+pass; see Container verification.
 
 Changed paths:
 
@@ -18,6 +19,8 @@ Changed paths:
 - `README.md`, `SUBMISSION.md`, `DEPLOY.md`: describe configured live submissions separately
   from the checked-in offline artifact and current endpoint health. Make the staged disabled
   Worker deployment instruction explicit; remove the implication that the Worker runs Python.
+- `README.md` also states what Nebius Token Factory contributes (all NVIDIA model inference, for
+  the recorded evaluation and the hosted live demo) and that no other Nebius service is used.
 - `HOSTING.md`, `docs/JUDGE-ACCESS.md`: reconcile live publishing with the offline source;
   replace the missing `runs/live-evaluation.json` example with both bundled genuine reports.
 - `docs/SHOWCASE.md`: identify `site/showcase/` as the mock QA output.
@@ -63,19 +66,14 @@ Remaining findings and limits, in priority order:
    entrant submission are required; neither can be invented or uploaded by this pass.
    `scripts/capture_draft.py` remains a mock rehearsal with obsolete pending-runtime and
    forty-case captions; do not use it unchanged for the final video.
-2. External links and anonymous hosted access remain unverified. The demo HEAD request
-   through the required egress proxy returned `curl: (56) Proxy CONNECT aborted`, HTTP 000.
-   No alternate route or retry was used. This does not establish a broken public URL.
-   Public source, organizer rules, vendor-document links, endpoint health/model availability,
-   quota and current prices need verification from an authorized network/tooling host.
-   No live POST, billable model call, account action or real credential access occurred.
-3. Container gates could not run: `podman images` failed while initializing the read-only
-   `/run/user/1000/libpod` directory. `worker/node_modules` is absent. Therefore the DEPLOY
-   runtime/browser suites, Wrangler dry-run, browser/a11y/Pages-subpath acceptance, pinned
-   Python launchers and Gitleaks container scan were not freshly verified. Nothing was
-   installed on the host; no system configuration or existing service was changed.
+2. Hosted access, checked 2026-10-29 15:07 EDT from an ordinary network: the demo page returns
+   HTTP 200; the Worker answers the page origin's CORS preflight with 204; one live POST from
+   that origin returned a live answer (Lightning vetoed, Super accepted, zero actions). Requests
+   that do not come from the page origin get HTTP 403 by design; judges using the page in a
+   browser are not affected. Quota and current prices still depend on the account.
+3. Container gates now pass in rootless Podman; see Container verification below.
 4. Limited tracked-text scans found no likely credential literal, private network address,
-   machine-specific path or employer/private-person disclosure. Broader assignment matches
+   machine-specific path or private-person disclosure. Broader assignment matches
    were known synthetic test fixtures; email-like matches were public distro build metadata
    or synthetic test URLs. Public entrant attribution remains in SUBMISSION and public URLs
    as intentional submission metadata. All eight newly exported captures were visually
@@ -92,8 +90,18 @@ Remaining findings and limits, in priority order:
    the negative second-author result and production limitations remain unchanged.
 
 Evidence is under `.scratch/prejudge-20261029/` (ignored, not committed). TASK.md and
-ISSUES.md were pre-existing untracked inputs and are left untouched. The full-suite
-completion gate cannot be certified until the container-only checks run elsewhere.
+ISSUES.md were pre-existing untracked inputs and are left untouched.
+
+Container verification (2026-10-29, rootless Podman, tests executed with networking disabled):
+
+- Pinned runtime image, `sh run.sh test`: 184 tests OK, 1 skipped (parity needs Node). Python 3.12.12 with Node 22.20.0: 184 tests OK.
+- Worker on Node 22.20.0 (Debian): unit 22/22, runtime 2/2, browser 5/5 (run twice);
+  `wrangler deploy --dry-run` bundle 25.72 KiB (8.02 KiB gzip).
+- Playwright 1.55.0 container: judge tour and axe audits (35 checks, 0 violations), replay 81 checks,
+  readings 400 checks, showcase in both themes and the GitHub Pages subpath rehearsal,
+  repeated on the `--live` build with zero external requests; offline bytes restore exactly.
+- `scripts/container_acceptance.sh`: PASS. `scripts/secret_scan.sh` (pinned Gitleaks, tracked
+  files): PASS, no findings.
 
 ---
 
