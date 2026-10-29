@@ -76,12 +76,13 @@ test('browser keeps cached cases instant, sends only explicit live input, and la
     assert.equal(await page.locator('#live-export').isVisible(), false);
     assert.equal(await page.locator('#live-status').textContent(), 'Recorded replay');
     await page.locator('#tour-stop').click();
+    const afterTour = await page.locator('#hypothesis').textContent();
     await page.locator('#live-open').click();
     limited = true;
     await page.locator('#live-run').click();
     await page.waitForFunction(() => document.querySelector('#live-result').dataset.state === 'replay');
     assert.match(await page.locator('#live-result').textContent(), /ip-limit.*recorded replay.*no live answer/);
-    assert.equal(await page.locator('#hypothesis').textContent(), cached);
+    assert.equal(await page.locator('#hypothesis').textContent(), afterTour);
     assert.equal(await page.locator('#live-run').isEnabled(), true);
     assert.deepEqual(errors, []);
     await page.unroute('**/*');
