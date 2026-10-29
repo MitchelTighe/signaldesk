@@ -50,14 +50,31 @@ test('recorded cascade, scoreboard and examples follow evidence at desktop and m
     assert.match(await text(page, '#r-accuracy-note'), /50\/54 to 53\/54/);
     for (const title of await page.locator('.score').evaluateAll(nodes => nodes.map(n => n.title))) assert.match(title, /site\/replay.json/);
     assert.equal(await page.locator('#whats-next #limits').count(), 1);
+    assert.match(await text(page, '#whats-next'), /Second-author synthetic check:.*4\/10.*8\/10.*Quality gates failed/);
 
     const screenshotDir = process.env.PASS2_SCREENSHOTS;
     if (screenshotDir) await mkdir(screenshotDir, { recursive: true });
     for (const width of [1280, 390]) {
       await page.setViewportSize({ width, height: width === 1280 ? 960 : 844 });
+      await page.locator('#why-link').click();
+      assert.equal(await page.locator('#why').evaluate(node => node.open), true);
       for (const theme of ['dark', 'light']) {
         await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
         assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${width}px ${theme} overflow`);
+        assert.deepEqual(await page.locator('table').evaluateAll(tables => tables.flatMap(table => {
+          const labels = [...table.querySelectorAll('thead th')].map(th => th.textContent);
+          return [...table.querySelectorAll('tbody td')].flatMap((cell, i) => {
+            const rect = cell.getBoundingClientRect();
+            return cell.dataset.label !== labels[i % labels.length] || rect.right > innerWidth || cell.scrollWidth > cell.clientWidth
+              ? [cell.textContent] : [];
+          });
+        })), [], `${width}px ${theme}: labeled cells fit without internal clipping`);
+        if (width === 390) {
+          assert.equal(await page.locator('#trace td').first().evaluate(cell => getComputedStyle(cell).display), 'block');
+          assert.ok((await page.locator('#trace td').first().boundingBox()).width > 250, 'model name has a full card width');
+          assert.ok((await page.locator('#trace td[data-label="Draft"]').first().boundingBox()).width > 250, 'runbook ID has a full card width');
+          assert.ok((await page.locator('#eval-tables td[data-label="Cost"]').first().boundingBox()).width > 250, 'cost has a full card width');
+        }
       }
       await page.evaluate(() => document.documentElement.dataset.theme = 'dark');
       if (screenshotDir) {
@@ -109,6 +126,60 @@ test('recorded cascade, scoreboard and examples follow evidence at desktop and m
     assert.match(await text(page, '#live-result'), /not deployed.*custom input has no live answer/);
     assert.equal(await page.locator('#live-cascade').isVisible(), false);
     assert.deepEqual(requests, [documentURL]);
+    assert.deepEqual(errors, []);
+  } finally { await b.close(); }
+});
+
+test('tour cancels pending live output and manual Next holds each scene until the next click', async () => {
+  const b = await browser();
+  try {
+    const page = await b.newPage({ reducedMotion: 'reduce' });
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    let release;
+    const gate = new Promise(resolve => release = resolve);
+    let received;
+    const pending = new Promise(resolve => received = resolve);
+    await page.route('**/*', async route => {
+      if (route.request().url() === documentURL) return route.fulfill({ contentType: 'text/html', body: original
+        .replace('name="signaldesk-live-endpoint" content=""', `name="signaldesk-live-endpoint" content="${endpoint}"`)
+        .replace("connect-src 'none'", 'connect-src https://proxy.signaldesk.test') });
+      assert.equal(route.request().url(), endpoint);
+      const headers = { 'Access-Control-Allow-Origin': 'https://signaldesk.test', 'Access-Control-Allow-Headers': 'Content-Type', 'Access-Control-Allow-Methods': 'POST' };
+      if (route.request().method() === 'OPTIONS') return route.fulfill({ status: 204, headers });
+      received();
+      await gate;
+      return route.fulfill({ status: 429, headers, contentType: 'application/json', body: JSON.stringify({ mode: 'replay', reason: 'ip-limit' }) });
+    });
+    await page.clock.install();
+    await page.goto(documentURL);
+    const initialLiveText = await text(page, '#live-result');
+    await page.locator('#live-open').click();
+    await page.locator('#ticket-examples button').first().click();
+    await page.locator('#live-run').click();
+    await pending;
+    assert.equal(await page.locator('#live-result').getAttribute('data-state'), 'pending');
+    await page.locator('#tour-start').click();
+    release();
+    await page.clock.runFor(100);
+    assert.equal(await page.locator('#try-readings').evaluate(node => node.open), false);
+    assert.equal(await text(page, '#live-result'), initialLiveText);
+    assert.equal(await page.locator('#live-result').getAttribute('data-state'), null);
+    assert.equal(await page.locator('#live-cascade').isVisible(), false);
+    assert.equal(await page.locator('#live-run').isEnabled(), true);
+    assert.equal(await text(page, '#live-status'), 'Recorded replay');
+    for (const id of ['X06', 'X02', 'H35', 'X01']) {
+      await page.locator('#tour-next').click();
+      assert.equal(await page.locator('#case').inputValue(), id);
+      await page.clock.fastForward(60000);
+      assert.equal(await page.locator('#case').inputValue(), id, `${id} stays put during narration`);
+      assert.equal(await text(page, '#tour-pause'), 'Resume');
+    }
+    await page.locator('#tour-stop').click();
+    await page.locator('#tour-start').click();
+    await page.clock.fastForward(6000);
+    assert.equal(await page.locator('#case').inputValue(), 'X06', 'a fresh tour retains automatic playback');
+    assert.equal(await text(page, '#live-result'), initialLiveText, 'late failure cannot restore the cleared output');
     assert.deepEqual(errors, []);
   } finally { await b.close(); }
 });

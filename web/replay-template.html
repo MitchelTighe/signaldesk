@@ -49,7 +49,7 @@ code{font-family:ui-monospace,monospace;font-size:.92em;border:1px solid var(--l
 .skip{position:absolute;top:-100px;left:16px;background:var(--green);color:var(--bg);padding:12px;z-index:9}.skip:focus{top:10px}[hidden]{display:none!important}
 .touring .layout{grid-template-columns:1fr}.touring aside{display:none}
 @media(max-width:1000px){.wrap{padding-left:24px;padding-right:24px}.hero{grid-template-columns:1fr}.layout{grid-template-columns:230px minmax(0,1fr)}.try-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:700px){.wrap{padding-left:16px;padding-right:16px}.tag{display:none}.layout{grid-template-columns:1fr}.layout>aside{order:2}.panel{padding:16px}#hypothesis{font-size:23px}.bars div{grid-template-columns:1fr}.sidebar-stats{display:none}th,td{font-size:10px}table{display:block;overflow-x:auto;max-width:100%}.try-grid,.try-proposal-grid{grid-template-columns:1fr}.try-readings select{min-width:0}.try-readings .actions button{flex:1}}
+@media(max-width:700px){.wrap{padding-left:16px;padding-right:16px}.tag{display:none}.layout{grid-template-columns:1fr}.layout>aside{order:2}.panel{padding:16px}#hypothesis{font-size:23px}.bars div{grid-template-columns:1fr}.sidebar-stats{display:none}.try-grid,.try-proposal-grid{grid-template-columns:1fr}.try-readings select{min-width:0}.try-readings .actions button{flex:1}}
 
 /* Pass 2: readable receipts and an ordered, evidence-backed cascade. */
 .intro-strip{display:flex;gap:8px 24px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:20px 0;color:var(--muted);font-size:16px}.intro-strip strong{color:var(--ink)}
@@ -60,6 +60,7 @@ code{font-family:ui-monospace,monospace;font-size:.92em;border:1px solid var(--l
 @media(max-width:1000px){.hero{grid-template-columns:1fr}.hero-prompt{display:none}.scoreboard{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.layout{grid-template-columns:1fr}.layout>aside{order:0}.sidebar-stats,.layout>aside .tiny{display:none}.hero{padding:24px 0}.intro-strip{font-size:15px}.score{padding:14px}.score strong{font-size:32px}.score span{font-size:14px}.bar{align-items:start}.header-actions{gap:6px}.header-actions .pill{font-size:10px;max-width:170px}.brand{font-size:21px}.cascade>li{padding-left:40px}.cascade h3{font-size:18px}.cascade p{font-size:16px}.tour-controls button{font-size:14px}.tour{gap:12px}.panel h2{font-size:22px}.score small{font-size:12px}th,td{font-size:13px}.bar{flex-wrap:wrap}.brand{width:100%;flex-wrap:nowrap}.header-actions{width:100%;justify-content:space-between}.header-actions .pill:not(.stack):not(#live-status){display:none}.header-actions .pill.stack{max-width:225px}}
 
+@media(max-width:700px){table,tbody{display:block}thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}tbody tr{display:block;border:1px solid var(--line);border-radius:9px;padding:12px;margin-top:12px}td{display:block;border:0;padding:5px 0;font-size:15px;overflow-wrap:break-word}td:before{content:attr(data-label);display:block;color:var(--muted);font:12px/1.5 system-ui,sans-serif;letter-spacing:.4px}td.mono{font-size:15px}.steps li>span{min-width:0}.steps a{white-space:normal}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style></head><body>
 <a href="#decision" class="skip">Skip to what to do now</a>
@@ -129,7 +130,8 @@ code{font-family:ui-monospace,monospace;font-size:.92em;border:1px solid var(--l
 <p class="small" id="eval-lead"></p><div id="eval-tables"></div>
 </section>
 <section class="panel" id="whats-next"><h2>What’s next</h2><p class="small">Validate with an independent operator cohort and real hardware, then measure how well the notes help a shift handover. Extend context checks before considering equipment integration.</p><p class="small muted">Re-evaluate the bounded live configuration: it caps outputs and disables hidden thinking for both models. The recorded Super reasoning-on score does not transfer to your live tickets. Provider availability and current billing remain unverified.</p><details open><summary class="small">Evidence and current limits</summary><div class="provenance small"><p><span class="muted">This incident, selected model:</span> <span id="provenance-model" class="mono"></span> · <span id="observed" class="mono"></span> · <span id="usage" class="mono"></span></p><p id="metrics" class="small"></p><p id="limits" class="small muted"></p>
-<p class="small muted">The hero readings come from mhVTL, an open-source virtual tape library, with faults injected on purpose; it is not real drive hardware or a real site. The other incidents are hand-written by the same author as the runbooks. No operator study or time saving is measured. A cache record is local evidence, not cryptographic attestation by the provider. The validator checks that a claim is backed by the readings; it cannot see context the readings do not encode, which is why a stronger reader is required before any physical action.</p></div></details></section>
+<p class="small muted">The hero readings come from mhVTL, an open-source virtual tape library, with faults injected on purpose; it is not real drive hardware or a real site. The other incidents are hand-written by the same author as the runbooks. No operator study or time saving is measured. A cache record is local evidence, not cryptographic attestation by the provider. The validator checks that a claim is backed by the readings; it cannot see context the readings do not encode, which is why a stronger reader is required before any physical action.</p>
+<p class="small muted">Second-author synthetic check: Lightning, Super and the route each scored 4/10; rules-only scored 8/10. Quality gates failed.</p></div></details></section>
 </div></div></main>
 <footer class="wrap footer"><span>SignalDesk · every tape claim needs a signal</span><span>NVIDIA Nemotron on Nebius Token Factory · Python validator · zero robot moves, cleanings or resets</span></footer>
 <noscript>This offline replay needs JavaScript. The source package includes a Python CLI.</noscript>
@@ -137,6 +139,8 @@ code{font-family:ui-monospace,monospace;font-size:.92em;border:1px solid var(--l
 <script>
 'use strict';(()=>{const data=JSON.parse(document.getElementById('replay-data').textContent),$=id=>document.getElementById(id),write=(id,v)=>{$(id).textContent=v;},el=(t,c,txt)=>{const e=document.createElement(t);if(c)e.className=c;if(txt!==undefined)e.textContent=txt;return e;};
 const ROUTED='routed',routing=data.routing||null,books=Object.fromEntries(data.runbooks.map(b=>[b.id,b])),short=m=>m==='routed'?'SignalDesk route':(m.split('/')[1]||m).replace('Nemotron-3_5-Lightning','Nemotron 3.5 Lightning').replace('nemotron-3-super-120b-a12b','Nemotron 3 Super');
+function labelTable(table){const labels=[...table.querySelectorAll('thead th')].map(th=>th.textContent);for(const row of table.tBodies[0].rows)[...row.cells].forEach((cell,i)=>cell.dataset.label=labels[i]);}
+$('why-link').addEventListener('click',()=>{$('why').open=true;});
 // Ordered playback. Timers belong to a single surface and are cancelled on replacement.
 const flowTimers=new Map();
 function cancelFlow(id){clearTimeout(flowTimers.get(id));flowTimers.delete(id);}
@@ -232,9 +236,10 @@ function downloadNote(name,text){const link=el('a'),url=URL.createObjectURL(new 
   ['Drive asks to clean', '23:05 handover — backup paused on drive 1. TapeAlert cleaning flags=2, media flags=0. No cleaning attempted this shift. Drive is ready; please draft the next checks and cite the runbook.', {tapealert_cleaning_flags:2,tapealert_media_flags:0}]
  ];
  for(const [title,ticket,values] of examples){const button=el('button','',title);button.type='button';button.setAttribute('aria-pressed','false');button.addEventListener('click',()=>{for(const input of fields)input.value=Object.hasOwn(values,input.dataset.metric)?String(values[input.dataset.metric]):'';$('live-ticket').value=ticket;for(const b of $('ticket-examples').children)b.setAttribute('aria-pressed',String(b===button));check();$('live-ticket').focus();});$('ticket-examples').append(button);}
- const liveButton=$('live-run'),liveOutput=$('live-result');let running=false,liveNote=null;
+ const liveButton=$('live-run'),liveOutput=$('live-result'),initialLiveText=liveOutput.textContent;let running=false,liveNote=null,activeRequest=null;
  const endpoint=document.querySelector('meta[name="signaldesk-live-endpoint"]').content;if(!endpoint)write('live-status','Recorded replay');
  $('live-open').addEventListener('click',()=>{$('try-readings').open=true;$('live-ticket').focus();$('try-readings').scrollIntoView({block:'start'});});
+ $('tour-start').addEventListener('click',()=>{activeRequest?.abort();activeRequest=null;running=false;liveButton.disabled=false;liveNote=null;$('try-readings').open=false;delete liveOutput.dataset.state;liveOutput.textContent=initialLiveText;write('live-status','Recorded replay');cancelFlow('live-flow');$('live-flow').replaceChildren();$('live-trace').replaceChildren();$('live-cascade').hidden=true;$('live-export').hidden=true;$('why').open=false;});
  const replayMessage=message=>{write('live-status','Recorded replay');liveOutput.dataset.state='replay';write('live-result',message+' Showing the recorded replay below; your custom input has no live answer.');cancelFlow('live-flow');$('live-cascade').hidden=true;$('live-export').hidden=true;liveNote=null;};
  $('live-export').addEventListener('click',()=>{if(liveNote)downloadNote('signaldesk-live-incident.md',liveNote);});
  liveButton.addEventListener('click',async()=>{
@@ -247,9 +252,11 @@ function downloadNote(name,text){const link=el('a'),url=URL.createObjectURL(new 
   $('live-cascade').hidden=false;write('live-cascade-mode','Live request · waiting for response');
   showFlow('live-flow',[{title:'Your ticket in',text:ticket},{title:'Waiting for the cascade response',text:'Telemetry is checked before a model is called.'}],false);$('live-flow').lastElementChild.dataset.state='active';$('live-flow').dataset.complete='false';
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),45000);
+  activeRequest=controller;
   try{
    const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'omit',cache:'no-store',signal:controller.signal,body:JSON.stringify({ticket,evidence})});
    const answer=await response.json();
+   if(activeRequest!==controller)return;
    if(!response.ok||answer.mode!=='live'){replayMessage('Live run unavailable ('+(answer.reason||'service-unavailable')+').');if(response.status===429)write('live-status','Live limit · replay available');
     if(Array.isArray(answer.trace)&&answer.trace.length&&answer.trace.every(row=>data.models.includes(row.model)&&['accept','veto','unavailable'].includes(row.validator))){$('live-cascade').hidden=false;write('live-cascade-mode','Incomplete live response · partial trace playback');showFlow('live-flow',liveStages({...answer,result:null},ticket));}
     return;}
@@ -267,8 +274,8 @@ function downloadNote(name,text){const link=el('a'),url=URL.createObjectURL(new 
    write('live-status','Live on Nebius');liveOutput.dataset.state='live';
    write('live-result',(answer.path==='pre-triage'?'PRE-TRIAGE · NO MODEL CALL':'LIVE NEBIUS RESULT')+' · '+answer.path+' · '+answer.latency_ms+' ms · '+(book?book.title:result.status==='no-incident'?'No incident in supplied readings':'Hand off to an operator')+' · 0 actions executed');
    liveNote=['# SignalDesk live incident note','','## Your ticket',ticket,'','## Readings',...evidence.map(e=>'- '+e.metric+' = '+e.value),'',...stages.slice(1).flatMap(s=>['## '+s.title,s.verdict||'',s.text||'',s.metrics||'','']),'Actions executed by SignalDesk: 0. Live inference; operator review required.'].join('\n');$('live-export').hidden=false;
-  }catch{$('live-trace').replaceChildren();replayMessage('Live service is down, timed out, or returned an invalid response.');}
-  finally{clearTimeout(timer);running=false;liveButton.disabled=false;}
+  }catch{if(activeRequest===controller){$('live-trace').replaceChildren();replayMessage('Live service is down, timed out, or returned an invalid response.');}}
+  finally{clearTimeout(timer);if(activeRequest===controller){activeRequest=null;running=false;liveButton.disabled=false;}}
  });
  selectBook();check();
 })();
@@ -326,6 +333,7 @@ function render(){const id=$('case').value,view=$('model').value;if(!id)return;c
  const vs=vetoesFor(id);ck(vs.length?false:null,vs.length?vs.length+' model proposal(s) vetoed on this incident.':'No model proposal needed a veto here.');
  $('trace').replaceChildren();for(const r of rs){const p=(r.brief&&r.brief.provenance)||{},row=el('tr');const draft=r.brief.model_proposal?r.brief.model_proposal.runbook_id:r.brief.runbook_id||(r.outcome==='validated'?'abstained':'—');const verdict=r.brief.model_proposal?['vetoed','bad']:r.outcome!=='validated'?['rejected / not run','bad']:r.brief.runbook_id?['backed','ok']:a.tel.state==='healthy'?['no incident','ok']:['handoff kept','ab'];
   row.append(el('td','',short(r.model)+(p.thinking===false?' · reasoning off':p.thinking===true?' · reasoning on':'')),el('td','mono',draft),el('td',verdict[1],verdict[0]),el('td','',p.elapsed_ms!==undefined?(p.elapsed_ms/1000).toFixed(2)+' s':'—'),el('td','',p.usage?p.usage.prompt_tokens+' / '+p.usage.completion_tokens:'—'),el('td','',p.usage?usd(rowCost(r)):'—'));$('trace').append(row);}
+ for(const id of ['evidence','trace'])labelTable($(id).closest('table'));
  const rt=routeFor(id);write('route-note',rt?'SignalDesk route: '+(rt.path==='pre-triage'?'answered by the validator before any model call':rt.path==='lightning'?'Lightning answered; read-only runbook, no second reader needed':rt.reason)+'. Both models were recorded on every incident so the route can be compared with each model alone.':'');
  if(book){write('source-title',book.id+' · '+book.title);write('threshold','Evidence gate: '+book.metric+' ≥ '+book.minimum+' '+book.unit+'.');write('caveat','Caveat: '+book.caveat);$('source-steps').replaceChildren();book.steps.forEach((text,i)=>{const li=el('li');li.id='source-step-'+(i+1);rich(li,text);for(const sid of ((book.step_sources||[])[i]||[])){const url=(data.sources||{})[sid];if(typeof url!=='string'||!url.startsWith('https://'))continue;const l=el('a','cite','['+sid+']');l.href=url;l.rel='noopener noreferrer';l.target='_blank';li.append(' ',l);}$('source-steps').append(li);});}
  $('docs').replaceChildren();const sel=a.row||rs[0],p=(sel.brief&&sel.brief.provenance)||{};write('provenance-model',(p.model||sel.model)+' · '+(p.origin||sel.outcome));write('observed',p.observed_at?p.observed_at+' · '+p.elapsed_ms+' ms':'no completed response');write('usage',p.usage?p.usage.prompt_tokens+' in + '+p.usage.completion_tokens+' out tokens':'no usage');
@@ -354,7 +362,7 @@ $('export').addEventListener('click',()=>{const id=$('case').value,view=$('model
  for(const [name,grp] of Object.entries(g)){if(!grp.routing)continue;const box=el('div');box.append(el('h3','small',(name==='heldout'?'40 held-out incidents':grp.cases+' hard adversarial incidents (captures + operator context)')));
   const rows=[['Rules only (reads no text)',grp.routing.rules_only],['Lightning only',grp.routing.lightning_only],['Super only',grp.routing.super_only],['SignalDesk route',grp.routing.routed]];const max=Math.max(...rows.map(r=>r[1].usd),1e-9);
   const t=el('table'),hd=el('tr');t.tabIndex=0;t.setAttribute('aria-label',(name==='heldout'?'Held-out':'Hard')+' policy comparison');['Policy','Correct','Unsafe','Model calls','Mean latency','Cost'].forEach(h=>hd.append(el('th','',h)));const th=el('thead');th.append(hd);t.append(th);const tb=el('tbody');
-  for(const [lab,s] of rows){const r=el('tr');r.append(el('td','',lab),el('td','',s.correct+' / '+s.total),el('td',s.unsafe_accepts?'bad':'ok',String(s.unsafe_accepts)),el('td','',String(s.model_calls)),el('td','',s.latency_mean_ms===null||s.latency_mean_ms===undefined?'—':(s.latency_mean_ms/1000).toFixed(2)+' s'),el('td','',usd(s.usd)));tb.append(r);}t.append(tb);box.append(t);
+  for(const [lab,s] of rows){const r=el('tr');r.append(el('td','',lab),el('td','',s.correct+' / '+s.total),el('td',s.unsafe_accepts?'bad':'ok',String(s.unsafe_accepts)),el('td','',String(s.model_calls)),el('td','',s.latency_mean_ms===null||s.latency_mean_ms===undefined?'—':(s.latency_mean_ms/1000).toFixed(2)+' s'),el('td','',usd(s.usd)));tb.append(r);}t.append(tb);labelTable(t);box.append(t);
   const bars=el('div','bars');for(const [lab,s] of rows){const d=el('div'),i=el('i',/Super only/.test(lab)?'sup':'');i.style.width=(100*s.usd/max).toFixed(1)+'%';const w=el('span');w.append(i);d.append(el('span','tiny',lab),w,el('span','tiny',usd(s.usd)));bars.append(d);}box.append(bars);$('eval-tables').append(box);}
  const m=data.metrics[data.models[0]];write('metrics','Per model: '+data.models.map(x=>short(x)+' '+data.metrics[x].correct+'/'+data.metrics[x].total+' correct decisions, '+data.metrics[x].errors+' errors').join('; ')+'. Recorded spend for this page: '+data.models.map(x=>usd(data.recorded_usage[x].usd_token_estimate)).join(' + ')+'. Replaying it costs nothing.');write('limits',data.disclosure);})();
 filter();
@@ -369,7 +377,7 @@ function schedule(){cancelTimer();if(!paused)timer=setTimeout(()=>{if(scene<scen
 function showScene(){$('tour-next').hidden=false;const [id,view,text]=scenes[scene];$('search').value='';$('filter').value='all';if([...$('model').options].some(o=>o.value===view))$('model').value=view;filter();if(visible.includes(id)){$('case').value=id;render();write('tour-text',text);}else write('tour-text','This recording does not contain '+id+'. Explore the available incidents; nothing has been substituted.');schedule();}
 $('tour-start').addEventListener('click',()=>{document.body.classList.add('touring');$('tour-start').hidden=true;for(const x of ['tour-pause','tour-next','tour-stop'])$(x).hidden=false;scene=0;paused=false;write('tour-pause','Pause');showScene();$('tour-pause').focus();$('tour').scrollIntoView({block:'start'});});
 $('tour-pause').addEventListener('click',()=>{if($('tour-pause').textContent==='Replay tour'){scene=0;paused=false;showScene();}else{paused=!paused;schedule();}write('tour-pause',paused?'Resume':'Pause');});
-$('tour-next').addEventListener('click',()=>{scene=(scene+1)%scenes.length;showScene();});
+$('tour-next').addEventListener('click',()=>{paused=true;write('tour-pause','Resume');scene=(scene+1)%scenes.length;showScene();});
 $('tour-stop').addEventListener('click',()=>{cancelTimer();document.body.classList.remove('touring');$('tour-start').hidden=false;for(const x of ['tour-pause','tour-next','tour-stop'])$(x).hidden=true;write('tour-text','Explore all incidents. Every selection replays saved evidence.');$('tour-start').focus();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&document.body.classList.contains('touring')){paused=true;cancelTimer();write('tour-pause','Resume');}});
 })();
