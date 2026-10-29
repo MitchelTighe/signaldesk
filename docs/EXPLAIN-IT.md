@@ -19,7 +19,7 @@ cartridge ever moves.
 
 | Criterion | What we built | What we do not claim |
 |---|---|---|
-| **Technological implementation** | NVIDIA Nemotron on Nebius Token Factory with a reason for each model: Lightning (reasoning off) drafts most incidents cheaply; Super (reasoning on) is the second reader before any physical action and after any veto. A deterministic pre-triage skips the model when no model could change the answer. On 54 recorded incidents the route made 53 correct decisions and 0 unsafe ones for USD 0.040, against USD 0.091 for Super alone. The validator vetoed 12 of 84 proposed runbooks. Budget guard, offline replay, 186 Python tests. | Latency was noisy on the service tonight, so no speed claim. The route is computed from recorded calls of both models, not a separate cascade run. |
+| **Technological implementation** | NVIDIA Nemotron on Nebius Token Factory with a reason for each model: Lightning (reasoning off) drafts most incidents cheaply; Super (reasoning on) is the second reader before any physical action and after any veto. A deterministic pre-triage skips the model when no model could change the answer. On 54 recorded incidents the route made 53 correct decisions and 0 unsafe ones for USD 0.040, against USD 0.091 for Super alone. The validator vetoed 12 of 84 proposed runbooks. Budget guard, offline replay, automated Python tests. | Latency was noisy during the recorded run, so no speed claim. The route is computed from recorded calls of both models, not a separate cascade run. |
 | **Design** | Action first, evidence one click down, a distinct "No incident" state for a quiet library, a visible veto, an exportable note, a 30-second walkthrough, light and dark, phone width, zero axe violations in automated checks. | No study with real operators. |
 | **Potential impact** | For small archive, HPC, research and media teams that run LTO libraries without a vendor engineer on site. LTO shipped a record 176.5 EB of (compressed) tape capacity in 2024, up 15.4% ([LTO Program figures as reported by Blocks and Files](https://www.blocksandfiles.com/ai-ml/2025/07/23/lto-tape-market-rebounds-in-2024-with-1765-eb-shipped/1601737)). A wrong action costs real money: IBM says to clean a drive only when it asks, never on a schedule, and a cleaning cartridge is rated for 50 cleanings ([IBM docs](https://www.ibm.com/docs/POWER7/p7hdt/fcEU11cleaningdrive.htm)); a repeated failed robot move or a forced unload can strand or damage a cartridge. | No measured time saving and no production use. |
 | **Quality of the idea** | **Evidence-gated AI for physical infrastructure.** The model proposes; the telemetry decides; a person acts. Two keys: the validator can stop any claim the readings do not back, and a stronger model can stop an action the readings back but the context forbids. Neither can start an action alone. | Same-author test incidents; the hard set shaped the routing policy (see below). |
@@ -32,6 +32,8 @@ titles, not our runbooks. This is still synthetic evidence with reviewer normali
 operator study. A scoring bug was fixed offline without new calls or changed routing decisions.
 [Full negative result, original report and erratum](RUNTIME-EVIDENCE.md#second-author-check-ten-new-incidents-october-22).
 The earlier 53/54 result describes the recorded same-author page only.
+The hosted live variant disables reasoning for both models; those recorded accuracy figures
+do not measure it. The checked-in build stays offline. See [DEPLOY.md](../DEPLOY.md).
 
 ## Why it is not "just another evidence viewer"
 

@@ -1,7 +1,7 @@
 # Synthetic judge showcase
 
-The default page contains **58 tape-library incidents × two mock model slots = 116
-records**. The forty held-out inputs are reused unchanged;
+The QA page at [site/showcase/index.html](../site/showcase/index.html) contains
+**58 tape-library incidents × two mock model slots = 116 records**. The forty held-out inputs are reused unchanged;
 eighteen additional synthetic library A scenarios are presentation-only. No model
 generated these responses. The timestamp is a fixed synthetic clock; latency
 and token counts are zero. This expanded set is **not an evaluation benchmark**.
@@ -17,7 +17,7 @@ python3 -m signaldesk.demo
 
 The generator has no random seed, clock dependency, network or credential access.
 It writes `fixtures/showcase.json`, `fixtures/walkthrough.json` and the four
-`site/` files. It exercises the real deterministic validator, including rejection
+`site/showcase/` files. It exercises the real deterministic validator, including rejection
 of an invented source. Every response has zero executed actions. Error and
 not-run records remain outside successful abstention counts.
 

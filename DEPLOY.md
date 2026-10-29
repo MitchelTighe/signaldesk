@@ -1,6 +1,6 @@
 # Live Nebius demo — build modes and deployment handoff
 
-**Live demo on:** <https://mitcheltighe.github.io/signaldesk/> uses the deployed Cloudflare
+**Hosted live configuration:** <https://mitcheltighe.github.io/signaldesk/> uses the Cloudflare
 Worker at <https://signaldesk-live.goblinworkbench.workers.dev/api/live> for explicit
 **Run live on Nebius** submissions. Synthetic ticket text and readings feed Nemotron
 3.5 Lightning on Nebius Token Factory; a deterministic validator checks the draft, and
@@ -89,7 +89,7 @@ synthetic responses and network isolation. Runtime tests bind port 0 and dispose
 
 On the owner's authorized tooling host with an existing authenticated Cloudflare account:
 
-1. Review `worker/wrangler.toml` (currently live-enabled). For a staged disabled deployment,
+1. Review `worker/wrangler.toml` (currently live-enabled). Before the staged deployment below,
    set `LIVE_ENABLED = "false"`. Set `ALLOWED_ORIGIN`
    to the page's **origin only**, e.g. `https://mitcheltighe.github.io` (no path or trailing slash).
    Keep the approved limits. The code refuses caps above 1,000 runs or 200 cents daily.

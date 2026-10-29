@@ -1,10 +1,11 @@
-# Current screenshot gallery — recorded run and local validator
+# Screenshot gallery — October 22 recorded run and local validator
 
-These images come from the October 22 sandboxed Chromium verification of the current static
+These images come from the October 22 sandboxed Chromium verification of that day's static
 page. They show the genuine recorded Nebius replay and the local readings tool, not a mock
-vendor run. The page HTML hash matches the accepted implementation; exact capture hashes and
+vendor run. The page HTML hash identifies that historical implementation; exact capture hashes and
 limits are in [CAPTURES.json](screenshots/current/CAPTURES.json). This archive cleanup reuses
-those exact captures and makes no new inference request.
+those exact captures and makes no new inference request. Later UI and live-mode changes are
+not represented by these images; they are not screenshots of the current hosted release.
 
 | Image | Caption and intended use |
 |---|---|

@@ -2,8 +2,9 @@
 
 **Track:** Best Apps and Agents. **Entrant:** Mitchel Tighe. The entrant has registered on Devpost and has Token Factory access. Deadline: October 30, 2026, 13:00 EDT / 17:00 UTC.
 
-**Live demo on:** https://mitcheltighe.github.io/signaldesk/ — recorded Nebius cases replay
-instantly. **Run live on Nebius** explicitly sends synthetic ticket text and readings to
+**Hosted demo:** https://mitcheltighe.github.io/signaldesk/ — recorded Nebius cases replay
+instantly. The hosted variant is configured so **Run live on Nebius** explicitly sends
+synthetic ticket text and readings to
 https://signaldesk-live.goblinworkbench.workers.dev/api/live. The Cloudflare Worker calls
 Nemotron 3.5 Lightning on Nebius Token Factory, validates the draft, and routes to Nemotron
 3 Super after a veto, abstention or physical proposal. Live results are separate from replay;

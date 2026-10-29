@@ -3,6 +3,8 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import subprocess
+import sys
 import tarfile
 import tempfile
 import unittest
@@ -82,8 +84,17 @@ class ExportAuditTests(unittest.TestCase):
                     self.assertNotIn(b'SYNTHETIC ' + b'EXCLUSION CANARY', raw)
                     self.assertEqual(hashlib.sha256(raw).hexdigest(),
                                      manifest[member.name.removeprefix('signaldesk/')])
+                    target = Path(tmp)/'extracted'/member.name
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_bytes(raw)
             self.assertIn('site/_headers', manifest)
             self.assertIn('HOSTING.md', manifest)
+            # A source-tree link check misses assets omitted from the archive.
+            checked = subprocess.run([sys.executable, 'scripts/artifact_check.py'],
+                                     cwd=Path(tmp)/'extracted/signaldesk',
+                                     capture_output=True, text=True, timeout=30)
+            self.assertEqual(checked.returncode, 0, checked.stderr)
+            self.assertTrue(json.loads(checked.stdout)['static_manifest_valid'])
 
     def test_export_refuses_synthetic_secret_and_personal_path_controls(self):
         filler = ''.join(chr(97 + i % 26) for i in range(30))  # synthetic, generated at runtime

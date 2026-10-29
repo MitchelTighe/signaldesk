@@ -1,11 +1,11 @@
 # SignalDesk — a tape-library incident desk
 
-**Live demo on, with instant recorded Nebius cases and a reproducible offline judge build.**
+**Recorded Nebius cases, explicit live submissions, and a reproducible offline judge build.**
 
 The **Try your own ticket** button opens three messy handover examples, an editable ticket and
 readings, and the explicit **Run live on Nebius** button.
-The hosted demo at <https://mitcheltighe.github.io/signaldesk/> is live-enabled. Explicit live
-submissions go to <https://signaldesk-live.goblinworkbench.workers.dev/api/live>, a Cloudflare
+The hosted demo at <https://mitcheltighe.github.io/signaldesk/> is configured for explicit live
+submissions to <https://signaldesk-live.goblinworkbench.workers.dev/api/live>, a Cloudflare
 Worker feeding synthetic tickets and readings to NVIDIA Nemotron on Nebius Token Factory.
 Lightning drafts, the validator checks, and Super reads again when required. Recorded cases
 remain instant; quota or provider failures leave replay visible. [DEPLOY.md](DEPLOY.md)
@@ -14,7 +14,7 @@ covers the proxy, hard quotas, build modes and kill switch. `site/` stays offlin
 **The model proposes. The telemetry decides. A person acts.** When a tape drive or library
 misbehaves, SignalDesk puts one answer at the top: **Do this** (exact runbook steps), **Hand off to
 a person**, or **No incident**. NVIDIA Nemotron on Nebius Token Factory drafts it; a deterministic
-Python validator checks it against the drive and library telemetry and can **veto** it. Nothing is
+validator checks it against the drive and library telemetry and can **veto** it. Nothing is
 ever sent to the library: every page shows **0 actions executed**.
 
 **Try it:** open [site/index.html](site/index.html) from this repository in any browser, or the

@@ -12,6 +12,11 @@ import tarfile
 ENTRY = Path(__file__).resolve().parents[1]
 ROOT_FILES = {'README.md', 'FEEDBACK.md', 'HOSTING.md', 'DEPLOY.md', 'LICENSE', 'SUBMISSION.md', '.gitignore', 'run.sh', 'pull.sh', 'demo.sh', 'runtime-image.txt', 'Containerfile.browser', 'Containerfile.judge', 'requirements-browser.txt', '.containerignore',
               '.github/workflows/pages.yml'}
+# The archived public report links these captures; ship only this reviewed set.
+ROOT_FILES.update('artifacts/2026-10-28/pass2/' + name for name in (
+    'intro-1280.png', 'intro-390.png', 'cascade-1280.png', 'cascade-390.png',
+    'ticket-1280.png', 'ticket-390.png', 'replay-1280.png', 'replay-390.png',
+    'screenshots.json'))
 SUFFIXES = {'signaldesk': {'.py', '.json'}, 'scripts': {'.py', '.sh'}, 'tests': {'.py', '.mjs'}, 'worker': {'.mjs', '.toml', '.json'},
             'docs': {'.md', '.json', '.png'}, 'web': {'.html'}, 'site': {'.html', '.json'},
             'fixtures': {'.html', '.json', '.png', '.txt', '.sh', '.md'}}

@@ -1,4 +1,7 @@
-# Current validation — recorded tape desk and editable readings
+# Validation record — October 22 recorded tape desk and editable readings
+
+This is the historical October 22 acceptance record. Subsequent UI and live-mode changes
+require fresh checks; the current build modes and test commands are in [DEPLOY.md](../DEPLOY.md).
 
 The judge page in `site/` replays the genuine October 21 Nebius recording. Its October 22 code
 preserves reasoning metadata and adds a local-only readings/proposed-step validator. The
