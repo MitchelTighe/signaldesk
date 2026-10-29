@@ -1,11 +1,15 @@
 # SignalDesk — a tape-library incident desk
 
-**Instant recorded Nebius cases, with an opt-in live demo path ready for owner deployment.**
+**Live demo on, with instant recorded Nebius cases and a reproducible offline judge build.**
 
 The **Try your own ticket** button opens three messy handover examples, an editable ticket and
 readings, and the explicit **Run live on Nebius** button.
-Live inference is disabled in this checkout. [DEPLOY.md](DEPLOY.md) covers the secret-only
-Cloudflare proxy, hard quotas, deployment steps, cost estimates and kill switch.
+The hosted demo at <https://mitcheltighe.github.io/signaldesk/> is live-enabled. Explicit live
+submissions go to <https://signaldesk-live.goblinworkbench.workers.dev/api/live>, a Cloudflare
+Worker feeding synthetic tickets and readings to NVIDIA Nemotron on Nebius Token Factory.
+Lightning drafts, the validator checks, and Super reads again when required. Recorded cases
+remain instant; quota or provider failures leave replay visible. [DEPLOY.md](DEPLOY.md)
+covers the proxy, hard quotas, build modes and kill switch. `site/` stays offline by default.
 
 **The model proposes. The telemetry decides. A person acts.** When a tape drive or library
 misbehaves, SignalDesk puts one answer at the top: **Do this** (exact runbook steps), **Hand off to
@@ -14,7 +18,7 @@ Python validator checks it against the drive and library telemetry and can **vet
 ever sent to the library: every page shows **0 actions executed**.
 
 **Try it:** open [site/index.html](site/index.html) from this repository in any browser, or the
-hosted copy at <https://mitcheltighe.github.io/signaldesk/> (live), and click
+hosted copy at <https://mitcheltighe.github.io/signaldesk/>, and click
 **Start 30-second walkthrough**. It replays the recorded Nebius run: no login, API key, install or
 network request.
 
@@ -29,7 +33,11 @@ in its tooltips. Evidence limits and next validation steps are under **What’s 
 choose a runbook and edit a proposed step. It checks gates, conflicting readings and exact
 runbook wording locally: **validator only, no model call**. Blank fields are missing readings,
 not zero. A match does not interpret ticket context or stop caveats, and never approves a
-physical action. Your entries do not alter the recorded run. Local checks stay in the page; after owner deployment, clicking **Run live on Nebius** explicitly sends your synthetic ticket and readings to the proxy and Nebius. Live results and trace appear separately; unavailable service leaves the recorded replay visible.
+physical action. Your entries do not alter the recorded run. Local checks stay in the page;
+on the hosted demo, clicking **Run live on Nebius** explicitly sends your synthetic ticket
+and readings to the Worker and Nebius. Live results and trace appear separately;
+unavailable service leaves the recorded replay visible. The bounded live variant disables
+reasoning for both models; the recorded accuracy figures do not measure this variant.
 
 ![SignalDesk: what to do now, the validator veto and the model trace (recorded Nebius run)](docs/screenshots/current/replay-1280-supported.png)
 
@@ -122,7 +130,8 @@ sh scripts/signaldesk_live_eval.sh --split hard --no-thinking --reasoning-for nv
 
 ## Run locally in three commands
 
-Prerequisite: **Python 3.10 or newer**. From the repository root,
+Prerequisites: **Python 3.10 or newer and Node 22+** (for Python/JavaScript validator parity).
+From the repository root,
 run these exact commands. No pip/npm install or account is needed.
 
 ```sh
@@ -136,6 +145,14 @@ five walkthrough incidents with their route and any veto; the second runs the te
 local links, image integrity and the static manifest. All three are offline. Then open
 [site/index.html](site/index.html). A mock QA showcase (transport tests only, not NVIDIA inference)
 is at [site/showcase/index.html](site/showcase/index.html).
+
+`python3 scripts/configure_live.py` reproduces the default offline `site/` from the
+template and bundled replay, with an empty endpoint and `connect-src 'none'`.
+`python3 scripts/configure_live.py --live` builds the live-enabled publishing artifact
+using the Worker URL above; running without the flag restores the offline bytes.
+The manual Pages workflow tests the offline default before building and publishing live mode.
+No key enters either static artifact. Worker tests, including the container-only runtime
+and browser suites, are listed in [DEPLOY.md](DEPLOY.md).
 
 Optional isolated runtime: with working rootless Podman, `sh demo.sh` pulls the
 immutable Python 3.12.12 image in [runtime-image.txt](runtime-image.txt), then runs
@@ -161,7 +178,8 @@ flowchart LR
 Models call only through a guard that reserves calls, tokens and estimated cost before each
 request. The model can only choose an authored runbook, cite reading IDs from this incident and copy
 exact steps. A vetoed proposal is stored as IDs only, and the replay builder re-derives the veto
-from the fixture and the runbooks. The browser page has no API key and no network route.
+from the fixture and the runbooks. The offline browser page has no API key and no network route;
+the live build permits only the configured Worker origin for explicit live submissions.
 [The live-run guide](docs/NVIDIA-PATH.md) lists the brokered commands and budgets.
 
 ## The eight tape runbook families

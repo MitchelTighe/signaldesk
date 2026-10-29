@@ -1,11 +1,21 @@
-# Optional live Nebius demo — owner deployment handoff
+# Live Nebius demo — build modes and deployment handoff
 
-Ready as code only. Nothing has been deployed, pushed or sent to a real model.
-The checked-in page defaults to instant recorded cases, with live networking disabled.
+**Live demo on:** <https://mitcheltighe.github.io/signaldesk/> uses the deployed Cloudflare
+Worker at <https://signaldesk-live.goblinworkbench.workers.dev/api/live> for explicit
+**Run live on Nebius** submissions. Synthetic ticket text and readings feed Nemotron
+3.5 Lightning on Nebius Token Factory; a deterministic validator checks the draft, and
+Nemotron 3 Super reads again after a veto, abstention or physical proposal. Recorded
+cases remain the instant default, with local readings validation and zero actions executed.
+The live variant's reasoning settings differ from the recorded evaluation, as detailed below.
 
-## Owner decisions before deployment
+The checked-in `site/` is the reproducible **offline judge artifact**, with networking
+disabled. The manual Pages workflow verifies it before switching the publishing artifact
+to live mode. This handoff documents future rebuilds, redeployments and rollback; local
+tests do not establish current endpoint health or remaining quota.
 
-Approve the Cloudflare account/project, a dedicated Nebius Token Factory key injected
+## Owner decisions before future deployments
+
+Retain the approved Cloudflare account/project, a dedicated Nebius Token Factory key injected
 by the owner/broker, and the spend allowance. Default: **100 admitted runs / UTC day,
 USD 2 / UTC day in conservative reservations**, and **20 runs per IP in any rolling hour and 40 per UTC day**.
 Use a dedicated provider project/key with a provider-side budget where supported;
@@ -75,11 +85,12 @@ libraries through `AWS_EXECUTION_ENV=AWS_Lambda_nodejs22.x` for that test proces
 a non-root user so archive extraction can set ownership. Tests use intercepted requests,
 synthetic responses and network isolation. Runtime tests bind port 0 and dispose workerd.
 
-## Deploy the disabled Worker, then inject the secret
+## Future Worker deployments and secret injection
 
 On the owner's authorized tooling host with an existing authenticated Cloudflare account:
 
-1. Review `worker/wrangler.toml`. Keep `LIVE_ENABLED = "false"`. Set `ALLOWED_ORIGIN`
+1. Review `worker/wrangler.toml` (currently live-enabled). For a staged disabled deployment,
+   set `LIVE_ENABLED = "false"`. Set `ALLOWED_ORIGIN`
    to the page's **origin only**, e.g. `https://mitcheltighe.github.io` (no path or trailing slash).
    Keep the approved limits. The code refuses caps above 1,000 runs or 200 cents daily.
 2. Deploy the disabled Worker and SQLite namespace:
@@ -121,12 +132,21 @@ create routes for unrelated services. See [Cloudflare routing](https://developer
 [secrets](https://developers.cloudflare.com/workers/configuration/secrets/) and
 [SQLite Durable Objects](https://developers.cloudflare.com/durable-objects/api/sqlite-storage-api/).
 
-## Connect and enable the page
+## Build offline or live mode
 
-After approval, substitute the returned hostname (this example is a placeholder):
+Reproduce the default offline artifact from the template and bundled replay:
 
 ```sh
-python3 scripts/configure_live.py --site site --endpoint https://signaldesk-live.example.workers.dev/api/live
+python3 scripts/configure_live.py
+python3 -m unittest discover -s tests -v
+python3 scripts/artifact_check.py
+```
+
+Build the live publishing artifact with the deployed Worker URL above:
+
+```sh
+python3 scripts/configure_live.py --live
+python3 scripts/artifact_check.py
 ```
 
 This updates the static HTML, its meta CSP, Cloudflare Pages `_headers`, and manifest
@@ -134,7 +154,9 @@ hashes. Only that one proxy origin is allowed in `connect-src`; the key never re
 the browser. `site/replay.json` is unchanged. Publish that reviewed `site/` bundle through
 the existing GitHub Pages workflow or Pages process in `HOSTING.md`. The GitHub Pages
 meta CSP and Cloudflare Pages header CSP must agree. Rebuilding a replay with the
-original builder disables live again; rerun this configuration step after any rebuild.
+original builder disables live again; rerun `--live` after any rebuild. Running without
+`--live` restores the exact offline artifact. For a different reviewed proxy use
+`--endpoint https://signaldesk-live.example.workers.dev/api/live` instead of `--live`.
 The mock `site/showcase/` intentionally remains offline.
 
 Set `LIVE_ENABLED = "true"` in the reviewed Wrangler configuration, then redeploy it.

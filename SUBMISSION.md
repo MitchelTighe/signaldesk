@@ -2,7 +2,18 @@
 
 **Track:** Best Apps and Agents. **Entrant:** Mitchel Tighe. The entrant has registered on Devpost and has Token Factory access. Deadline: October 30, 2026, 13:00 EDT / 17:00 UTC.
 
-**Demo:** https://mitcheltighe.github.io/signaldesk/ — the page replays a recorded Nebius run and makes no live model calls. Its editable readings panel runs a local validator only.
+**Live demo on:** https://mitcheltighe.github.io/signaldesk/ — recorded Nebius cases replay
+instantly. **Run live on Nebius** explicitly sends synthetic ticket text and readings to
+https://signaldesk-live.goblinworkbench.workers.dev/api/live. The Cloudflare Worker calls
+Nemotron 3.5 Lightning on Nebius Token Factory, validates the draft, and routes to Nemotron
+3 Super after a veto, abstention or physical proposal. Live results are separate from replay;
+quotas or failures leave the recording available. Both live models run with reasoning off,
+so the recorded accuracy figures below do not measure the live variant. No actions execute.
+
+**Offline judge build:** open `site/index.html`; replay and editable readings validation
+need no network or key. `python3 scripts/configure_live.py` reproduces this default artifact.
+`--live` builds the hosted variant; the Pages workflow tests offline mode first, then enables
+the documented Worker endpoint for publishing. See [deployment and tests](DEPLOY.md).
 
 **Source:** https://github.com/MitchelTighe/signaldesk (MIT). Setup and test instructions are in the [README](README.md).
 

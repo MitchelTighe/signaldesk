@@ -9,6 +9,7 @@ import sys
 from urllib.parse import urlsplit
 
 ENTRY = Path(__file__).resolve().parents[1]
+LIVE_ENDPOINT = 'https://signaldesk-live.goblinworkbench.workers.dev/api/live'
 sys.path.insert(0, str(ENTRY))
 from signaldesk.safeio import pack
 
@@ -50,7 +51,10 @@ def configure(site, endpoint=''):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--site', type=Path, default=ENTRY / 'site')
-    parser.add_argument('--endpoint', default='')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--endpoint', default='', help='Use a custom reviewed HTTPS proxy endpoint')
+    mode.add_argument('--live', dest='endpoint', action='store_const', const=LIVE_ENDPOINT,
+                      help='Build for the deployed live demo; default is offline')
     args = parser.parse_args()
     configure(args.site, args.endpoint)
 

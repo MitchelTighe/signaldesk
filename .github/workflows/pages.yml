@@ -1,7 +1,7 @@
-# Publishes the offline judge replay in site/ to GitHub Pages.
+# Verifies the default offline judge replay, then enables live for GitHub Pages.
 # Runs only by hand (workflow_dispatch) so nothing deploys until the entrant chooses to.
-# The page needs no API key: it replays recorded, revalidated results and makes no network calls.
-name: Deploy judge replay to GitHub Pages
+# The browser needs no API key; explicit live submissions use the bounded Worker.
+name: Deploy live demo to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -27,6 +27,12 @@ jobs:
       - name: Verify the bundled replay before publishing
         run: |
           python3 -m signaldesk.demo
+          python3 -m unittest discover -s tests -v
+          node --test worker/worker.test.mjs
+          python3 scripts/artifact_check.py
+      - name: Build the live publishing artifact
+        run: |
+          python3 scripts/configure_live.py --live
           python3 scripts/artifact_check.py
       - name: Configure Pages
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0

@@ -1,8 +1,10 @@
 """Cross-language validator parity and the static deployment opt-in boundary."""
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -17,6 +19,27 @@ spec.loader.exec_module(configure_live)
 
 
 class LiveWorkerTests(unittest.TestCase):
+    def test_cli_live_build_is_reproducible_and_default_restores_offline_bytes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp)
+            names = ['index.html', '_headers', 'manifest.json', 'replay.json']
+            offline = {name: (ENTRY / 'site' / name).read_bytes() for name in names}
+            for name, raw in offline.items():
+                (target / name).write_bytes(raw)
+            command = [sys.executable, str(ENTRY / 'scripts/configure_live.py'), '--site', tmp]
+            for _ in range(2):
+                subprocess.run(command + ['--live'], check=True, capture_output=True)
+                live = {name: (target / name).read_bytes() for name in names}
+                html = live['index.html'].decode()
+                self.assertIn(f'content="{configure_live.LIVE_ENDPOINT}"', html)
+                self.assertIn('connect-src https://signaldesk-live.goblinworkbench.workers.dev;', html)
+                self.assertEqual(live['replay.json'], offline['replay.json'])
+                manifest = json.loads(live['manifest.json'])
+                for name, fingerprint in manifest['files'].items():
+                    self.assertEqual(hashlib.sha256(live[name]).hexdigest(), fingerprint)
+                subprocess.run(command, check=True, capture_output=True)
+                self.assertEqual({name: (target / name).read_bytes() for name in names}, offline)
+
     def test_js_validator_matches_python_on_all_bundled_cases_and_runbook_proposals(self):
         cases = (dataset()['cases'] + corpus('heldout')['cases'] + split_cases('hard')
                  + split_cases('second-author'))
