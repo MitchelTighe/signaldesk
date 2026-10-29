@@ -170,6 +170,7 @@ test('custom live trace uses observed metrics, exports submitted input, and clea
     const evidence = await text(page, '#replay-data');
     await page.locator('#live-open').click();
     await page.locator('#ticket-examples button').first().click();
+    await page.locator('#live-ticket').fill('Synthetic ticket <img src=x onerror=alert(1)>');
     const submitted = await page.locator('#live-ticket').inputValue();
     await page.locator('#live-run').click();
     await page.waitForFunction(() => document.querySelector('#live-result').dataset.state === 'pending');
@@ -179,6 +180,19 @@ test('custom live trace uses observed metrics, exports submitted input, and clea
     release();
     await page.waitForFunction(() => document.querySelector('#live-result').dataset.state === 'live');
     assert.equal(submissions[0].ticket, submitted);
+    assert.equal(await text(page, '#live-flow li:first-child .stage-body'), submitted);
+    assert.equal(await page.locator('#live-flow li:first-child .stage-body').isVisible(), true);
+    assert.equal(await page.locator('#live-flow li:last-child .stage-body').isVisible(), true);
+    assert.equal(await page.locator('#live-flow img').count(), 0);
+    assert.equal(await text(page, '#live-status'), 'Live on Nebius');
+    if (process.env.POLISH_SCREENSHOTS) {
+      await mkdir(process.env.POLISH_SCREENSHOTS, { recursive: true });
+      for (const width of [1280, 390]) {
+        await page.setViewportSize({width, height: width === 1280 ? 960 : 844});
+        await page.locator('#live-cascade').scrollIntoViewIfNeeded();
+        await page.screenshot({path: `${process.env.POLISH_SCREENSHOTS}/live-${width}.png`, fullPage: true});
+      }
+    }
     assert.match(await text(page, '#live-flow li:nth-child(2)'), /52 ms · 1,234 in \/ 56 out tokens/);
     assert.match(await text(page, '#live-flow li:nth-child(3)'), /VETO/);
     assert.match(await text(page, '#live-flow li:nth-child(4)'), /75 ms · Tokens unavailable/);
@@ -211,6 +225,7 @@ test('custom live trace uses observed metrics, exports submitted input, and clea
     await page.locator('#live-run').click();
     await page.waitForFunction(() => document.querySelector('#live-result').dataset.state === 'replay');
     assert.match(await text(page, '#live-result'), /ip-limit.*no live answer/);
+    assert.equal(await text(page, '#live-status'), 'Live limit · replay available');
     assert.equal(await page.locator('#live-cascade').isVisible(), false);
     assert.equal(await page.locator('#live-run').isEnabled(), true);
     assert.deepEqual(errors, []);

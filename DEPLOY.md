@@ -7,7 +7,7 @@ The checked-in page defaults to instant recorded cases, with live networking dis
 
 Approve the Cloudflare account/project, a dedicated Nebius Token Factory key injected
 by the owner/broker, and the spend allowance. Default: **100 admitted runs / UTC day,
-USD 2 / UTC day in conservative reservations**, and **20 runs per IP in any rolling hour**.
+USD 2 / UTC day in conservative reservations**, and **20 runs per IP in any rolling hour and 40 per UTC day**.
 Use a dedicated provider project/key with a provider-side budget where supported;
 verify current billing controls in the account. Cloudflare charges are separate.
 Do not create an account, authorize OAuth, change plans, inject a key or deploy as
@@ -22,8 +22,8 @@ output caps are refused. Empty readings are missing, never fabricated zeros.
 
 A single SQLite-backed Durable Object reserves quota atomically **before** inference.
 Every edge uses the same object name. Reservations persist across isolates/restarts,
-include failed runs and zero-call pre-triage, and never refund. The UTC daily counters
-reset at midnight; rolling-hour IP windows survive that boundary. Only hashed IPs and
+include failed inference runs and never refund; zero-call pre-triage does not reserve quota. The UTC daily counters
+reset at midnight; rolling-hour IP windows survive that boundary. Only secret-keyed HMAC IP hashes and
 quota counters are retained; tickets, drafts and provider responses are not stored or
 logged by this application. Hashes are pseudonymous identifiers, not anonymization.
 Expired IP windows are pruned on the next reservation. Cloudflare and Nebius may retain
@@ -92,8 +92,10 @@ On the owner's authorized tooling host with an existing authenticated Cloudflare
 
    ```sh
    worker/node_modules/.bin/wrangler secret put NEBIUS_API_KEY --config worker/wrangler.toml
+   worker/node_modules/.bin/wrangler secret put IP_HASH_SECRET --config worker/wrangler.toml
    ```
 
+   Use an independently generated high-entropy secret for IP_HASH_SECRET. Rotating it resets per-IP accounting until existing windows expire.
    Never put the value on a command line, in shell history, a file, `.env`, `.dev.vars`,
    Wrangler configuration, browser source or a model prompt. Do not enable request-body
    logging or `wrangler tail` while handling a real key or user text.

@@ -1,4 +1,4 @@
-import { boundedText, cascade, incidentInput, LIMITS, payloadFor, LIGHTNING, SUPER } from './cascade.mjs';
+import { boundedText, cascade, incidentInput, LIMITS, payloadFor, telemetry, LIGHTNING, SUPER } from './cascade.mjs';
 
 const fallback = (reason, extra = {}) => ({ mode: 'replay', reason, actions_executed: 0,
   message: 'Live run unavailable. Showing the recorded replay; your custom input has no live answer.', ...extra });
@@ -26,13 +26,15 @@ export async function reserve(storage, ipHash, config, now = Date.now()) {
       if (recent.length) state.clients[key] = recent;
       else delete state.clients[key];
     }
-    if (state.day !== day) { state.day = day; state.runs = 0; state.cents = 0; }
+    if (state.day !== day) { state.day = day; state.runs = 0; state.cents = 0; state.dailyClients = {}; }
+    state.dailyClients ||= {};
     const times = state.clients[ipHash] || [];
-    if (times.length >= 20) return 'ip-limit';
+    if (times.length >= 20 || (state.dailyClients[ipHash] || 0) >= 40) return 'ip-limit';
     if (state.runs >= config.daily) return 'daily-limit';
     // Two cents covers both 24k-input/500-output calls, with 2x the checked-in prices.
     if (state.cents + 2 > config.cents) return 'spend-limit';
     state.runs++; state.cents += 2; state.clients[ipHash] = [...times, now];
+    state.dailyClients[ipHash] = (state.dailyClients[ipHash] || 0) + 1;
     await tx.put('quota', state);
     return null;
   });
@@ -63,7 +65,7 @@ export function createWorker(transport = fetch) {
     if (!config || origin !== config.origin) return reply(fallback('origin-denied'), 403);
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
     if (request.method !== 'POST') return reply(fallback('method-denied'), 405);
-    if (env.LIVE_ENABLED !== 'true' || !env.NEBIUS_API_KEY || !env.LIVE_QUOTA) return reply(fallback('disabled'), 503);
+    if (env.LIVE_ENABLED !== 'true' || !env.NEBIUS_API_KEY || !env.IP_HASH_SECRET || !env.LIVE_QUOTA) return reply(fallback('disabled'), 503);
     if (request.headers.get('Content-Type')?.split(';')[0].trim() !== 'application/json') return reply(fallback('invalid-input'), 415);
     if (request.headers.get('Content-Encoding') && request.headers.get('Content-Encoding') !== 'identity') return reply(fallback('invalid-input'), 415);
     const ip = request.headers.get('CF-Connecting-IP');
@@ -77,8 +79,10 @@ export function createWorker(transport = fetch) {
       finally { clearTimeout(timer); }
       payloadFor(LIGHTNING, incident); payloadFor(SUPER, incident);
     } catch { return reply(fallback('invalid-input'), 400); }
+    if (telemetry(incident).state !== 'single') return reply(await cascade(incident, env, transport), 200);
     try {
-      const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(ip));
+      const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(env.IP_HASH_SECRET), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+      const digest = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(ip));
       const ipHash = [...new Uint8Array(digest)].map(x => x.toString(16).padStart(2, '0')).join('');
       // Every edge isolate uses this one durable authority; never create an object per IP.
       const stub = env.LIVE_QUOTA.get(env.LIVE_QUOTA.idFromName('signaldesk-live-global-v1'));

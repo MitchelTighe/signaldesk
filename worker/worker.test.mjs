@@ -43,7 +43,7 @@ class Storage {
 }
 function fixture(overrides = {}, responses) {
   const storage = new Storage(), upstream = mock(responses);
-  const env = { LIVE_ENABLED: 'true', NEBIUS_API_KEY: 'synthetic-fixture',
+  const env = { LIVE_ENABLED: 'true', NEBIUS_API_KEY: 'synthetic-fixture', IP_HASH_SECRET: 'synthetic-secret',
     ALLOWED_ORIGIN: origin, DAILY_RUN_CAP: '100', DAILY_SPEND_CENTS: '200', ...overrides };
   const quota = new LiveQuota({ storage }, env);
   env.LIVE_QUOTA = { idFromName: name => { assert.equal(name, 'signaldesk-live-global-v1'); return name; },
@@ -116,7 +116,7 @@ test('malformed, unfinished and injected model drafts escalate without rendering
 test('pre-triage makes zero upstream calls for missing, healthy and conflicting readings', async () => {
   for (const data of [{ ticket: '', evidence: [] }, input('load_wait_seconds', 119.9),
     { ticket: '', evidence: [...input().evidence, { id: 'E2', metric: 'tapealert_media_flags', value: 1 }] }]) {
-    const f = fixture(); assert.equal((await run(f, data)).data.path, 'pre-triage'); assert.equal(f.calls.length, 0);
+    const f = fixture(); assert.equal((await run(f, data)).data.path, 'pre-triage'); assert.equal(f.calls.length, 0); assert.equal(f.storage.value, undefined);
   }
 });
 
@@ -231,4 +231,13 @@ test('prompt resources match canonical authored runbooks; two-cent reservation c
   assert.ok(cost < .02);
   const p = payloadFor(SUPER, incidentInput(input('load_wait_seconds', 120, 'x'.repeat(2000))));
   assert.ok(new TextEncoder().encode(JSON.stringify(p.messages)).length + 4096 <= LIMITS.prompt);
+});
+
+test('per-IP daily cap resets at UTC midnight and missing salt fails closed', async () => {
+  const s = new Storage(), config = { daily: 100, cents: 200 };
+  for (let i = 0; i < 40; i++) assert.equal(await reserve(s, 'same', config, Math.floor(i / 2) * 3600000), null);
+  assert.equal(await reserve(s, 'same', config, 20 * 3600000), 'ip-limit');
+  assert.equal(await reserve(s, 'same', config, 24 * 3600000), null);
+  const f = fixture({ IP_HASH_SECRET: '' });
+  assert.equal((await run(f)).data.reason, 'disabled'); assert.equal(f.calls.length, 0);
 });
