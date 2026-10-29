@@ -82,6 +82,8 @@ def main():
         check(page.locator('#case').input_value()=='X06', 'manual next works')
         page.locator('#tour-stop').click()
         page.keyboard.press('Tab')
+        check(page.locator('#try-readings > summary').evaluate('e=>e===document.activeElement'), 'keyboard reaches the own-ticket panel')
+        page.keyboard.press('Tab')
         check(page.locator('#model').evaluate('e=>e===document.activeElement'), 'keyboard reaches model control')
         check(requests == [], 'zero external page requests')
         check(errors == [], 'zero console/page errors')

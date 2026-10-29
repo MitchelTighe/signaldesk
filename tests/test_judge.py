@@ -62,7 +62,7 @@ class ExportAuditTests(unittest.TestCase):
     def test_export_archive_has_no_extra_parent_cache_key_or_personal_files(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)/'entry'
-            shutil.copytree(ENTRY, root, ignore=shutil.ignore_patterns('__pycache__', 'cache', 'runs'))
+            shutil.copytree(ENTRY, root, ignore=shutil.ignore_patterns('__pycache__', 'cache', 'runs', 'node_modules', '.scratch'))
             for name in ['state/private.md', 'cache/raw.json', 'docs/cache/raw.json',
                          '.env', 'signaldesk/.credentials.json', 'REPORT.md']:
                 path = root/name

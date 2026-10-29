@@ -130,7 +130,8 @@ sh scripts/signaldesk_live_eval.sh --split hard --no-thinking --reasoning-for nv
 
 ## Run locally in three commands
 
-Prerequisites: **Python 3.10 or newer and Node 22+** (for Python/JavaScript validator parity).
+Prerequisites: **Python 3.10 or newer**, plus **Node 22+** for the Python/JavaScript validator
+parity test (skipped when Node is absent, as in the pinned Python image used by `sh run.sh test`).
 From the repository root,
 run these exact commands. No pip/npm install or account is needed.
 

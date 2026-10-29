@@ -3,6 +3,7 @@ import importlib.util
 import hashlib
 import json
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -40,6 +41,7 @@ class LiveWorkerTests(unittest.TestCase):
                 subprocess.run(command, check=True, capture_output=True)
                 self.assertEqual({name: (target / name).read_bytes() for name in names}, offline)
 
+    @unittest.skipUnless(shutil.which('node'), 'Node 22+ is not on PATH (the pinned Python image has none); CI runs this parity test with Node')
     def test_js_validator_matches_python_on_all_bundled_cases_and_runbook_proposals(self):
         cases = (dataset()['cases'] + corpus('heldout')['cases'] + split_cases('hard')
                  + split_cases('second-author'))
