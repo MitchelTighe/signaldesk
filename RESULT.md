@@ -1,5 +1,66 @@
 RESULT: DONE
 
+Lightning retry and Super escalation for issue #745 (2026-10-29).
+
+Changed paths:
+
+- `worker/cascade.mjs`: Lightning has an 8-second attempt limit and retries once only
+  after timeout or HTTP 5xx. Any remaining Lightning failure goes to Super with
+  `escalation: lightning-unavailable-escalated`. Super still passes the existing
+  deterministic validator. Replay occurs only when Super also has no usable response.
+  Each actual attempt has its own trace row, latency, usage availability and failure code.
+- `worker/index.mjs`: retain escalation metadata in replay responses. Quota behavior
+  stays one reservation per click, including retries; update the cost comment for
+  the possible third call.
+- `worker/worker.test.mjs`: fake transports and mock time cover retry recovery,
+  repeated hangs followed by Super, all calls hanging to replay, HTTP 5xx,
+  direct escalation for non-retryable errors, body-read timeout, Super validation,
+  its own timeout, the total deadline and single per-IP/global reservation.
+- `web/replay-template.html`: existing trace playback names timeout/5xx failures
+  and follows the actual next attempt: "Retrying Lightning" or "Escalated to Super".
+  No layout changes. `site/index.html`, `site/showcase/index.html` and their two
+  `manifest.json` files reproduce those template changes. Recorded replay JSON
+  and model IDs are unchanged.
+- `worker/pass2.browser.test.mjs`: extend existing mocked page coverage for retry
+  recovery, escalation after retry and replay after all attempts fail.
+- `RESULT.md`: this report; the pre-existing report is preserved below.
+
+Verification and observed output:
+
+- `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v`:
+  **Ran 184 tests in 25.737s; OK**, no skips. This includes validator parity,
+  generated-page/manifest reproducibility, live/offline builds and bundle budgets.
+- `node --test worker/worker.test.mjs`: **29 passed, 0 failed, 0 skipped**
+  (Node v24.21.0). Mocked time verifies 8,000 ms for each Lightning timeout,
+  20,000 ms for Super when available, and 29,000 ms for an all-hanging cascade.
+- `node --check worker/pass2.browser.test.mjs`: exit 0, no syntax errors.
+- `git diff --check`: exit 0, no whitespace errors.
+- Offline dependency resolution from `worker/package.json`: `miniflare`,
+  `playwright` and `@sparticuz/chromium` are unavailable. Worker runtime and
+  browser suites were therefore not run; no packages were installed.
+
+Limits and timing decision:
+
+- Sequential full limits would be 8 + 8 + 20 = 36 seconds. To meet the requested
+  roughly 30-second maximum, the cascade has a 29-second overall deadline in
+  addition to Super's 20-second per-call limit. After two full Lightning hangs,
+  Super has about 13 seconds remaining. The timer bounds transport and body reads,
+  including synthetic transports that ignore cancellation. Request parsing, quota
+  storage and browser/network overhead are outside this model-cascade deadline.
+- The unchanged 2-cent reservation covers two Lightning calls plus Super at the
+  checked-in price snapshot (maximum token estimate USD 0.01077). The three-call
+  path does not retain the old two-call calculation's full 2x pricing margin.
+- Fake transports establish routing and deadline behavior; no live provider
+  availability, hosted deployment or browser acceptance is claimed by this pass.
+- TASK.md and ISSUES.md remain untouched, untracked assignment inputs. Changes
+  are delivered in one local scoped commit; nothing was pushed or deployed.
+
+---
+
+Pre-existing report (preserved verbatim):
+
+RESULT: DONE
+
 Pre-judging review on 2026-10-29. Its fixes are listed below. The container-only gates it could
 not run (Worker runtime and browser suites, Wrangler dry-run, browser, accessibility and
 Pages-subpath acceptance, pinned launchers, Gitleaks scan) were then run in rootless Podman and

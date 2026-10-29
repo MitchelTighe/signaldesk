@@ -24,6 +24,7 @@ const mock = (responses = [envelope()]) => {
     calls.push({ url, ...init, payload: JSON.parse(init.body) });
     const next = responses[calls.length - 1];
     if (next instanceof Error) throw next;
+    if (typeof next === 'function') return next(init);
     return next instanceof Response ? next : Response.json(next);
   };
   return { calls, transport };
@@ -91,6 +92,108 @@ test('physical proposals always need Super; valid Super abstention stays empty',
 test('Lightning abstention escalates even with single abnormal family', async () => {
   const f = fixture({}, [envelope(draft(null)), envelope()]);
   assert.equal((await run(f)).data.escalation, 'lightning-abstained');
+});
+
+// These transports never settle: the deadline must bound headers as well as body reads,
+// even when cancellation is ignored. Mock time exercises the real 8/20/29-second limits.
+function hanging(started) {
+  return () => { started.resolve(); return new Promise(() => {}); };
+}
+
+test('Lightning hangs for 8 seconds then succeeds on its only retry; quota is reserved once', async t => {
+  t.mock.timers.enable({ apis: ['Date', 'setTimeout'] });
+  const first = Promise.withResolvers();
+  const f = fixture({}, [hanging(first), envelope()]), pending = run(f);
+  await first.promise;
+  t.mock.timers.tick(7999); assert.equal(f.calls.length, 1);
+  t.mock.timers.tick(1);
+  const { response, data } = await pending;
+  assert.equal(response.status, 200); assert.equal(data.path, 'lightning');
+  assert.deepEqual(data.trace.map(row => row.code), ['upstream-timeout', 'backed']);
+  assert.deepEqual(f.calls.map(c => c.payload.model), [LIGHTNING, LIGHTNING]);
+  assert.equal(data.latency_ms, 8000); assert.equal(f.calls[0].signal.aborted, true);
+  assert.equal(f.storage.value.runs, 1); assert.equal(f.storage.value.cents, 2);
+  assert.deepEqual(Object.values(f.storage.value.clients).map(times => times.length), [1]);
+  assert.deepEqual(Object.values(f.storage.value.dailyClients), [1]);
+});
+
+test('Lightning hangs twice then Super succeeds with the unavailability escalation reason', async t => {
+  t.mock.timers.enable({ apis: ['Date', 'setTimeout'] });
+  const first = Promise.withResolvers(), second = Promise.withResolvers();
+  const f = fixture({}, [hanging(first), hanging(second), envelope()]), pending = run(f);
+  await first.promise; t.mock.timers.tick(8000);
+  await second.promise; t.mock.timers.tick(7999); assert.equal(f.calls.length, 2);
+  t.mock.timers.tick(1);
+  const { data } = await pending;
+  assert.equal(data.mode, 'live'); assert.equal(data.path, 'escalated-to-super');
+  assert.equal(data.escalation, 'lightning-unavailable-escalated');
+  assert.deepEqual(data.trace.map(row => row.code), ['upstream-timeout', 'upstream-timeout', 'backed']);
+  assert.deepEqual(f.calls.map(c => c.payload.model), [LIGHTNING, LIGHTNING, SUPER]);
+  assert.equal(data.result.runbook_id, 'RB-MOUNT'); assert.equal(data.latency_ms, 16000);
+  assert.equal(f.storage.value.runs, 1); assert.equal(f.storage.value.cents, 2);
+});
+
+test('all three calls hang: recorded replay is returned at the 29-second total deadline', async t => {
+  t.mock.timers.enable({ apis: ['Date', 'setTimeout'] });
+  const first = Promise.withResolvers(), second = Promise.withResolvers(), third = Promise.withResolvers();
+  const f = fixture({}, [hanging(first), hanging(second), hanging(third)]), pending = run(f);
+  await first.promise; t.mock.timers.tick(8000);
+  await second.promise; t.mock.timers.tick(8000);
+  await third.promise; t.mock.timers.tick(12999); assert.equal(f.calls[2].signal.aborted, false);
+  t.mock.timers.tick(1);
+  const { response, data } = await pending;
+  assert.equal(response.status, 503); assert.equal(data.mode, 'replay');
+  assert.equal(data.reason, 'upstream-unavailable'); assert.equal(data.escalation, 'lightning-unavailable-escalated');
+  assert.deepEqual(data.trace.map(row => row.code), Array(3).fill('upstream-timeout'));
+  assert.equal(data.latency_ms, 29000); assert.ok(data.latency_ms < 30000);
+  assert.ok(f.calls.every(c => c.signal.aborted)); assert.equal(data.result, undefined);
+  assert.match(data.message, /recorded replay.*custom input has no live answer/);
+  assert.equal(f.storage.value.runs, 1); assert.equal(f.storage.value.cents, 2);
+});
+
+test('Super retains its own 20-second timeout when the total budget permits it', async t => {
+  t.mock.timers.enable({ apis: ['Date', 'setTimeout'] });
+  const superStarted = Promise.withResolvers();
+  const f = fixture({}, [envelope(draft('RB-CLEAN')), hanging(superStarted)]), pending = run(f);
+  await superStarted.promise; t.mock.timers.tick(19999); assert.equal(f.calls[1].signal.aborted, false);
+  t.mock.timers.tick(1);
+  const { data } = await pending;
+  assert.equal(data.mode, 'replay'); assert.equal(data.latency_ms, 20000);
+  assert.equal(data.trace[1].code, 'upstream-timeout'); assert.equal(f.calls.length, 2);
+});
+
+test('Lightning 5xx retries once; another failure escalates and Super is still validated', async () => {
+  for (const retry of [envelope(), new Response('synthetic failure', { status: 503 })]) {
+    const f = fixture({}, [new Response('synthetic failure', { status: 500 }), retry, envelope(draft('RB-CLEAN'))]);
+    const { data } = await run(f);
+    assert.equal(data.trace[0].code, 'upstream-5xx'); assert.equal(data.mode, 'live');
+    assert.equal(f.calls[1].payload.model, LIGHTNING); assert.equal(f.storage.value.runs, 1);
+    if (retry instanceof Response) {
+      assert.equal(data.escalation, 'lightning-unavailable-escalated');
+      assert.equal(data.trace.length, 3); assert.equal(data.trace[2].validator, 'veto');
+      assert.equal(data.result.status, 'needs-human'); assert.deepEqual(data.result.steps, []);
+    } else { assert.equal(data.path, 'lightning'); assert.equal(f.calls.length, 2); }
+  }
+});
+
+test('Lightning 4xx and network errors escalate directly without a Lightning retry', async () => {
+  for (const failure of [new Response(null, { status: 429 }), new Error('synthetic offline')]) {
+    const f = fixture({}, [failure, envelope()]), { data } = await run(f);
+    assert.deepEqual(f.calls.map(c => c.payload.model), [LIGHTNING, SUPER]);
+    assert.equal(data.escalation, 'lightning-unavailable-escalated'); assert.equal(data.mode, 'live');
+  }
+});
+
+test('Lightning response body stalls: the attempt timeout cancels the reader and retries', async t => {
+  t.mock.timers.enable({ apis: ['Date', 'setTimeout'] });
+  const reading = Promise.withResolvers(); let cancelled = false;
+  const body = new ReadableStream({ pull() { reading.resolve(); }, cancel() { cancelled = true; } }, { highWaterMark: 0 });
+  const upstream = mock([new Response(body), envelope()]);
+  const pending = cascade(incidentInput(input()), { NEBIUS_API_KEY: 'synthetic-fixture' }, upstream.transport);
+  await reading.promise; t.mock.timers.tick(8000);
+  const data = await pending;
+  assert.equal(data.path, 'lightning'); assert.equal(cancelled, true);
+  assert.equal(data.trace[0].code, 'upstream-timeout'); assert.equal(upstream.calls.length, 2);
 });
 
 test('Super veto returns human handoff and never a third request', async () => {
@@ -165,8 +268,9 @@ test('upstream and quota failures fail closed; failed requests retain reservatio
     new Response('untrusted provider error', { status: 500 }), Response.json(envelope(draft(), { usage: null })),
     Response.json(envelope(draft(), { usage: { prompt_tokens: 1500, completion_tokens: 501, total_tokens: 2001 } })),
     new Response('x'.repeat(LIMITS.response + 1))]) {
-    const f = fixture({}, [failure]), { response, data } = await run(f);
-    assert.equal(response.status, 503); assert.equal(data.mode, 'replay'); assert.equal(f.calls.length, 1);
+    const f = fixture({}, [failure, new Error('synthetic offline'), new Error('synthetic offline')]), { response, data } = await run(f);
+    assert.equal(response.status, 503); assert.equal(data.mode, 'replay');
+    assert.equal(f.calls.length, failure instanceof Response && failure.status === 500 ? 3 : 2);
     assert.equal(f.storage.value.cents, 2); assert.ok(!JSON.stringify(data).includes('untrusted'));
     assert.match(data.message, /custom input has no live answer/);
   }
@@ -229,6 +333,8 @@ test('prompt resources match canonical authored runbooks; two-cent reservation c
   assert.throws(() => payloadFor('arbitrary-model', incidentInput(input())));
   const cost = 2 * ((24000 * .06 + 500 * .24) + (24000 * .30 + 500 * .90)) / 1e6;
   assert.ok(cost < .02);
+  const withRetry = (2 * (24000 * .06 + 500 * .24) + (24000 * .30 + 500 * .90)) / 1e6;
+  assert.ok(withRetry < .02); // A retry fits the same reservation at the checked-in rates.
   const p = payloadFor(SUPER, incidentInput(input('load_wait_seconds', 120, 'x'.repeat(2000))));
   assert.ok(new TextEncoder().encode(JSON.stringify(p.messages)).length + 4096 <= LIMITS.prompt);
 });

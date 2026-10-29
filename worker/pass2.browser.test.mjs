@@ -232,6 +232,15 @@ test('custom live trace uses observed metrics, exports submitted input, and clea
         trace: [{ model: data.models[0], proposal: 'RB-CLEAN', validator: 'veto', code: 'telemetry-abstention', latency_ms: 52, usage: { prompt_tokens: 1234, completion_tokens: 56 } },
           { model: data.models[1], proposal: book.id, validator: 'accept', code: 'backed', latency_ms: 75, usage: null }] };
       if (mode === 'veto') await gate;
+      if (mode.startsWith('retry-')) {
+        const timeout = { model: data.models[0], validator: 'unavailable', code: 'upstream-timeout', latency_ms: 8000, usage: null };
+        answer = { ...answer, escalation: 'lightning-unavailable-escalated', latency_ms: 16075,
+          trace: [{ ...timeout }, { ...timeout }, answer.trace[1]] };
+        if (mode === 'retry-success') answer = { ...answer, path: 'lightning', escalation: undefined, latency_ms: 8075,
+          trace: [{ ...timeout }, { ...answer.trace[2], model: data.models[0] }] };
+        if (mode === 'retry-replay') answer = { ...answer, mode: 'replay', reason: 'upstream-unavailable', result: undefined,
+          trace: [...answer.trace.slice(0, 2), { ...timeout, model: data.models[1], latency_ms: 13000 }], latency_ms: 29000 };
+      }
       if (mode === 'upstream') answer = { ...answer, mode: 'replay', reason: 'upstream-unavailable', result: undefined, trace: [answer.trace[0], { model: data.models[1], validator: 'unavailable', code: 'upstream-unavailable', latency_ms: 8, usage: null }] };
       if (mode === 'invalid') answer.result.steps[0].text = '<img src=x onerror=alert(1)>';
       if (mode === 'pre') answer = { mode: 'live', path: 'pre-triage', latency_ms: 0, telemetry: { state: 'healthy' }, result: { runbook_id: null, status: 'no-incident', steps: [] }, trace: [] };
@@ -275,6 +284,25 @@ test('custom live trace uses observed metrics, exports submitted input, and clea
     assert.doesNotMatch(note, /Edited after submission/);
     assert.equal(await text(page, '#replay-data'), evidence);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+    for (const retryMode of ['retry-success', 'retry-super', 'retry-replay']) {
+      mode = retryMode;
+      await page.locator('#live-run').click();
+      await page.waitForFunction(() => ['live', 'replay'].includes(document.querySelector('#live-result').dataset.state));
+      assert.match(await text(page, '#live-flow li:nth-child(3)'), /UNAVAILABLE.*Model timed out\. Retrying Lightning\./s);
+      if (mode === 'retry-success') {
+        assert.equal(await page.locator('#live-flow > li').count(), 6);
+        assert.doesNotMatch(await text(page, '#live-flow'), /Super/);
+      } else {
+        assert.match(await text(page, '#live-flow li:nth-child(5)'), /Model timed out\. Escalated to Super\./);
+        assert.equal(await page.locator('#live-flow > li').count(), 8);
+      }
+      if (mode === 'retry-replay') {
+        assert.match(await text(page, '#live-flow'), /Super.*UNAVAILABLE.*No live incident note/s);
+        assert.match(await text(page, '#live-result'), /recorded replay.*custom input has no live answer/);
+        assert.equal(await page.locator('#live-export').isVisible(), false);
+      } else assert.equal(await page.locator('#live-export').isVisible(), true);
+      assert.equal(await text(page, '#replay-data'), evidence);
+    }
     mode = 'invalid';
     await page.locator('#live-run').click();
     await page.waitForFunction(() => document.querySelector('#live-result').dataset.state === 'replay');

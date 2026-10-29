@@ -31,7 +31,7 @@ export async function reserve(storage, ipHash, config, now = Date.now()) {
     const times = state.clients[ipHash] || [];
     if (times.length >= 20 || (state.dailyClients[ipHash] || 0) >= 40) return 'ip-limit';
     if (state.runs >= config.daily) return 'daily-limit';
-    // Two cents covers both 24k-input/500-output calls, with 2x the checked-in prices.
+    // Two cents covers two Lightning calls plus Super at the checked-in prices.
     if (state.cents + 2 > config.cents) return 'spend-limit';
     state.runs++; state.cents += 2; state.clients[ipHash] = [...times, now];
     state.dailyClients[ipHash] = (state.dailyClients[ipHash] || 0) + 1;
@@ -92,7 +92,8 @@ export function createWorker(transport = fetch) {
       if (!reservation.ok || quota.reason !== null) return reply(fallback(
         ['ip-limit', 'daily-limit', 'spend-limit'].includes(quota.reason) ? quota.reason : 'quota-unavailable'), reservation.status === 429 ? 429 : 503);
       const result = await cascade(incident, env, transport);
-      if (result.mode === 'replay') return reply(fallback(result.reason, { trace: result.trace, latency_ms: result.latency_ms }), 503);
+      if (result.mode === 'replay') return reply(fallback(result.reason, {
+        trace: result.trace, escalation: result.escalation, latency_ms: result.latency_ms }), 503);
       return reply(result, 200);
     } catch { return reply(fallback('service-unavailable'), 503); }
   } };

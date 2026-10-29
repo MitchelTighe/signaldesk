@@ -168,7 +168,9 @@ const checkReasons={
  'unfinished-response':'The model response ended before a complete draft.',
  'backed':'Numeric evidence and authored step citations match.',
  'abstained':'No action proposed; hand off to an operator.',
- 'upstream-unavailable':'No usable model response; no live answer.'
+ 'upstream-timeout':'Model timed out.',
+ 'upstream-5xx':'Model returned 5xx.',
+ 'upstream-unavailable':'No usable model response.'
 };
 function replayCascade(id,view){
  const a=answer(id,view),rs=rowsFor(id),c=rs[0].case,rt=a.rt,stages=[{title:'Ticket in · '+id,text:c.text}];
@@ -190,10 +192,10 @@ $('cascade-replay').addEventListener('click',()=>{if($('case').value)replayCasca
 function liveStages(answer,ticket){
  const stages=[{title:'Your ticket in',text:ticket}],trace=answer.trace||[];
  if(answer.path==='pre-triage')stages.push({title:'Deterministic pre-triage',verdict:answer.result.status==='no-incident'?'PASS · No incident':'HAND OFF',text:'No model call: '+answer.telemetry.state+' telemetry.',metrics:'0 model tokens · no model call'});
- for(const row of trace){
-  const book=books[row.proposal],verdict=row.validator;
+ for(const [i,row] of trace.entries()){
+  const book=books[row.proposal],verdict=row.validator,next=trace[i+1];
   stages.push({title:short(row.model)+(/super/i.test(row.model)?' · second reader':''),text:book?'Sanitized draft: '+book.title+' ('+book.id+').':row.proposal===null?'Draft: no recognized runbook proposal.':'Draft text not retained; see validator result.',metrics:callMetrics(row.latency_ms,row.usage)});
-  stages.push({title:'Deterministic validator',state:verdict==='veto'?'veto':'complete',verdict:verdict==='veto'?'VETO':verdict==='accept'?'PASS':'UNAVAILABLE',text:(checkReasons[row.code]||'Detailed check reason unavailable.')+(row===trace[0]&&trace.length>1?' Super takes a second look.':'')});
+  stages.push({title:'Deterministic validator',state:verdict==='veto'?'veto':'complete',verdict:verdict==='veto'?'VETO':verdict==='accept'?'PASS':'UNAVAILABLE',text:(checkReasons[row.code]||row.code)+(next?(next.model===row.model?' Retrying Lightning.':' Escalated to Super.'):'')});
  }
  if(!answer.result){stages.push({title:'No live incident note',verdict:'UNAVAILABLE',text:'Your custom ticket has no live answer. The recorded cases below are separate evidence.'});return stages;}
  const r=answer.result,book=books[r.runbook_id];

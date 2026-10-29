@@ -2,7 +2,8 @@ import { resources } from './resources.mjs';
 
 export const LIGHTNING = 'nvidia/Nemotron-3_5-Lightning';
 export const SUPER = 'nvidia/nemotron-3-super-120b-a12b';
-export const LIMITS = Object.freeze({ body: 8192, prompt: 24000, output: 500, response: 65536, timeout: 20000 });
+export const LIMITS = Object.freeze({ body: 8192, prompt: 24000, output: 500, response: 65536,
+  timeout: 20000, lightningTimeout: 8000, liveTimeout: 29000 });
 const books = resources.runbooks;
 const physical = new Set(['RB-CLEAN', 'RB-INVENTORY', 'RB-MEDIA']);
 const exactKeys = (v, keys) => v && typeof v === 'object' && !Array.isArray(v) &&
@@ -90,38 +91,50 @@ export function payloadFor(model, incident) {
   return payload;
 }
 
-async function draftCall(model, incident, env, transport) {
+async function draftCall(model, incident, env, transport, deadline) {
   const payload = payloadFor(model, incident), started = Date.now();
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), LIMITS.timeout);
+  const timeout = Math.max(0, Math.min(model === LIGHTNING ? LIMITS.lightningTimeout : LIMITS.timeout,
+    deadline - started));
+  let timer;
+  const expired = new Promise((_, reject) => {
+    timer = setTimeout(() => { controller.abort(); reject(Error('timeout')); }, timeout);
+  });
   const trace = { model, latency_ms: 0, usage: null, validator: 'unavailable', code: 'upstream-unavailable' };
   try {
-    const response = await transport('https://api.tokenfactory.nebius.com/v1/chat/completions', {
-      method: 'POST', redirect: 'manual', signal: controller.signal,
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.NEBIUS_API_KEY}` },
-      body: JSON.stringify(payload)
-    });
-    if (!response.ok) { await response.body?.cancel(); throw Error('upstream'); }
-    const envelope = JSON.parse(await boundedText(response.body, LIMITS.response, controller.signal));
-    const u = envelope.usage;
-    if (!u || ![u.prompt_tokens, u.completion_tokens, u.total_tokens].every(Number.isSafeInteger) ||
-        u.prompt_tokens < 0 || u.completion_tokens < 0 || u.prompt_tokens > LIMITS.prompt ||
-        u.completion_tokens > LIMITS.output || u.total_tokens !== u.prompt_tokens + u.completion_tokens) throw Error('usage');
-    trace.usage = { prompt_tokens: u.prompt_tokens, completion_tokens: u.completion_tokens, total_tokens: u.total_tokens };
-    const choice = envelope.choices?.[0];
-    let result;
-    if (choice?.finish_reason !== 'stop') result = { verdict: 'veto', code: 'unfinished-response', runbook_id: null, steps: [] };
-    else {
-      try {
-        const draft = JSON.parse(choice.message.content);
-        trace.proposal = books.some(b => b.id === draft?.runbook_id) ? draft.runbook_id : null;
-        result = validateDraft(draft, incident);
+    return await Promise.race([expired, (async () => {
+      const response = await transport('https://api.tokenfactory.nebius.com/v1/chat/completions', {
+        method: 'POST', redirect: 'manual', signal: controller.signal,
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.NEBIUS_API_KEY}` },
+        body: JSON.stringify(payload)
+      });
+      if (controller.signal.aborted) throw Error('timeout');
+      if (!response.ok) {
+        if (response.status >= 500 && response.status <= 599) trace.code = 'upstream-5xx';
+        await response.body?.cancel(); throw Error('upstream');
       }
-      catch { result = { verdict: 'veto', code: 'invalid-json', runbook_id: null, steps: [] }; }
-    }
-    trace.validator = result.verdict; trace.code = result.code;
-    return { trace, result };
+      const envelope = JSON.parse(await boundedText(response.body, LIMITS.response, controller.signal));
+      const u = envelope.usage;
+      if (!u || ![u.prompt_tokens, u.completion_tokens, u.total_tokens].every(Number.isSafeInteger) ||
+          u.prompt_tokens < 0 || u.completion_tokens < 0 || u.prompt_tokens > LIMITS.prompt ||
+          u.completion_tokens > LIMITS.output || u.total_tokens !== u.prompt_tokens + u.completion_tokens) throw Error('usage');
+      trace.usage = { prompt_tokens: u.prompt_tokens, completion_tokens: u.completion_tokens, total_tokens: u.total_tokens };
+      const choice = envelope.choices?.[0];
+      let result;
+      if (choice?.finish_reason !== 'stop') result = { verdict: 'veto', code: 'unfinished-response', runbook_id: null, steps: [] };
+      else {
+        try {
+          const draft = JSON.parse(choice.message.content);
+          trace.proposal = books.some(b => b.id === draft?.runbook_id) ? draft.runbook_id : null;
+          result = validateDraft(draft, incident);
+        }
+        catch { result = { verdict: 'veto', code: 'invalid-json', runbook_id: null, steps: [] }; }
+      }
+      trace.validator = result.verdict; trace.code = result.code;
+      return { trace, result };
+    })()]);
   } catch {
+    if (controller.signal.aborted) trace.code = 'upstream-timeout';
     return { trace, result: null };
   } finally {
     clearTimeout(timer); trace.latency_ms = Date.now() - started;
@@ -133,15 +146,20 @@ export async function cascade(incident, env, transport = fetch) {
   const base = { mode: 'live', actions_executed: 0, telemetry: t, trace };
   if (t.state !== 'single') return { ...base, path: 'pre-triage', latency_ms: 0,
     result: { runbook_id: null, steps: [], status: t.state === 'healthy' ? 'no-incident' : 'needs-human' } };
-  const light = await draftCall(LIGHTNING, incident, env, transport); trace.push(light.trace);
-  if (!light.result) return { ...base, mode: 'replay', reason: 'upstream-unavailable', latency_ms: Date.now() - started };
-  if (light.result.verdict === 'accept' && light.result.runbook_id && !physical.has(light.result.runbook_id)) {
+  // The total budget also bounds Super after two slow Lightning attempts (8 + 8 + 20 > 30 s).
+  const deadline = started + LIMITS.liveTimeout;
+  let light = await draftCall(LIGHTNING, incident, env, transport, deadline); trace.push(light.trace);
+  if (!light.result && ['upstream-timeout', 'upstream-5xx'].includes(light.trace.code)) {
+    light = await draftCall(LIGHTNING, incident, env, transport, deadline); trace.push(light.trace);
+  }
+  if (light.result?.verdict === 'accept' && light.result.runbook_id && !physical.has(light.result.runbook_id)) {
     return { ...base, path: 'lightning', result: light.result, latency_ms: Date.now() - started };
   }
-  const reason = light.result.verdict === 'veto' ? light.result.code :
+  const reason = !light.result ? 'lightning-unavailable-escalated' : light.result.verdict === 'veto' ? light.result.code :
     light.result.runbook_id ? 'physical-action-second-reader' : 'lightning-abstained';
-  const sup = await draftCall(SUPER, incident, env, transport); trace.push(sup.trace);
-  if (!sup.result) return { ...base, mode: 'replay', reason: 'upstream-unavailable', latency_ms: Date.now() - started };
+  const sup = await draftCall(SUPER, incident, env, transport, deadline); trace.push(sup.trace);
+  if (!sup.result) return { ...base, mode: 'replay', reason: 'upstream-unavailable', escalation: reason,
+    latency_ms: Date.now() - started };
   return { ...base, path: 'escalated-to-super', escalation: reason,
     result: sup.result.verdict === 'accept' ? sup.result : { runbook_id: null, steps: [], status: 'needs-human', code: sup.result.code },
     latency_ms: Date.now() - started };
