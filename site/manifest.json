@@ -1,10 +1,1 @@
-{
-  "files": {
-    "_headers": "91ce25f3ec9e16c007780ab435b8966d598b9b3a8f0952dcf39499f748d8d088",
-    "index.html": "ef7e34ceb2fe9e299dba5ba52c93add5a56b211e22b8535881fe78b15d9d0b4f",
-    "replay.json": "8a7f8957b1cd2a87e22ad187d6b375f12a10daa786c7d7839cfebfd4c8c04f50"
-  },
-  "live_recorded": true,
-  "schema": "signaldesk-static-replay-v1",
-  "source_sha256": "24e626a155998f6cd15d7e67f433ca05bc4c041fdf47aa2b747f52d5eaac6a0b"
-}
+{"files":{"_headers":"91ce25f3ec9e16c007780ab435b8966d598b9b3a8f0952dcf39499f748d8d088","index.html":"4790439d757e58f837fb69cbc03bb9b6520801b4c15a55f4004be2f8f8f4d56c","replay.json":"8a7f8957b1cd2a87e22ad187d6b375f12a10daa786c7d7839cfebfd4c8c04f50"},"live_recorded":true,"schema":"signaldesk-static-replay-v1","source_sha256":"24e626a155998f6cd15d7e67f433ca05bc4c041fdf47aa2b747f52d5eaac6a0b"}

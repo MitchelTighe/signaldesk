@@ -4,7 +4,7 @@
 <meta name="signaldesk-live-endpoint" content="">
 <title>SignalDesk · Tape incident desk</title>
 <style>
-:root{color-scheme:dark;--bg:#0c1417;--panel:#142126;--line:#31464c;--muted:#a7bec4;--ink:#edf6f6;--green:#baf790;--amber:#ffd08b;--red:#ffaea3;font:15px/1.55 system-ui,sans-serif}
+:root{color-scheme:dark;--bg:#0c1417;--panel:#142126;--line:#31464c;--muted:#a7bec4;--ink:#edf6f6;--green:#baf790;--amber:#ffd08b;--red:#ffaea3;font:17px/1.55 system-ui,sans-serif}
 :root[data-theme="light"]{color-scheme:light;--bg:#f4f8f7;--panel:#fff;--line:#a7b8b7;--muted:#415b60;--ink:#122c32;--green:#205b27;--amber:#714800;--red:#9b1c10}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 85% 0,#1b3335,transparent 55%),var(--bg);color:var(--ink)}:root[data-theme="light"] body{background:var(--bg)}
 a{color:var(--green);text-underline-offset:4px}button,select,input,textarea{font:inherit;color:inherit}button,select,input,textarea,summary{min-height:44px}
@@ -18,8 +18,6 @@ button{cursor:pointer}.live-primary{background:var(--green);color:var(--bg);font
 h1{font-size:clamp(30px,3.6vw,46px);line-height:1.12;letter-spacing:-1.6px;font-weight:550;margin:10px 0}h2{font-size:21px;font-weight:550;letter-spacing:-.4px;margin:10px 0}
 .muted{color:var(--muted)}.small{font-size:13px}.tiny{font-size:11px}.mono{font-family:ui-monospace,monospace;font-size:11px;overflow-wrap:anywhere}
 .hero{padding:28px 0 18px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px;align-items:end}.subtitle{color:var(--muted);font-size:14px;max-width:640px;margin:0}
-.receipt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.receipt div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--panel)}
-.receipt strong{display:block;font-size:24px;font-weight:550;letter-spacing:-.5px}.receipt span{font-size:11px;color:var(--muted)}.receipt .veto strong{color:var(--red)}.receipt .ok strong{color:var(--green)}
 .notice{border:1px solid #887044;border-radius:12px;background:#2d281e;padding:12px 16px;color:var(--amber);font-size:13px;margin-bottom:18px}.notice.live{border-color:#608547;background:#203121;color:var(--green)}
 :root[data-theme="light"] .notice{background:#fff4df;border-color:#a47836}:root[data-theme="light"] .notice.live{background:#eaf5e9;border-color:#659564}
 .panel{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:20px;min-width:0}
@@ -51,21 +49,46 @@ code{font-family:ui-monospace,monospace;font-size:.92em;border:1px solid var(--l
 .skip{position:absolute;top:-100px;left:16px;background:var(--green);color:var(--bg);padding:12px;z-index:9}.skip:focus{top:10px}[hidden]{display:none!important}
 .touring .layout{grid-template-columns:1fr}.touring aside{display:none}
 @media(max-width:1000px){.wrap{padding-left:24px;padding-right:24px}.hero{grid-template-columns:1fr}.layout{grid-template-columns:230px minmax(0,1fr)}.try-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:700px){.wrap{padding-left:16px;padding-right:16px}.tag{display:none}.layout{grid-template-columns:1fr}.layout>aside{order:2}.receipt{grid-template-columns:1fr}.panel{padding:16px}#hypothesis{font-size:23px}.bars div{grid-template-columns:1fr}.sidebar-stats{display:none}th,td{font-size:10px}table{display:block;overflow-x:auto;max-width:100%}.try-grid,.try-proposal-grid{grid-template-columns:1fr}.try-readings select{min-width:0}.try-readings .actions button{flex:1}}
+@media(max-width:700px){.wrap{padding-left:16px;padding-right:16px}.tag{display:none}.layout{grid-template-columns:1fr}.layout>aside{order:2}.panel{padding:16px}#hypothesis{font-size:23px}.bars div{grid-template-columns:1fr}.sidebar-stats{display:none}th,td{font-size:10px}table{display:block;overflow-x:auto;max-width:100%}.try-grid,.try-proposal-grid{grid-template-columns:1fr}.try-readings select{min-width:0}.try-readings .actions button{flex:1}}
+
+/* Pass 2: readable receipts and an ordered, evidence-backed cascade. */
+.intro-strip{display:flex;gap:8px 24px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:20px 0;color:var(--muted);font-size:16px}.intro-strip strong{color:var(--ink)}
+.hero{padding:30px 0;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}h1{font-size:clamp(38px,4.8vw,62px);line-height:1.05;letter-spacing:-2px;margin:12px 0 20px}.subtitle{font-size:18px;line-height:1.6}.hero-prompt{border-left:2px solid var(--green);padding:8px 0 8px 24px}.hero-prompt p{font-size:24px;line-height:1.5;margin:12px 0}.eyebrow,.section,.label{font-size:12px}.small{font-size:16px}.tiny,.mono{font-size:13px}
+.score-section{margin-bottom:22px}.score-section>.section{margin-bottom:12px}.scoreboard{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.score{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}.score strong{display:block;font-size:38px;line-height:1.2;color:var(--green);letter-spacing:-1px}.score span{display:block;font-size:15px;margin:8px 0}.score small{display:block;color:var(--muted);font-size:13px;line-height:1.5}.score:nth-child(2) strong{color:var(--red)}
+.layout{grid-template-columns:260px minmax(0,1fr)}select,input,.buttons button{font-size:16px}.label{letter-spacing:.4px}.panel h2{font-size:24px}.tour p{font-size:16px}.notice{font-size:14px}.try-readings>summary{font-size:20px!important}.try-readings textarea{font-size:18px}.example-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.example-buttons button{font-size:15px}.example-buttons button[aria-pressed="true"]{border-color:var(--green);color:var(--green)}
+.cascade{padding:0;margin:20px 0 0;list-style:none;counter-reset:stage}.cascade>li{position:relative;padding:0 0 24px 44px;counter-increment:stage;min-height:76px;color:var(--muted);transition:color .25s}.cascade>li:before{content:counter(stage);position:absolute;left:0;top:1px;width:28px;height:28px;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);border-radius:50%;font:14px ui-monospace,monospace;z-index:1}.cascade>li:not(:last-child):after{content:"";position:absolute;left:14px;top:30px;bottom:0;border-left:1px solid var(--line)}.cascade>li[data-state="complete"],.cascade>li[data-state="veto"],.cascade>li[data-state="active"]{color:var(--ink)}.cascade>li[data-state="complete"]:before{color:var(--green);border-color:var(--green)}.cascade>li[data-state="veto"]:before{color:var(--red);border-color:var(--red)}.cascade>li[data-state="active"]:before{color:var(--green);border-color:var(--green);animation:pulse 1s ease-in-out infinite alternate}.cascade h3{font-size:19px;line-height:1.4;margin:0 0 6px}.cascade p{font-size:16px;line-height:1.6;margin:5px 0;overflow-wrap:anywhere;white-space:pre-wrap}.cascade .stage-metrics{font:13px/1.6 ui-monospace,monospace;color:var(--muted)}.cascade .stage-body{visibility:hidden}.cascade li[data-state="complete"] .stage-body,.cascade li[data-state="veto"] .stage-body{visibility:visible}.cascade .stage-verdict{color:var(--green);font-weight:700}.cascade li[data-state="veto"] .stage-verdict{color:var(--red)}.cascade li:last-child{padding-bottom:0}.cascade-panel{border-color:#608547}.timing-note{border-top:1px solid var(--line);padding-top:14px}.cascade-panel button{font-size:14px}.decision .steps li{font-size:17px}.answered,.handoff,.quiet-text{font-size:16px}#ticket-text{font-size:17px}#whats-next{margin-top:4px}.footer{font-size:13px}table{font-size:15px}th{font-size:12px}.try-grid .label{font-size:15px}.try-grid .tiny{font-size:13px}.try-output{font-size:16px}.try-readings .actions button{font-size:15px}.status{font-size:12px}.touring .layout{grid-template-columns:1fr}@keyframes pulse{to{box-shadow:0 0 0 6px #baf79022}}
+@media(max-width:1000px){.hero{grid-template-columns:1fr}.hero-prompt{display:none}.scoreboard{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.layout{grid-template-columns:1fr}.layout>aside{order:0}.sidebar-stats,.layout>aside .tiny{display:none}.hero{padding:24px 0}.intro-strip{font-size:15px}.score{padding:14px}.score strong{font-size:32px}.score span{font-size:14px}.bar{align-items:start}.header-actions{gap:6px}.header-actions .pill{font-size:10px;max-width:170px}.brand{font-size:21px}.cascade>li{padding-left:40px}.cascade h3{font-size:18px}.cascade p{font-size:16px}.tour-controls button{font-size:14px}.tour{gap:12px}.panel h2{font-size:22px}.score small{font-size:12px}th,td{font-size:13px}.bar{flex-wrap:wrap}.brand{width:100%;flex-wrap:nowrap}.header-actions{width:100%;justify-content:space-between}.header-actions .pill:not(.stack){display:none}.header-actions .pill.stack{max-width:225px}}
+
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style></head><body>
 <a href="#decision" class="skip">Skip to what to do now</a>
 <header class="wrap bar"><div class="brand"><svg aria-hidden="true" width="34" height="26" viewBox="0 0 34 26"><rect x="1" y="1" width="32" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="11" cy="13" r="6" fill="none" stroke="var(--green)" stroke-width="2"/><circle cx="11" cy="13" r="2" fill="var(--green)"/><rect x="21" y="6" width="8" height="4" rx="1" fill="var(--green)"/><path d="M21 17h8" stroke="currentColor" stroke-width="2"/></svg>SignalDesk <span class="tag">Tape-library incident desk</span></div>
 <div class="header-actions"><span class="pill stack">NVIDIA Nemotron on Nebius Token Factory</span><span class="pill">Offline replay · no API key</span><button type="button" id="theme" aria-label="Use light theme">Light theme</button></div></header>
 <main class="wrap">
-<section class="hero"><div><div class="eyebrow">Evidence before action · LTO tape libraries</div><h1>The model proposes. The telemetry decides. A person acts.</h1>
-<p class="subtitle">For small archive, HPC and media teams that run tape libraries without a vendor engineer on site. Nemotron reads the drive and library telemetry and drafts what to do; a deterministic validator can veto any claim the readings do not back. <span id="readings-note">Hero readings are real tape-tool output (sg_logs, mtx, sg_turs, LTFS) from mhVTL, an open-source virtual tape library.</span></p>
-</div>
-<div class="receipt" id="receipt" aria-label="Recorded run receipt"><div class="ok"><strong id="r-backed"></strong><span id="r-backed-note"></span></div><div class="veto"><strong id="r-vetoed"></strong><span id="r-vetoed-note"></span></div><div><strong id="r-cost"></strong><span id="r-cost-note"></span></div></div></section>
+<section class="intro-strip" aria-label="What am I looking at in ten seconds"><strong>A tape incident. Two models. One evidence gate.</strong><span>Lightning drafts. Code checks the readings. Super reviews when needed. A person gets a sourced note.</span></section>
+<section class="hero"><div><div class="eyebrow">Evidence before action · LTO tape libraries</div><h1>A confident guess<br>meets a hard stop.</h1>
+<p class="subtitle">A messy tape handover becomes a sourced incident note. Watch Lightning draft, the validator veto and Super take a second look. <span id="readings-note">Recorded Nebius calls. mhVTL readings.</span></p>
+</div><div class="hero-prompt"><span class="eyebrow">Start with the trap</span><p>“Clean the heads now.”<br><span class="muted">But the cleaning flag is zero.</span></p><a class="button" href="#cascade-panel">Watch the cascade</a></div></section>
+<section aria-label="Before and after recorded benchmark" class="score-section"><div class="section"><span>Before / after · Lightning-only to SignalDesk route</span><span>Same-author benchmark · 54 incidents</span></div>
+<div class="scoreboard" id="receipt">
+<div class="score" tabindex="0" title="site/replay.json · rows[].brief.actions_executed; routing.lightning_only.unsafe_accepts → routing.routed.unsafe_accepts"><strong id="r-actions"></strong><span>Unsafe actions executed</span><small id="r-actions-note"></small></div>
+<div class="score" tabindex="0" title="site/replay.json · claims for both recorded models; proposed and vetoed counts"><strong id="r-vetoed"></strong><span>Model proposals vetoed</span><small id="r-vetoed-note"></small></div>
+<div class="score" tabindex="0" title="site/replay.json · routing.routed.usd vs routing.super_only.usd; token estimates at recorded rates"><strong id="r-cost"></strong><span>Estimated token cost</span><small id="r-cost-note"></small></div>
+<div class="score" tabindex="0" title="site/replay.json · routing.lightning_only.correct → routing.routed.correct; same-author 40 held-out + 14 hard incidents"><strong id="r-accuracy"></strong><span>Correct routed decisions</span><small id="r-accuracy-note"></small></div>
+</div></section>
 <div id="notice" class="notice" role="status"></div>
-<section class="panel tour" aria-label="Live Nebius demo"><div><div class="eyebrow">Instant cached cases + optional live inference</div><p>Explore the recorded cases below, or send a synthetic ticket and readings to Nebius.</p></div><button type="button" class="live-primary" id="live-open">Run live on Nebius</button></section>
-<section class="panel tour" id="tour" aria-label="Guided walkthrough"><div><div class="eyebrow">See it work in 30 seconds</div><p id="tour-text" aria-live="polite">Five recorded incidents: a drive that needs cleaning, a model fooled by the ticket text and vetoed, a third cleaning that should not happen, a library and drive that disagree, and a quiet library with nothing to fix.</p></div><div class="tour-controls"><button id="tour-start" type="button">Start 30-second walkthrough</button><button id="tour-pause" type="button" hidden>Pause</button><button id="tour-next" type="button" hidden>Next scene</button><button id="tour-stop" type="button" hidden>Explore all incidents</button></div></section>
-<details class="panel try-readings" id="try-readings"><summary>Try your own readings</summary>
+<section class="panel tour" id="tour" aria-label="Guided walkthrough"><div><div class="eyebrow">See it work in 30 seconds</div><p id="tour-text" aria-live="polite">Start with a convincing ticket, a wrong proposal and a visible veto. Explore the cases, take the tour, or bring your own handover.</p></div><div class="tour-controls"><button type="button" class="live-primary" id="live-open">Try your own ticket</button><button id="tour-start" type="button">Start 30-second walkthrough</button><button id="tour-pause" type="button" hidden>Pause</button><button id="tour-next" type="button" hidden>Next scene</button><button id="tour-stop" type="button" hidden>Explore all incidents</button></div></section>
+<details class="panel try-readings" id="try-readings"><summary>Try your own ticket</summary>
+<p class="small muted">Start with a messy shift handover. Each example also fills the numeric readings below; edit either before running.</p>
+<div class="example-buttons" id="ticket-examples" aria-label="Example shift handovers"></div>
+<label class="label" for="live-ticket">Your fictional shift handover</label><textarea id="live-ticket" maxlength="2000" rows="4" placeholder="02:10 handover — what happened, what was tried, and what the tape tools reported…"></textarea>
+<p class="small muted" id="live-disclosure">Run sends this ticket and the numeric readings to Nebius through the demo proxy. Public or synthetic text only. No equipment actions are executed.</p>
+<div class="actions"><button id="live-run" class="live-primary" type="button" aria-describedby="live-disclosure">Run live on Nebius</button></div>
+<output class="try-output" id="live-result" aria-live="polite">Cached cases are the instant default. Live inference requires the owner's deployment.</output>
+<section id="live-cascade" hidden aria-label="Your ticket cascade"><p id="live-cascade-mode" class="eyebrow"></p><ol class="cascade" id="live-flow"></ol><p class="tiny muted">Response playback. Live call timing includes validation; separate validator timing is unavailable.</p><button id="live-export" type="button" hidden>Export your live incident note (.md)</button></section>
+<div id="live-trace" class="small mono" hidden></div>
+<h2>Readings and local validator</h2>
 <p class="eyebrow">Validator only · no model call · 0 actions executed</p>
 <p class="small muted" id="try-help">Enter readings to check the same numeric gates locally. Leave a field blank to omit it. Decimal and scientific notation are accepted; malformed or non-finite values remain invalid readings.</p>
 <div class="try-grid" id="try-inputs"></div>
@@ -77,11 +100,6 @@ code{font-family:ui-monospace,monospace;font-size:.92em;border:1px solid var(--l
 <div class="actions"><button type="button" id="try-check">Check readings and proposal</button><button type="button" id="try-reset">Reset</button></div>
 <output class="try-output" id="try-proposal" aria-live="polite" aria-atomic="true"></output>
 <p class="small muted" id="try-scope">A backed result means an evidence and wording match, not action approval. This validator cannot read the incident ticket or apply runbook caveats. The original route still needs the reasoner and operator to review context before any physical action.</p>
-<label class="label" for="live-ticket">Synthetic incident ticket for a live run</label><textarea id="live-ticket" maxlength="2000" rows="3" placeholder="Describe a fictional tape incident and any steps already tried."></textarea>
-<p class="small muted" id="live-disclosure">Clicking Run sends this ticket and the entered numeric readings to Nebius through the demo proxy. Use public or synthetic text only. No equipment actions are executed.</p>
-<div class="actions"><button id="live-run" class="live-primary" type="button" aria-describedby="live-disclosure">Run live on Nebius</button></div>
-<output class="try-output" id="live-result" aria-live="polite">Cached cases are the instant default. Live inference requires the owner's deployment.</output>
-<div id="live-trace" class="small mono"></div>
 </details>
 <div class="layout"><aside class="panel" aria-label="Incident queue"><h2>Incident queue</h2>
 <label class="label" for="model">Answer from</label><select id="model"></select>
@@ -92,7 +110,8 @@ code{font-family:ui-monospace,monospace;font-size:.92em;border:1px solid var(--l
 <div class="sidebar-stats"><div class="rule"></div><div class="eyebrow">This view</div><div class="stat"><span>Incidents</span><strong id="count"></strong></div><div class="stat"><span>Do this</span><strong id="accepted"></strong></div><div class="stat"><span>Hand off / no incident</span><strong id="abstained"></strong></div><div class="stat"><span>Errors / not run</span><strong id="errors"></strong></div></div>
 <div class="rule"></div><a class="small" id="download-evidence" href="replay.json" download="signaldesk-replay.json">Download all recorded evidence ↗</a><p class="tiny muted">Case selections instantly replay saved results. Only the Run live on Nebius button requests fresh inference.</p></aside>
 <div class="stack" id="brief">
-<section class="panel decision" id="decision" aria-labelledby="hypothesis"><div class="section"><span class="eyebrow" id="draft-label">What to do now</span><span class="status" id="status"></span></div>
+<section class="panel cascade-panel" id="cascade-panel" aria-label="Incident cascade"><div class="section"><span class="eyebrow" id="cascade-mode">Recorded cascade</span><button type="button" id="cascade-replay">Replay steps ↻</button></div><h2>From ticket to checked note</h2><p id="cascade-context" class="small muted"></p><ol id="case-flow" class="cascade"></ol><p class="tiny muted timing-note">Animation is playback. Model latency and tokens are observed; separate validator timing was not recorded. The recorded route combines separately saved calls.</p></section>
+<section class="panel decision" id="decision" aria-labelledby="hypothesis"><div class="section"><span class="eyebrow" id="draft-label">Recorded incident note</span><span class="status" id="status"></span></div>
 <div aria-live="polite" aria-atomic="true"><h2 id="hypothesis"></h2><p class="answered" id="answered"></p><p id="outcome" class="small"></p><p id="rationale" class="small muted"></p></div>
 <ol class="steps" id="steps"></ol><p class="handoff" id="handoff" hidden></p><p class="quiet-text" id="quiet" hidden></p>
 <div id="vetoes"></div>
@@ -108,7 +127,8 @@ code{font-family:ui-monospace,monospace;font-size:.92em;border:1px solid var(--l
 <section class="panel" id="source" hidden><div class="eyebrow">Cited tape runbook</div><h2 id="source-title"></h2><p id="threshold" class="small"></p><ol id="source-steps" class="small"></ol><p id="caveat" class="small muted"></p><p class="tiny muted">Authored tape runbook · each step cites public man pages, T10 tables or open-source project docs · MIT</p><ul id="docs"></ul></section>
 <section class="panel" id="evaluation"><div class="section"><span>Run receipt: who decides, at what cost</span><span id="eval-scope"></span></div>
 <p class="small" id="eval-lead"></p><div id="eval-tables"></div>
-<details><summary class="small">Provenance and limitations</summary><div class="provenance small"><p><span class="muted">This incident, selected model:</span> <span id="provenance-model" class="mono"></span> · <span id="observed" class="mono"></span> · <span id="usage" class="mono"></span></p><p id="metrics" class="small"></p><p id="limits" class="small muted"></p>
+</section>
+<section class="panel" id="whats-next"><h2>What’s next</h2><p class="small">Validate with an independent operator cohort and real hardware, then measure how well the notes help a shift handover. Extend context checks before considering equipment integration.</p><p class="small muted">Re-evaluate the bounded live configuration: it caps outputs and disables hidden thinking for both models. The recorded Super reasoning-on score does not transfer to your live tickets. Provider availability and current billing remain unverified.</p><details open><summary class="small">Evidence and current limits</summary><div class="provenance small"><p><span class="muted">This incident, selected model:</span> <span id="provenance-model" class="mono"></span> · <span id="observed" class="mono"></span> · <span id="usage" class="mono"></span></p><p id="metrics" class="small"></p><p id="limits" class="small muted"></p>
 <p class="small muted">The hero readings come from mhVTL, an open-source virtual tape library, with faults injected on purpose; it is not real drive hardware or a real site. The other incidents are hand-written by the same author as the runbooks. No operator study or time saving is measured. A cache record is local evidence, not cryptographic attestation by the provider. The validator checks that a claim is backed by the readings; it cannot see context the readings do not encode, which is why a stronger reader is required before any physical action.</p></div></details></section>
 </div></div></main>
 <footer class="wrap footer"><span>SignalDesk · every tape claim needs a signal</span><span>NVIDIA Nemotron on Nebius Token Factory · Python validator · zero robot moves, cleanings or resets</span></footer>
@@ -117,6 +137,67 @@ code{font-family:ui-monospace,monospace;font-size:.92em;border:1px solid var(--l
 <script>
 'use strict';(()=>{const data=JSON.parse(document.getElementById('replay-data').textContent),$=id=>document.getElementById(id),write=(id,v)=>{$(id).textContent=v;},el=(t,c,txt)=>{const e=document.createElement(t);if(c)e.className=c;if(txt!==undefined)e.textContent=txt;return e;};
 const ROUTED='routed',routing=data.routing||null,books=Object.fromEntries(data.runbooks.map(b=>[b.id,b])),short=m=>m==='routed'?'SignalDesk route':(m.split('/')[1]||m).replace('Nemotron-3_5-Lightning','Nemotron 3.5 Lightning').replace('nemotron-3-super-120b-a12b','Nemotron 3 Super');
+// Ordered playback. Timers belong to a single surface and are cancelled on replacement.
+const flowTimers=new Map();
+function cancelFlow(id){clearTimeout(flowTimers.get(id));flowTimers.delete(id);}
+function showFlow(id,stages,animate=true){
+ cancelFlow(id);const list=$(id);list.replaceChildren();list.dataset.complete='false';
+ const nodes=stages.map(stage=>{const li=el('li'),body=el('div','stage-body');li.dataset.state='pending';li.append(el('h3','',stage.title));if(stage.verdict)body.append(el('p','stage-verdict',stage.verdict));if(stage.text)body.append(el('p','',stage.text));if(stage.metrics)body.append(el('p','stage-metrics',stage.metrics));li.append(body);list.append(li);return li;});
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(!animate||reduced){nodes.forEach((node,i)=>node.dataset.state=stages[i].state||'complete');list.dataset.complete='true';return;}
+ let index=0;
+ function advance(){if(index>0)nodes[index-1].dataset.state=stages[index-1].state||'complete';if(index===nodes.length){list.dataset.complete='true';flowTimers.delete(id);return;}nodes[index].dataset.state='active';index++;flowTimers.set(id,setTimeout(advance,420));}
+ advance();
+}
+const callMetrics=(latency,usage)=>
+ (typeof latency==='number'&&Number.isFinite(latency)?latency.toLocaleString('en-US',{maximumFractionDigits:1})+' ms':'Latency unavailable')+' · '+
+ (usage&&Number.isSafeInteger(usage.prompt_tokens)&&Number.isSafeInteger(usage.completion_tokens)?usage.prompt_tokens.toLocaleString('en-US')+' in / '+usage.completion_tokens.toLocaleString('en-US')+' out tokens':'Tokens unavailable');
+const checkReasons={
+ 'telemetry-abstention':'The proposed runbook lacks a single matching abnormal telemetry family.',
+ 'evidence-support':'The cited readings do not all support the proposed runbook.',
+ 'step-citation':'A step or citation does not match the authored runbook exactly.',
+ 'runbook-content':'The proposed title or runbook content is not an authored match.',
+ 'draft-schema':'The draft does not match the required response schema.',
+ 'draft-lists':'The draft has invalid evidence references, steps or citations.',
+ 'abstention-shape':'The abstention includes claims or steps it must not include.',
+ 'invalid-json':'The response is not valid JSON.',
+ 'unfinished-response':'The model response ended before a complete draft.',
+ 'backed':'Numeric evidence and authored step citations match.',
+ 'abstained':'No action proposed; hand off to an operator.',
+ 'upstream-unavailable':'No usable model response; no live answer.'
+};
+function replayCascade(id,view){
+ const a=answer(id,view),rs=rowsFor(id),c=rs[0].case,rt=a.rt,stages=[{title:'Ticket in · '+id,text:c.text}];
+ const selected=rt?rt.models_called.map(m=>rs.find(r=>r.model===m)).filter(Boolean):[a.row].filter(Boolean);
+ write('cascade-mode',data.live_recorded?'Recorded cascade · playback':'Mock cascade · QA only');
+ write('cascade-context',view===ROUTED?'Lightning first. Super reviews vetoes, abstentions and physical steps.':short(view)+' only · comparison view');
+ if(rt?.path==='pre-triage')stages.push({title:'Deterministic pre-triage',verdict:a.tel.state==='healthy'?'PASS · No incident':'HAND OFF · No model call',text:STATE[a.tel.state],metrics:'0 model tokens · no model call'});
+ for(const row of selected){
+  const b=row.brief,p=b.provenance||{},proposal=b.model_proposal?.runbook_id||b.runbook_id,book=books[proposal],veto=!!b.model_proposal||b.validation==='rejected-draft',unknown=!p.model;
+  stages.push({title:short(row.model)+(rt&&/super/i.test(row.model)?' · second reader':''),text:book?'Draft: '+book.title+' ('+book.id+').':unknown?'No completed response.':veto?'Draft rejected; original text was not retained.':'Draft: abstain and ask an operator.',metrics:callMetrics(p.elapsed_ms,p.usage)});
+  stages.push({title:'Deterministic validator',state:veto?'veto':'complete',verdict:unknown?'UNAVAILABLE':veto?'VETO':book?'PASS · Evidence backed':'PASS · Abstention retained',text:veto?(b.reason||'Draft rejected; detailed reason not recorded.'):unknown?'No draft was available to check.':book?'Readings support '+book.id+'; steps match the authored runbook.':'No action proposed. The numeric gate does not infer missing context.'});
+  if(veto&&book){const readings=c.evidence.filter(e=>e.metric===book.metric);if(readings.length)stages[stages.length-1].text+=' · '+readings.map(e=>e.metric+' = '+e.value).join(', ')+'; gate ≥ '+book.minimum+'.';}
+  if(rt&&selected.length>1&&row===selected[0])stages[stages.length-1].text+=' · '+rt.reason.replace(/^Escalated: /,'Second reader: ')+'.';
+ }
+ const k=kindOf(a);stages.push({title:'Final incident note',verdict:k==='do'?'BACKED · Operator review':k==='quiet'?'NO INCIDENT':'HAND OFF',text:(a.decision?books[a.decision].title:k==='quiet'?'No incident in these supplied readings.':'Collect context and ask the on-call operator.')+' 0 actions executed. The sourced note is below.'});
+ showFlow('case-flow',stages);
+}
+$('cascade-replay').addEventListener('click',()=>{if($('case').value)replayCascade($('case').value,$('model').value);});
+function liveStages(answer,ticket){
+ const stages=[{title:'Your ticket in',text:ticket}],trace=answer.trace||[];
+ if(answer.path==='pre-triage')stages.push({title:'Deterministic pre-triage',verdict:answer.result.status==='no-incident'?'PASS · No incident':'HAND OFF',text:'No model call: '+answer.telemetry.state+' telemetry.',metrics:'0 model tokens · no model call'});
+ for(const row of trace){
+  const book=books[row.proposal],verdict=row.validator;
+  stages.push({title:short(row.model)+(/super/i.test(row.model)?' · second reader':''),text:book?'Sanitized draft: '+book.title+' ('+book.id+').':row.proposal===null?'Draft: no recognized runbook proposal.':'Draft text not retained; see validator result.',metrics:callMetrics(row.latency_ms,row.usage)});
+  stages.push({title:'Deterministic validator',state:verdict==='veto'?'veto':'complete',verdict:verdict==='veto'?'VETO':verdict==='accept'?'PASS':'UNAVAILABLE',text:(checkReasons[row.code]||'Detailed check reason unavailable.')+(row===trace[0]&&trace.length>1?' Super takes a second look.':'')});
+ }
+ if(!answer.result){stages.push({title:'No live incident note',verdict:'UNAVAILABLE',text:'Your custom ticket has no live answer. The recorded cases below are separate evidence.'});return stages;}
+ const r=answer.result,book=books[r.runbook_id];
+ stages.push({title:'Your final incident note',verdict:book?'BACKED · Operator review':r.status==='no-incident'?'NO INCIDENT':'HAND OFF',text:(book?book.title+'\n'+r.steps.map(s=>s.text+' ['+s.source+' §'+s.step+']').join('\n'):r.status==='no-incident'?'No incident in the supplied readings.':'Ask the on-call operator; no supported action note.')+'\n0 actions executed.',metrics:typeof answer.latency_ms==='number'?'Cascade total '+answer.latency_ms+' ms':null});
+ return stages;
+}
+function downloadNote(name,text){const link=el('a'),url=URL.createObjectURL(new Blob([text+'\n'],{type:'text/markdown'}));link.href=url;link.download=name;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+
 // Local, user-entered validator sandbox. Recorded rows and answers remain separate.
 (function tryReadings(){
  const fields=data.runbooks.map(book=>{const label=el('label'),name=el('span','label',book.title),input=el('input'),hint=el('span','tiny muted',book.metric+' · gate ≥ '+book.minimum+' '+book.unit);input.id='try-'+book.metric;input.type='text';input.inputMode='decimal';input.autocomplete='off';input.dataset.metric=book.metric;input.setAttribute('aria-describedby','try-help '+input.id+'-gate');hint.id=input.id+'-gate';label.htmlFor=input.id;label.append(name,input,hint);$('try-inputs').append(label);const option=el('option','',book.id+' · '+book.title);option.value=book.id;$('try-book').append(option);return input;});
@@ -145,28 +226,47 @@ const ROUTED='routed',routing=data.routing||null,books=Object.fromEntries(data.r
  $('try-book').addEventListener('change',()=>{selectBook();check();});$('try-step-number').addEventListener('change',()=>{reference();check();});$('try-step-text').addEventListener('input',check);
  $('try-use-step').addEventListener('click',()=>{const step=selectedStep();if(step)$('try-step-text').value=step.text;check();});$('try-check').addEventListener('click',check);
  $('try-reset').addEventListener('click',()=>{for(const input of fields)input.value='';$('try-book').value='';$('try-step-text').value='';selectBook();check();});
- const liveButton=$('live-run'),liveOutput=$('live-result');let running=false;
+ const examples=[
+  ['Media or cleaning?', '02:10 handover — urgent, clean the heads now, says the last shift. But sg_logs says Media=1, Cleaning required=0. Two other cartridges read fine. Please check the evidence before loading anything.', {tapealert_media_flags:1,tapealert_cleaning_flags:0}],
+  ['Third cleaning?', '04:40 handover — cleaning flags are back (2). We already cleaned this drive twice in 24 hours and they returned within an hour on different cartridges. Night shift wants a third cleaning before backup.', {tapealert_cleaning_flags:2}],
+  ['Drive asks to clean', '23:05 handover — backup paused on drive 1. TapeAlert cleaning flags=2, media flags=0. No cleaning attempted this shift. Drive is ready; please draft the next checks and cite the runbook.', {tapealert_cleaning_flags:2,tapealert_media_flags:0}]
+ ];
+ for(const [title,ticket,values] of examples){const button=el('button','',title);button.type='button';button.setAttribute('aria-pressed','false');button.addEventListener('click',()=>{for(const input of fields)input.value=Object.hasOwn(values,input.dataset.metric)?String(values[input.dataset.metric]):'';$('live-ticket').value=ticket;for(const b of $('ticket-examples').children)b.setAttribute('aria-pressed',String(b===button));check();$('live-ticket').focus();});$('ticket-examples').append(button);}
+ const liveButton=$('live-run'),liveOutput=$('live-result');let running=false,liveNote=null;
  const endpoint=document.querySelector('meta[name="signaldesk-live-endpoint"]').content;
  $('live-open').addEventListener('click',()=>{$('try-readings').open=true;$('live-ticket').focus();$('try-readings').scrollIntoView({block:'start'});});
- const replayMessage=message=>{liveOutput.dataset.state='replay';write('live-result',message+' Showing the recorded replay below; your custom input has no live answer.');};
+ const replayMessage=message=>{liveOutput.dataset.state='replay';write('live-result',message+' Showing the recorded replay below; your custom input has no live answer.');cancelFlow('live-flow');$('live-cascade').hidden=true;$('live-export').hidden=true;liveNote=null;};
+ $('live-export').addEventListener('click',()=>{if(liveNote)downloadNote('signaldesk-live-incident.md',liveNote);});
  liveButton.addEventListener('click',async()=>{
   if(running)return;
-  $('live-trace').replaceChildren();
+  $('live-trace').replaceChildren();liveNote=null;$('live-export').hidden=true;
   if(!endpoint){replayMessage('Live endpoint is not deployed.');return;}
-  const evidence=entered();
+  const evidence=entered(),ticket=$('live-ticket').value;
   if(evidence.some(e=>typeof e.value!=='number'||!Number.isFinite(e.value))){replayMessage('Enter finite numeric readings before a live run.');return;}
   running=true;liveButton.disabled=true;liveOutput.dataset.state='pending';write('live-result','Running on Nebius: Lightning → validator → Super when needed…');
+  $('live-cascade').hidden=false;write('live-cascade-mode','Live request · waiting for response');
+  showFlow('live-flow',[{title:'Your ticket in',text:ticket},{title:'Waiting for the cascade response',text:'Telemetry is checked before a model is called.'}],false);$('live-flow').lastElementChild.dataset.state='active';$('live-flow').dataset.complete='false';
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),45000);
   try{
-   const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'omit',cache:'no-store',signal:controller.signal,body:JSON.stringify({ticket:$('live-ticket').value,evidence})});
+   const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'omit',cache:'no-store',signal:controller.signal,body:JSON.stringify({ticket,evidence})});
    const answer=await response.json();
-   for(const row of answer.trace||[]){const usage=row.usage?row.usage.prompt_tokens+' in / '+row.usage.completion_tokens+' out':'usage unavailable';$('live-trace').append(el('p','',row.model+' · '+row.validator+' ('+row.code+') · '+row.latency_ms+' ms · '+usage));}
-   if(!response.ok||answer.mode!=='live'){replayMessage('Live run unavailable ('+(answer.reason||'service-unavailable')+').');return;}
-   liveOutput.dataset.state='live';
-   const result=answer.result,book=books[result.runbook_id];
-   write('live-result',(answer.path==='pre-triage'?'PRE-TRIAGE · NO MODEL CALL':'LIVE NEBIUS RESULT')+' · '+answer.path+' · '+answer.latency_ms+' ms · '+(book?book.title:result.status==='no-incident'?'No incident in supplied readings':'Hand off to an operator')+' · 0 actions executed');
+   if(!response.ok||answer.mode!=='live'){replayMessage('Live run unavailable ('+(answer.reason||'service-unavailable')+').');
+    if(Array.isArray(answer.trace)&&answer.trace.length&&answer.trace.every(row=>data.models.includes(row.model)&&['accept','veto','unavailable'].includes(row.validator))){$('live-cascade').hidden=false;write('live-cascade-mode','Incomplete live response · partial trace playback');showFlow('live-flow',liveStages({...answer,result:null},ticket));}
+    return;}
+   const result=answer.result,book=books[result?.runbook_id];
+   if(!result||!Array.isArray(result.steps)||!Array.isArray(answer.trace)||
+      (result.runbook_id&&!book)||(!book&&result.steps.length)||
+      answer.trace.some(row=>!data.models.includes(row.model)||!['accept','veto','unavailable'].includes(row.validator)))throw Error('Invalid response');
+   if(book)for(const step of result.steps){if(step.source!==book.id||!Number.isInteger(step.step)||step.step<1||step.text!==book.steps[step.step-1])throw Error('Invalid sourced step');}
+   if(answer.path==='pre-triage'&&!['healthy','conflict','missing','invalid'].includes(answer.telemetry?.state))throw Error('Invalid pre-triage');
+   for(const row of answer.trace){const usage=row.usage?row.usage.prompt_tokens+' in / '+row.usage.completion_tokens+' out':'usage unavailable';$('live-trace').append(el('p','',row.model+' · '+row.validator+' ('+row.code+') · '+row.latency_ms+' ms · '+usage));}
    if(answer.escalation)$('live-trace').append(el('p','','Escalation: '+answer.escalation));
-   if(book)for(const step of result.steps||[]){if(step.source!==book.id||step.text!==book.steps[step.step-1])throw Error('Invalid sourced step');$('live-trace').append(el('p','',step.source+' §'+step.step+': '+step.text));}
+   if(book)for(const step of result.steps)$('live-trace').append(el('p','',step.source+' §'+step.step+': '+step.text));
+   const stages=liveStages(answer,ticket);
+   write('live-cascade-mode','Live Nebius response · step playback · measured call times');showFlow('live-flow',stages);
+   liveOutput.dataset.state='live';
+   write('live-result',(answer.path==='pre-triage'?'PRE-TRIAGE · NO MODEL CALL':'LIVE NEBIUS RESULT')+' · '+answer.path+' · '+answer.latency_ms+' ms · '+(book?book.title:result.status==='no-incident'?'No incident in supplied readings':'Hand off to an operator')+' · 0 actions executed');
+   liveNote=['# SignalDesk live incident note','','## Your ticket',ticket,'','## Readings',...evidence.map(e=>'- '+e.metric+' = '+e.value),'',...stages.slice(1).flatMap(s=>['## '+s.title,s.verdict||'',s.text||'',s.metrics||'','']),'Actions executed by SignalDesk: 0. Live inference; operator review required.'].join('\n');$('live-export').hidden=false;
   }catch{$('live-trace').replaceChildren();replayMessage('Live service is down, timed out, or returned an invalid response.');}
   finally{clearTimeout(timer);running=false;liveButton.disabled=false;}
  });
@@ -177,16 +277,18 @@ function setTheme(light){document.documentElement.dataset.theme=light?'light':'d
 setTheme(window.matchMedia('(prefers-color-scheme: light)').matches);$('theme').addEventListener('click',()=>setTheme(document.documentElement.dataset.theme!=='light'));
 $('download-evidence').href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)+'\n'],{type:'application/json'}));
 if(routing){const o=el('option','', 'SignalDesk route (recommended)');o.value=ROUTED;$('model').append(o);}for(const m of data.models){const o=el('option','',short(m)+' only');o.value=m;$('model').append(o);}
-write('notice',data.live_recorded?'RECORDED NEBIUS RUN · This page replays saved Nemotron responses from Nebius Token Factory. Cached cases are instant; the optional live button sends only your synthetic input. The 72 of 84 backed and 12 vetoed counts are proposals; 53 of 54 is the number of correct final routed incident decisions. Case selection sends nothing.':'LOCAL MOCK PREVIEW · Real Nebius runs are pending. These are transport QA results, not NVIDIA inference or model accuracy.');$('notice').classList.toggle('live',data.live_recorded);
+write('notice',data.live_recorded?'RECORDED NEBIUS RUN · Instant replay, no API request. Use Run live on Nebius for fresh inference.':'LOCAL MOCK PREVIEW · Transport QA, not NVIDIA inference or measured model accuracy.');$('notice').classList.toggle('live',data.live_recorded);
 const usd=v=>'USD '+(v<0.01?v.toFixed(4):v.toFixed(3)),rate=m=>(data.recorded_usage[m]||{}).rates_usd_per_million||{input:0,output:0};
 function rowCost(r){const u=r.brief&&r.brief.provenance&&r.brief.provenance.usage;if(!u)return 0;const k=rate(r.model);return (k.input*u.prompt_tokens+k.output*u.completion_tokens)/1e6;}
 const CODE=/(`[^`]+`|\b[0-9A-F]{2}\/[0-9A-F]{2}\/[0-9A-F]{2}\b|\b0x[0-9a-fA-F]{2}\b)/;
 function rich(node,text){node.replaceChildren();for(const part of String(text).split(CODE)){if(!part)continue;if(CODE.test(part)&&part.length<200)node.append(el('code','',part.replace(/^`|`$/g,'')));else node.append(document.createTextNode(part));}}
 const captured=c=>(data.captured_cases||[]).includes(c.id);
 // Totals for the receipt
-(function receipt(){const cl=data.claims||{};let p=0,b=0,v=0;for(const m in cl){p+=cl[m].proposed;b+=cl[m].backed;v+=cl[m].vetoed;}
-write('r-backed',b+' of '+p);write('r-backed-note','runbooks Nemotron proposed were backed by the readings');write('r-vetoed',String(v));write('r-vetoed-note','proposals vetoed by the validator because the telemetry did not back them');
-if(routing){write('r-cost',usd(routing.routed.usd));write('r-cost-note','routed run for '+routing.routed.total+' incidents ('+routing.routed.correct+' correct) vs '+usd(routing.super_only.usd)+' sending every incident to Super');}else{write('r-cost','USD 0');write('r-cost-note','to replay this page');}})();
+(function receipt(){const cl=data.claims||{};let p=0,v=0;for(const m in cl){p+=cl[m].proposed;v+=cl[m].vetoed;}
+write('r-vetoed',String(v));write('r-vetoed-note',p+' proposals · both recorded models');
+const actions=data.rows.map(r=>r.brief?.actions_executed);write('r-actions',actions.length&&actions.every(n=>n===0)?'0':'Unknown');
+if(routing){write('r-actions-note',routing.lightning_only.unsafe_accepts+' to '+routing.routed.unsafe_accepts+' unsafe recommendations');write('r-cost','$'+routing.routed.usd.toFixed(3));write('r-cost-note','vs $'+routing.super_only.usd.toFixed(3)+' Super-only · '+Math.round(100*(1-routing.routed.usd/routing.super_only.usd))+'% less');write('r-accuracy',routing.routed.correct+'/'+routing.routed.total);write('r-accuracy-note',routing.lightning_only.correct+'/'+routing.lightning_only.total+' to '+routing.routed.correct+'/'+routing.routed.total+' correct');}
+else{write('r-actions-note','All equipment actions: 0');write('r-cost','Mock');write('r-cost-note','No measured inference cost');write('r-accuracy','—');write('r-accuracy-note','Presentation QA, not accuracy');}})();
 function rowsFor(id){return data.rows.filter(r=>r.case_id===id);}
 function routeFor(id){return routing?routing.cases.find(c=>c.case_id===id):null;}
 // Resolve the answer shown for one incident under the selected view.
@@ -227,6 +329,7 @@ function render(){const id=$('case').value,view=$('model').value;if(!id)return;c
  const rt=routeFor(id);write('route-note',rt?'SignalDesk route: '+(rt.path==='pre-triage'?'answered by the validator before any model call':rt.path==='lightning'?'Lightning answered; read-only runbook, no second reader needed':rt.reason)+'. Both models were recorded on every incident so the route can be compared with each model alone.':'');
  if(book){write('source-title',book.id+' · '+book.title);write('threshold','Evidence gate: '+book.metric+' ≥ '+book.minimum+' '+book.unit+'.');write('caveat','Caveat: '+book.caveat);$('source-steps').replaceChildren();book.steps.forEach((text,i)=>{const li=el('li');li.id='source-step-'+(i+1);rich(li,text);for(const sid of ((book.step_sources||[])[i]||[])){const url=(data.sources||{})[sid];if(typeof url!=='string'||!url.startsWith('https://'))continue;const l=el('a','cite','['+sid+']');l.href=url;l.rel='noopener noreferrer';l.target='_blank';li.append(' ',l);}$('source-steps').append(li);});}
  $('docs').replaceChildren();const sel=a.row||rs[0],p=(sel.brief&&sel.brief.provenance)||{};write('provenance-model',(p.model||sel.model)+' · '+(p.origin||sel.outcome));write('observed',p.observed_at?p.observed_at+' · '+p.elapsed_ms+' ms':'no completed response');write('usage',p.usage?p.usage.prompt_tokens+' in + '+p.usage.completion_tokens+' out tokens':'no usage');
+ replayCascade(id,view);
  const i=visible.indexOf(id);$('previous').disabled=i<=0;$('next').disabled=i===visible.length-1;}
 function matches(id,f,view){const a=answer(id,view),k=kindOf(a),r=rowsFor(id)[0];if(f==='all')return true;if(f==='vetoed')return vetoesFor(id).length>0;if(f==='hard')return /^X/.test(id);if(f==='captured')return captured(r.case);return k===f;}
 function filter(){const old=$('case').value,q=$('search').value.trim().toLowerCase(),view=$('model').value,f=$('filter').value;visible=cases.filter(r=>matches(r.case_id,f,view)&&[r.case_id,r.case.title,r.case.text].join(' ').toLowerCase().includes(q)).map(r=>r.case_id);
@@ -255,6 +358,7 @@ $('export').addEventListener('click',()=>{const id=$('case').value,view=$('model
   const bars=el('div','bars');for(const [lab,s] of rows){const d=el('div'),i=el('i',/Super only/.test(lab)?'sup':'');i.style.width=(100*s.usd/max).toFixed(1)+'%';const w=el('span');w.append(i);d.append(el('span','tiny',lab),w,el('span','tiny',usd(s.usd)));bars.append(d);}box.append(bars);$('eval-tables').append(box);}
  const m=data.metrics[data.models[0]];write('metrics','Per model: '+data.models.map(x=>short(x)+' '+data.metrics[x].correct+'/'+data.metrics[x].total+' correct decisions, '+data.metrics[x].errors+' errors').join('; ')+'. Recorded spend for this page: '+data.models.map(x=>usd(data.recorded_usage[x].usd_token_estimate)).join(' + ')+'. Replaying it costs nothing.');write('limits',data.disclosure);})();
 filter();
+if(routing&&visible.includes('X06')){$('case').value='X06';render();}
 const scenes=[['H05',ROUTED,'1 / 5 · Real mhVTL capture: the drive asks for cleaning. Nemotron Lightning drafts first; because cleaning moves a cartridge, Nemotron Super reads it again before the operator is told to act. Every step is copied from the runbook.'],
 ['X06',ROUTED,'2 / 5 · The operator insists the heads are dirty. Lightning follows the ticket text and proposes cleaning; the readings say the cartridge raised the media flag, so the validator vetoes it. Super reads the telemetry and gets it right.'],
 ['X02',ROUTED,'3 / 5 · The cleaning flag came back after two cleanings today. The readings alone (and both models with reasoning off) say clean again. Super with reasoning applies the runbook caveat: stop, hand it to a person.'],

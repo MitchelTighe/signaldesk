@@ -1,0 +1,82 @@
+{
+  "capture": "Headless Chromium 138.0.2 via Playwright 1.55.0 in a network-isolated container",
+  "source": "site/index.html",
+  "case": "X06",
+  "surface": "Recorded replay, not fresh inference",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 960
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "images": [
+    {
+      "file": "cascade-1280.png",
+      "dimensions": [
+        1280,
+        960
+      ],
+      "sha256": "c428a47ed7df350876a7ef271b767436383d2aaadedd319dc16419ce3fcb9294"
+    },
+    {
+      "file": "cascade-390.png",
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "361438ecadbde45c3aee0cf436ea5198912e842ecd1ccad743f5d64869c8239b"
+    },
+    {
+      "file": "intro-1280.png",
+      "dimensions": [
+        1280,
+        960
+      ],
+      "sha256": "701efb399316cb1de40c8cbb9e2cced0d26ccd1ecad8ead444bcf01254e1cfd3"
+    },
+    {
+      "file": "intro-390.png",
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "1b168f2c418fec8b2e02cd15d38c8096a9e64caad2b17b670999701bc125270a"
+    },
+    {
+      "file": "replay-1280.png",
+      "dimensions": [
+        1280,
+        5518
+      ],
+      "sha256": "52945540f93526ff31bf7864fe50300a732aa2e417d8a6d71390e790f32f23c4"
+    },
+    {
+      "file": "replay-390.png",
+      "dimensions": [
+        390,
+        9895
+      ],
+      "sha256": "2fb1a95a7e4ade96b86ec8d1559dd1361eb4ebe29183068ad13936c6db0dd1ed"
+    },
+    {
+      "file": "ticket-1280.png",
+      "dimensions": [
+        1280,
+        960
+      ],
+      "sha256": "deea14b7cab4a690d936424374f65f3fafedaf246848e4961162b92d3035a03d"
+    },
+    {
+      "file": "ticket-390.png",
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "032b977afca8aa07f07d7a2cb40e1170eef6bac39836b3ca9eed8f334df3eb3e"
+    }
+  ]
+}

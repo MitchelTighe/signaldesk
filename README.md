@@ -2,7 +2,8 @@
 
 **Instant recorded Nebius cases, with an opt-in live demo path ready for owner deployment.**
 
-The prominent **Run live on Nebius** button opens the editable readings and ticket panel.
+The **Try your own ticket** button opens three messy handover examples, an editable ticket and
+readings, and the explicit **Run live on Nebius** button.
 Live inference is disabled in this checkout. [DEPLOY.md](DEPLOY.md) covers the secret-only
 Cloudflare proxy, hard quotas, deployment steps, cost estimates and kill switch.
 
@@ -17,7 +18,14 @@ hosted copy at <https://mitcheltighe.github.io/signaldesk/> (live), and click
 **Start 30-second walkthrough**. It replays the recorded Nebius run: no login, API key, install or
 network request.
 
-**Try your own readings:** expand that panel on the page, enter drive/library values, then
+**Try your own ticket:** open the panel and load an example (media versus cleaning, a third
+cleaning, or a fresh cleaning request). Each example fills the ticket and numeric readings.
+The case cascade animates Lightning’s draft, the validator’s pass or red veto with its reason,
+Super’s second reading when needed, and the final note. Recorded model latency and tokens
+come from the saved trace; the animation is playback. The top scoreboard cites `site/replay.json`
+in its tooltips. Evidence limits and next validation steps are under **What’s next**.
+
+**Check your own readings:** in the same panel, enter drive/library values, then
 choose a runbook and edit a proposed step. It checks gates, conflicting readings and exact
 runbook wording locally: **validator only, no model call**. Blank fields are missing readings,
 not zero. A match does not interpret ticket context or stop caveats, and never approves a
